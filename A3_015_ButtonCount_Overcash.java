@@ -36,26 +36,39 @@ public class A3_015_ButtonCount_Overcash extends WindowController {
         pineapple.textX = (pineapple.xOffset)*(5/2);
         pineapple.box1 = new FilledRect(pineapple.buttonX, pineapple.topWithPadding, pineapple.boxHeight, pineapple.boxHeight, pineapple.canvas);
         pineapple.box1.setColor(Color.RED);
-        pineapple.b1Text = new Text("Red click count: 0", pineapple.textX, pineapple.topWithPadding, pineapple.canvas);
+        pineapple.b1Text = new Text("Red clicks: 0", pineapple.textX, pineapple.topWithPadding, pineapple.canvas);
         pineapple.b1Text.setColor(Color.RED);
         pineapple.b1Text.setFontSize(pineapple.fontSize);
         pineapple.box2 = new FilledRect(pineapple.buttonX, pineapple.topWithPadding+pineapple.yOffset, pineapple.boxHeight, pineapple.boxHeight, pineapple.canvas);
         pineapple.box2.setColor(Color.GREEN);
-        pineapple.b2Text = new Text("Green click count: 0", pineapple.textX, pineapple.topWithPadding*2, pineapple.canvas);
+        pineapple.b2Text = new Text("Green clicks: 0", pineapple.textX, pineapple.topWithPadding*2, pineapple.canvas);
         pineapple.b2Text.setColor(Color.GREEN);
         pineapple.b2Text.setFontSize(pineapple.fontSize);
         pineapple.box3 = new FilledRect(pineapple.buttonX, pineapple.topWithPadding+(2*pineapple.yOffset), pineapple.boxHeight, pineapple.boxHeight, pineapple.canvas);
         pineapple.box3.setColor(Color.BLUE);
-        pineapple.b3Text = new Text("Blue click count: 0", pineapple.textX, pineapple.topWithPadding*3, pineapple.canvas);
+        pineapple.b3Text = new Text("Blue clicks: 0", pineapple.textX, pineapple.topWithPadding*3, pineapple.canvas);
         pineapple.b3Text.setColor(Color.BLUE);
         pineapple.b3Text.setFontSize(pineapple.fontSize);
-        pineapple.allClicksText = new Text("Total clicks:")
+        pineapple.allClicksText = new Text("Total clicks: 0", pineapple.buttonX, (4*pineapple.yOffset)+pineapple.fontSize, pineapple.canvas);
+        pineapple.allClicksText.setFontSize(pineapple.fontSize);
+        pineapple.missedClickText = new Text("Missed clicks: 0", pineapple.buttonX, 5*pineapple.yOffset, pineapple.canvas);
+        pineapple.missedClickText.setFontSize(pineapple.fontSize);
     }
     public void onMouseClick(Location p) {
         totalCount++;
-        missedClickText.setColor(rGen.nextValue(), rGen.nextValue(), rGen.nextValue());
+        allClicksText.setText("Total clicks: "+totalCount);
+        missedClickText.setColor(new Color(rGen.nextValue(), rGen.nextValue(), rGen.nextValue()));
         if (box1.contains(p)) {
             box1Count++;
-        };
+            b1Text.setText("Red clicks: "+box1Count);
+        } else if (box2.contains(p)) {
+            box2Count++;
+            b2Text.setText("Green clicks: "+box2Count);
+        } else if (box3.contains(p)) {
+            box3Count++;
+            b3Text.setText("Blue clicks: "+box3Count);
+        } else {
+            missedClickText.setText("Missed clicks: "+(totalCount-(box1Count+box2Count+box3Count)));
+        }
     }
 }
