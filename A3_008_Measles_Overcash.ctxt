@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=args
+comment0.target=void\ main(java.lang.String[])
+comment1.params=
+comment1.target=void\ begin()
+comment2.params=point
+comment2.target=void\ onMousePress(objectdraw.Location)
+comment3.params=point
+comment3.target=void\ onMouseDrag(objectdraw.Location)
+comment4.params=point
+comment4.target=void\ onMouseRelease(objectdraw.Location)
+comment5.params=point
+comment5.target=void\ onMouseEnter(objectdraw.Location)
+comment6.params=Point
+comment6.target=void\ onMouseExit(objectdraw.Location)
+numComments=7
