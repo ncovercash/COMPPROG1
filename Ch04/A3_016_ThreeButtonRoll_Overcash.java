@@ -1,3 +1,5 @@
+package Ch04;
+
 import objectdraw.*;
 import java.awt.*;
 import java.util.*;
@@ -16,15 +18,16 @@ public class A3_016_ThreeButtonRoll_Overcash extends WindowController {
 	int totalScore = 0;
 	int changeColor = 0;
     public static void main(String[] args) {
-        A3_016_ThreeButtonRoll_Overcash class = new A3_016_ThreeButtonRoll_Overcash();
+        A3_016_ThreeButtonRoll_Overcash oc = new A3_016_ThreeButtonRoll_Overcash();
+        oc.startController(600, 600);
     }
     public void begin() {
-		offSet = canvas.getWidth()*0.03;
+		offSet = (canvas.getWidth()/33);
 		oneThirdScreenX = canvas.getWidth()/3;
-		twoThirdScreenX = canvas.getWidth()/1.5;
+		twoThirdScreenX = canvas.getWidth()/(3/2);
 		boxYValue = canvas.getHeight()/3+offSet;
-		boxWidth = canvas.getWidth()*0.3;
-		boxHeight = canvas.getHeight()*0.3;
+		boxWidth = (canvas.getWidth()/33)*10;
+		boxHeight = (canvas.getHeight()/33)*10;
     }
     public void onMouseClick(Location p) {
     	// do stuff
