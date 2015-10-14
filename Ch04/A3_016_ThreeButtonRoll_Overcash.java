@@ -55,9 +55,42 @@ public class A3_016_ThreeButtonRoll_Overcash extends WindowController {
 		scoreText.move(-scoreText.getWidth()/2, 0);
 	}
 	public void onMouseClick(Location p) {
+		pointsThisRound = 0;
+		scoreText.setText("This Round: "+pointsThisRound+" == New Score: "+totalScore);
+		changeColor = rGen.nextValue();
+		if (changeColor == redColor) {
+			box1.setColor(new Color(255, 0, 0));
+			pointsThisRound += 3;
+		} else if (changeColor == blueColor) {
+			box1.setColor(new Color(0, 255, 0));
+			pointsThisRound += 2;
+		} else if (changeColor == greenColor) {
+			box1.setColor(new Color(0, 0, 255));
+			pointsThisRound ++;
+		}
 		changeColor = rGen.nextValue();
 		if (changeColor == redColor) {
 			box2.setColor(new Color(255, 0, 0));
+			pointsThisRound += 3;
+		} else if (changeColor == blueColor) {
+			box2.setColor(new Color(0, 255, 0));
+			pointsThisRound += 2;
+		} else if (changeColor == greenColor) {
+			box2.setColor(new Color(0, 0, 255));
+			pointsThisRound ++;
 		}
+		changeColor = rGen.nextValue();
+		if (changeColor == redColor) {
+			box3.setColor(new Color(255, 0, 0));
+			pointsThisRound += 3;
+		} else if (changeColor == blueColor) {
+			box3.setColor(new Color(0, 255, 0));
+			pointsThisRound += 2;
+		} else if (changeColor == greenColor) {
+			box3.setColor(new Color(0, 0, 255));
+			pointsThisRound ++;
+		}
+		totalScore += pointsThisRound;
+		scoreText.setText("This Round: "+pointsThisRound+" == New Score: "+totalScore);
 	}
 }
