@@ -93,4 +93,9 @@ public class A3_016_ThreeButtonRoll_Overcash extends WindowController {
 		totalScore += pointsThisRound;
 		scoreText.setText("This Round: "+pointsThisRound+" == New Score: "+totalScore);
 	}
+	public void onMouseExit() {
+		totalScore = 0;
+		pointsThisRound = 0;
+                scoreText.setText("This Round: "+pointsThisRound+" == New Score: "+totalScore);
+	}
 }
