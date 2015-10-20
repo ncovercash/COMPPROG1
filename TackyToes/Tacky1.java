@@ -95,10 +95,10 @@ public class Tacky1 extends WindowController {
 		text1.setFontSize(textSize);
 		text1.move(piece1.getWidth()/2, piece1.getHeight()/2);
 		text1.move(text1.getWidth()/-2, text1.getHeight()/-2);
-		pieceTextHeightOffset = text1.getX()-piece1.getX();
-		System.out.println(text1.getX());
-		System.out.println(piece1.getX());
-		pieceTextWidthOffset = text1.getY()-piece1.getY();
+		pieceTextHeightOffset = text1.getY()-piece1.getY();
+		System.out.println(text1.getY());
+		System.out.println(piece1.getY());
+		pieceTextWidthOffset = text1.getX()-piece1.getX();
 		Text text2 = new Text("H", piece2.getX()+pieceTextWidthOffset, piece2.getY()+pieceTextHeightOffset, canvas);
 		text2.setFontSize(textSize);
 		Text text3 = new Text("H", piece3.getX()+pieceTextWidthOffset, piece3.getY()+pieceTextHeightOffset, canvas);
