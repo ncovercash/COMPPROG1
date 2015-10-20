@@ -1,7 +1,7 @@
 import objectdraw.*;
 import java.awt.*;
 import java.util.*;
-public class TackyBoard extends WindowController {
+public class Tacky1 extends WindowController {
 	Location startLoc;
 	double xColPadding;
 	double yRowPadding;
@@ -17,9 +17,18 @@ public class TackyBoard extends WindowController {
 	double yCol1;
 	double yCol2;
 	double yCol3;
-	Color boardColor = new Color(255, 0, 0);
+	double pieceHeight;
+	double pieceWidth;
+	double pieceHeightOffset;
+	double pieceWidthOffset;
+	double pieceTextHeightOffset;
+	double pieceTextWidthOffset;
+	int textSize;
+	Color boardColor = new Color(33, 33, 33);
+	Color xColor = new Color(255, 0, 0);
+	Color oColor = new Color(0, 0, 255);
 	public static void main(String[] args) {
-		TackyBoard oc = new TackyBoard();
+		Tacky1 oc = new Tacky1();
 		oc.startController(600, 600);
 	}
 	public void begin() {
@@ -38,6 +47,13 @@ public class TackyBoard extends WindowController {
 		double yCol1 = yCol0+boardRowHeight;
 		double yCol2 = yCol1+boardRowHeight;
 		double yCol3 = yCol2+boardRowHeight;
+		double pieceHeight = boardRowHeight*0.9;
+		double pieceWidth = boardColWidth*0.9;
+		double pieceHeightOffset = boardRowHeight/20;
+		double pieceWidthOffset = boardColWidth/20;
+		double pieceTextHeightOffset = null;
+		double pieceTextWidthOffset = null;
+		int textSize = null;
 		
 		System.out.println("xColPadding: "+xColPadding);
 		System.out.println("yRowPadding: "+yRowPadding);
@@ -54,6 +70,16 @@ public class TackyBoard extends WindowController {
 		System.out.println("yCol1: "+yCol1);
 		System.out.println("yCol2: "+yCol2);
 		System.out.println("yCol3: "+yCol3);
+		System.out.println("pieceHeight: "+pieceHeight);
+		System.out.println("pieceWidth: "+pieceWidth);
+		System.out.println("pieceHeightOffset: "+pieceHeightOffset);
+		System.out.println("pieceWidthOffsetW: "+pieceWidthOffset);
+		System.out.println("pieceTextHeightOffset: "+pieceTextHeightOffset);
+		System.out.println("pieceTextWidthOffset: "+pieceTextWidthOffset);
+		System.out.println("boardColor: "+boardColor);
+		System.out.println("xColor: "+xColor);
+		System.out.println("oColor: "+oColor);
+		System.out.println("textSize: "+textSize);
 		
 		new Line(xCol0, yCol0, xCol0, yCol3, canvas).setColor(boardColor);
 		new Line(xCol1, yCol0, xCol1, yCol3, canvas).setColor(boardColor);
@@ -69,8 +95,8 @@ public class TackyBoard extends WindowController {
 		double xColPadding = canvas.getWidth()/20;
 		double yRowPadding = canvas.getHeight()/20;
 		Location startLoc = new Location(xColPadding, yRowPadding);
-		double boardWidth = canvas.getWidth()*0.9;
-		double boardHeight = canvas.getHeight()*0.9;
+		double boardWidth = canvas.getWidth()/10*9;
+		double boardHeight = canvas.getHeight()/10*9;
 		double boardRowHeight = boardHeight/3;
 		double boardColWidth = boardWidth/3;
 		double xCol0 = xColPadding;
