@@ -1,6 +1,9 @@
 import objectdraw.*;
 import java.awt.*;
 import java.util.*;
+import java.lang.*;
+import java.io.*;
+import javax.imageio.*;
 public class Tacky2 extends WindowController {
 	Location startLoc;
 	double xColPadding;
@@ -24,6 +27,8 @@ public class Tacky2 extends WindowController {
 	double pieceTextHeightOffset;
 	double pieceTextWidthOffset;
 	int textSize;
+	int oScore = 0;
+	int xScore = 0;
 	Color boardColor;
 	Color xColor;
 	Color oColor;
@@ -37,6 +42,7 @@ public class Tacky2 extends WindowController {
 	FilledRect piece7;
 	FilledRect piece8;
 	FilledRect piece9;
+	FramedRect playAgainButton;
 	Text text1;
 	Text text2;
 	Text text3;
@@ -46,6 +52,9 @@ public class Tacky2 extends WindowController {
 	Text text7;
 	Text text8;
 	Text text9;
+	Text titleText;
+	Image img;
+	VisibleImage playAgainImage;
 	public static void main(String[] args) {
 		Tacky2 oc = new Tacky2();
 		oc.startController(1000, 1000);
@@ -55,11 +64,11 @@ public class Tacky2 extends WindowController {
 		Color xColor = new Color(255, 0, 0);
 		Color oColor = new Color(0, 0, 255);
 		Color startColor = new Color(0, 255, 0);
-		double xColPadding = canvas.getWidth()/20;
-		double yRowPadding = canvas.getHeight()/20;
+		double xColPadding = canvas.getWidth()/10;
+		double yRowPadding = canvas.getHeight()/10;
 		Location startLoc = new Location(xColPadding, yRowPadding);
-		double boardWidth = canvas.getWidth()*0.9;
-		double boardHeight = canvas.getHeight()*0.9;
+		double boardWidth = canvas.getWidth()*0.8;
+		double boardHeight = canvas.getHeight()*0.8;
 		double boardRowHeight = boardHeight/3;
 		double boardColWidth = boardWidth/3;
 		double xCol0 = xColPadding;
@@ -126,7 +135,27 @@ public class Tacky2 extends WindowController {
 		new Line(xCol0, yCol2, xCol3, yCol2, canvas).setColor(boardColor);
 		new Line(xCol0, yCol3, xCol3, yCol3, canvas).setColor(boardColor);
 	}
+	public void titleText() {
+		titleText = new Text("hi", 0, canvas.getWidth()/20, canvas);
+	}
+	public void makeScoreBoxes() {
+
+	}
+	public void makePlayAgainButton() {
+		playAgainButton = new FramedRect(0, 0, canvas.getWidth()/5, canvas.getHeight()/20, canvas);
+		playAgainButton.moveTo(canvas.getWidth()/2, 0);
+		playAgainButton.move(playAgainButton.getWidth()/-2, 0);
+		try {
+			playAgainImage = new VisibleImage(ImageIO.read(new File("play_again.png")), 0, 0, canvas.getHeight()/20, canvas.getHeight()/20, canvas);
+		} catch (IOException e) {
+			// shouldn't make an error
+			System.out.println(e);
+		}
+		playAgainImage.moveTo(canvas.getWidth()/2, 0);
+		playAgainImage.move(playAgainImage.getWidth()/-2, 0);
+	}
 	public void begin() {
 		makeBoard();
+		makePlayAgainButton();
 	}
 }
