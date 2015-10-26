@@ -1,10 +1,6 @@
 import objectdraw.*;
 import java.awt.*;
 import java.util.*;
-<<<<<<< HEAD
-=======
-
->>>>>>> 3b44b128dcb74fe8530bdca22f1cc62afb38f75c
 public class Tacky1 extends WindowController {
 	Location startLoc;
 	double xColPadding;

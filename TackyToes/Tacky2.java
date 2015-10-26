@@ -147,7 +147,6 @@ public class Tacky2 extends WindowController {
 		oScoreButton.moveTo((canvas.getWidth()/10)+(((canvas.getWidth()*0.4)/3)*5), 0);
 		oScoreButton.move(oScoreButton.getWidth()/-2, 0);
 		xScoreText = new Text("X Score: 0", 0, 0, canvas);
-<<<<<<< HEAD
 		xScoreText.setFontSize(canvas.getHeight()/25);
 		xScoreText.moveTo((canvas.getWidth()/10)+((canvas.getWidth()*0.4)/3), 0);
 		xScoreText.move(xScoreText.getWidth()/-2, 0);
@@ -155,11 +154,6 @@ public class Tacky2 extends WindowController {
 		oScoreText.setFontSize(canvas.getHeight()/25);
 		oScoreText.moveTo((canvas.getWidth()/10)+(((canvas.getWidth()*0.4)/3)*5), 0);
 		oScoreText.move(oScoreButton.getWidth()/-2, 0);
-=======
-		xScoreText.moveTo((canvas.getWidth()/10)+((canvas.getWidth()*0.4)/3), 0);
-		xScoreText.move(xScoreText.getWidth()/-2, 0);
-		//playAgainImage.move(playAgainImage.getWidth()/-2, 0);
->>>>>>> 3b44b128dcb74fe8530bdca22f1cc62afb38f75c
 	}
 	public void makePlayAgainButton() {
 		playAgainButton = new FramedRect(0, 0, canvas.getWidth()/5, canvas.getHeight()/20, canvas);
@@ -184,9 +178,6 @@ public class Tacky2 extends WindowController {
 		makeBoard();
 		makePlayAgainButton();
 		makeScoreBoxes();
-<<<<<<< HEAD
 		makeTitle();
-=======
->>>>>>> 3b44b128dcb74fe8530bdca22f1cc62afb38f75c
 	}
 }

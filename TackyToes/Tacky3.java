@@ -6,8 +6,7 @@ import java.io.*;
 import javax.imageio.*;
 public class Tacky3 extends WindowController {
 	Location startLoc;
-	Font f;
-	Font dvs;
+	ArrayList clickedPieces = new ArrayList();
 	double xColPadding;
 	double yRowPadding;
 	double boardWidth;
@@ -31,6 +30,7 @@ public class Tacky3 extends WindowController {
 	int textSize;
 	int oScore = 0;
 	int xScore = 0;
+	int totalLegalClicks = 0;
 	Color boardColor;
 	Color xColor;
 	Color oColor;
@@ -66,32 +66,32 @@ public class Tacky3 extends WindowController {
 		oc.startController(1000, 1000);
 	}
 	public void makeBoard() {
-		Color boardColor = new Color(59, 59, 60);
-		Color xColor = new Color(255, 0, 0);
-		Color oColor = new Color(0, 0, 255);
-		Color startColor = new Color(0, 255, 0);
-		double xColPadding = canvas.getWidth()/10;
-		double yRowPadding = canvas.getHeight()/10;
+		boardColor = new Color(59, 59, 60);
+		xColor = new Color(255, 0, 0);
+		oColor = new Color(0, 0, 255);
+		startColor = new Color(0, 255, 0);
+		xColPadding = canvas.getWidth()/10;
+		yRowPadding = canvas.getHeight()/10;
 		Location startLoc = new Location(xColPadding, yRowPadding);
-		double boardWidth = canvas.getWidth()*0.8;
-		double boardHeight = canvas.getHeight()*0.8;
-		double boardRowHeight = boardHeight/3;
-		double boardColWidth = boardWidth/3;
-		double xCol0 = xColPadding;
-		double xCol1 = xCol0+boardColWidth;
-		double xCol2 = xCol1+boardColWidth;
-		double xCol3 = xCol2+boardColWidth;
-		double yCol0 = yRowPadding;
-		double yCol1 = yCol0+boardRowHeight;
-		double yCol2 = yCol1+boardRowHeight;
-		double yCol3 = yCol2+boardRowHeight;
-		double pieceHeight = boardRowHeight*0.9;
-		double pieceWidth = boardColWidth*0.9;
-		double pieceHeightOffset = boardRowHeight/20;
-		double pieceWidthOffset = boardColWidth/20;
-		double pieceTextHeightOffset = 0;
-		double pieceTextWidthOffset = 0;
-		int textSize = (int)(pieceWidth*0.8);
+		boardWidth = canvas.getWidth()*0.8;
+		boardHeight = canvas.getHeight()*0.8;
+		boardRowHeight = boardHeight/3;
+		boardColWidth = boardWidth/3;
+		xCol0 = xColPadding;
+		xCol1 = xCol0+boardColWidth;
+		xCol2 = xCol1+boardColWidth;
+		xCol3 = xCol2+boardColWidth;
+		yCol0 = yRowPadding;
+		yCol1 = yCol0+boardRowHeight;
+		yCol2 = yCol1+boardRowHeight;
+		yCol3 = yCol2+boardRowHeight;
+		pieceHeight = boardRowHeight*0.9;
+		pieceWidth = boardColWidth*0.9;
+		pieceHeightOffset = boardRowHeight/20;
+		pieceWidthOffset = boardColWidth/20;
+		pieceTextHeightOffset = 0;
+		pieceTextWidthOffset = 0;
+		textSize = (int)(pieceWidth*0.8);
 		piece1 = new FilledRect(xCol0+pieceWidthOffset, yCol0+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
 		piece1.setColor(startColor);
 		piece2 = new FilledRect(xCol1+pieceWidthOffset, yCol0+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
@@ -179,7 +179,118 @@ public class Tacky3 extends WindowController {
 	}
 	FilledRect boxClicked(Location p) {
 		if (piece1.contains(p)) {
-			return piece1;
+			if (clickedPieces.contains(piece1) != true) {
+				return piece1;
+			} else {
+				return null;
+			}
+		} else if (piece2.contains(p)) {
+			if (clickedPieces.contains(piece2) != true) {
+				return piece2;
+			} else {
+				return null;
+			}
+		} else if (piece3.contains(p)) {
+			if (clickedPieces.contains(piece3) != true) {
+				return piece3;
+			} else {
+				return null;
+			}
+		} else if (piece4.contains(p)) {
+			if (clickedPieces.contains(piece4) != true) {
+				return piece4;
+			} else {
+				return null;
+			}
+		} else if (piece5.contains(p)) {
+			if (clickedPieces.contains(piece5) != true) {
+				return piece5;
+			} else {
+				return null;
+			}
+		} else if (piece6.contains(p)) {
+			if (clickedPieces.contains(piece6) != true) {
+				return piece6;
+			} else {
+				return null;
+			}
+		} else if (piece7.contains(p)) {
+			if (clickedPieces.contains(piece7) != true) {
+				return piece7;
+			} else {
+				return null;
+			}
+		} else if (piece8.contains(p)) {
+			if (clickedPieces.contains(piece8) != true) {
+				return piece8;
+			} else {
+				return null;
+			}
+		} else if (piece9.contains(p)) {
+			if (clickedPieces.contains(piece9) != true) {
+				return piece9;
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
+	Text boxTextClicked(Location p) {
+		if (piece1.contains(p)) {
+			if (clickedPieces.contains(piece1) != true) {
+				return text1;
+			} else {
+				return null;
+			}
+		} else if (piece2.contains(p)) {
+			if (clickedPieces.contains(piece2) != true) {
+				return text2;
+			} else {
+				return null;
+			}
+		} else if (piece3.contains(p)) {
+			if (clickedPieces.contains(piece3) != true) {
+				return text3;
+			} else {
+				return null;
+			}
+		} else if (piece4.contains(p)) {
+			if (clickedPieces.contains(piece4) != true) {
+				return text4;
+			} else {
+				return null;
+			}
+		} else if (piece5.contains(p)) {
+			if (clickedPieces.contains(piece5) != true) {
+				return text5;
+			} else {
+				return null;
+			}
+		} else if (piece6.contains(p)) {
+			if (clickedPieces.contains(piece6) != true) {
+				return text6;
+			} else {
+				return null;
+			}
+		} else if (piece7.contains(p)) {
+			if (clickedPieces.contains(piece7) != true) {
+				return text7;
+			} else {
+				return null;
+			}
+		} else if (piece8.contains(p)) {
+			if (clickedPieces.contains(piece8) != true) {
+				return text8;
+			} else {
+				return null;
+			}
+		} else if (piece9.contains(p)) {
+			if (clickedPieces.contains(piece9) != true) {
+				return text9;
+			} else {
+				return null;
+			}
 		} else {
 			return null;
 		}
@@ -191,6 +302,27 @@ public class Tacky3 extends WindowController {
 		makeTitle();
 	}
 	public void onMouseClick(Location p) {
-		boxClicked(p);
+		System.out.println(boxClicked(p));
+		if (boxClicked(p) != null) {
+			if (totalLegalClicks%2 == 0) {
+				boxClicked(p).setColor(xColor);
+				boxTextClicked(p).setText("X");
+				totalLegalClicks++;
+			} else {
+				boxClicked(p).setColor(oColor);
+				boxTextClicked(p).setText("O");
+				totalLegalClicks++;
+			}
+			clickedPieces.add(boxClicked(p));
+		}
+		if (playAgainButton.contains(p)) {
+			totalLegalClicks = 0;
+			clickedPieces.clear();
+			canvas.clear();
+			makeBoard();
+			makePlayAgainButton();
+			makeScoreBoxes();
+			makeTitle();
+		}
 	}
 }
