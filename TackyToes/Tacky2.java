@@ -43,6 +43,8 @@ public class Tacky2 extends WindowController {
 	FilledRect piece8;
 	FilledRect piece9;
 	FramedRect playAgainButton;
+	FramedRect xScoreButton;
+	FramedRect oScoreButton;
 	Text text1;
 	Text text2;
 	Text text3;
@@ -53,6 +55,8 @@ public class Tacky2 extends WindowController {
 	Text text8;
 	Text text9;
 	Text titleText;
+	Text xScoreText;
+	Text oScoreText;
 	Image img;
 	VisibleImage playAgainImage;
 	public static void main(String[] args) {
@@ -139,7 +143,16 @@ public class Tacky2 extends WindowController {
 		titleText = new Text("hi", 0, canvas.getWidth()/20, canvas);
 	}
 	public void makeScoreBoxes() {
-
+		xScoreButton = new FramedRect(0, 0, canvas.getWidth()/5, canvas.getHeight()/20, canvas);
+		xScoreButton.moveTo((canvas.getWidth()/10)+((canvas.getWidth()*0.4)/3), 0);
+		xScoreButton.move(xScoreButton.getWidth()/-2, 0);
+		oScoreButton = new FramedRect(0, 0, canvas.getWidth()/5, canvas.getHeight()/20, canvas);
+		oScoreButton.moveTo((canvas.getWidth()/10)+(((canvas.getWidth()*0.4)/3)*5), 0);
+		oScoreButton.move(oScoreButton.getWidth()/-2, 0);
+		xScoreText = new Text("X Score: 0", 0, 0, canvas);
+		xScoreText.moveTo((canvas.getWidth()/10)+((canvas.getWidth()*0.4)/3), 0);
+		xScoreText.move(xScoreText.getWidth()/-2, 0);
+		//playAgainImage.move(playAgainImage.getWidth()/-2, 0);
 	}
 	public void makePlayAgainButton() {
 		playAgainButton = new FramedRect(0, 0, canvas.getWidth()/5, canvas.getHeight()/20, canvas);
@@ -148,7 +161,7 @@ public class Tacky2 extends WindowController {
 		try {
 			playAgainImage = new VisibleImage(ImageIO.read(new File("play_again.png")), 0, 0, canvas.getHeight()/20, canvas.getHeight()/20, canvas);
 		} catch (IOException e) {
-			// shouldn't make an error
+			// shouldn't make an error afaik
 			System.out.println(e);
 		}
 		playAgainImage.moveTo(canvas.getWidth()/2, 0);
@@ -157,5 +170,6 @@ public class Tacky2 extends WindowController {
 	public void begin() {
 		makeBoard();
 		makePlayAgainButton();
+		makeScoreBoxes();
 	}
 }

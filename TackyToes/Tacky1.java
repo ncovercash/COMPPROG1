@@ -1,7 +1,8 @@
 import objectdraw.*;
 import java.awt.*;
 import java.util.*;
-public class Tacky2 extends WindowController {
+
+public class Tacky1 extends WindowController {
 	Location startLoc;
 	double xColPadding;
 	double yRowPadding;
@@ -47,7 +48,7 @@ public class Tacky2 extends WindowController {
 	Text text8;
 	Text text9;
 	public static void main(String[] args) {
-		Tacky2 oc = new Tacky2();
+		Tacky1 oc = new Tacky1();
 		oc.startController(1000, 1000);
 	}
 	public void makeBoard() {
