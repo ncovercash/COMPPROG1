@@ -4,8 +4,10 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 import javax.imageio.*;
-public class Tacky2 extends WindowController {
+public class Tacky3 extends WindowController {
 	Location startLoc;
+	Font f;
+	Font dvs;
 	double xColPadding;
 	double yRowPadding;
 	double boardWidth;
@@ -60,7 +62,7 @@ public class Tacky2 extends WindowController {
 	Image img;
 	VisibleImage playAgainImage;
 	public static void main(String[] args) {
-		Tacky2 oc = new Tacky2();
+		Tacky3 oc = new Tacky3();
 		oc.startController(1000, 1000);
 	}
 	public void makeBoard() {
@@ -90,45 +92,45 @@ public class Tacky2 extends WindowController {
 		double pieceTextHeightOffset = 0;
 		double pieceTextWidthOffset = 0;
 		int textSize = (int)(pieceWidth*0.8);
-		FilledRect piece1 = new FilledRect(xCol0+pieceWidthOffset, yCol0+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
+		piece1 = new FilledRect(xCol0+pieceWidthOffset, yCol0+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
 		piece1.setColor(startColor);
-		FilledRect piece2 = new FilledRect(xCol1+pieceWidthOffset, yCol0+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
+		piece2 = new FilledRect(xCol1+pieceWidthOffset, yCol0+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
 		piece2.setColor(startColor);
-		FilledRect piece3 = new FilledRect(xCol2+pieceWidthOffset, yCol0+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
+		piece3 = new FilledRect(xCol2+pieceWidthOffset, yCol0+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
 		piece3.setColor(startColor);
-		FilledRect piece4 = new FilledRect(xCol0+pieceWidthOffset, yCol1+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
+		piece4 = new FilledRect(xCol0+pieceWidthOffset, yCol1+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
 		piece4.setColor(startColor);
-		FilledRect piece5 = new FilledRect(xCol1+pieceWidthOffset, yCol1+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
+		piece5 = new FilledRect(xCol1+pieceWidthOffset, yCol1+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
 		piece5.setColor(startColor);
-		FilledRect piece6 = new FilledRect(xCol2+pieceWidthOffset, yCol1+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
+		piece6 = new FilledRect(xCol2+pieceWidthOffset, yCol1+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
 		piece6.setColor(startColor);
-		FilledRect piece7 = new FilledRect(xCol0+pieceWidthOffset, yCol2+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
+		piece7 = new FilledRect(xCol0+pieceWidthOffset, yCol2+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
 		piece7.setColor(startColor);
-		FilledRect piece8 = new FilledRect(xCol1+pieceWidthOffset, yCol2+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
+		piece8 = new FilledRect(xCol1+pieceWidthOffset, yCol2+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
 		piece8.setColor(startColor);
-		FilledRect piece9 = new FilledRect(xCol2+pieceWidthOffset, yCol2+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
+		piece9 = new FilledRect(xCol2+pieceWidthOffset, yCol2+pieceHeightOffset, pieceWidth, pieceHeight, canvas);
 		piece9.setColor(startColor);
-		text1 = new Text("H", piece1.getX(), piece1.getY(), canvas);
+		text1 = new Text("T", piece1.getX(), piece1.getY(), canvas);
 		text1.setFontSize(textSize);
 		text1.move(piece1.getWidth()/2, piece1.getHeight()/2);
 		text1.move(text1.getWidth()/-2, text1.getHeight()/-2);
 		pieceTextHeightOffset = text1.getY()-piece1.getY();
 		pieceTextWidthOffset = text1.getX()-piece1.getX();
-		text2 = new Text("H", piece2.getX()+pieceTextWidthOffset, piece2.getY()+pieceTextHeightOffset, canvas);
+		text2 = new Text("A", piece2.getX()+pieceTextWidthOffset, piece2.getY()+pieceTextHeightOffset, canvas);
 		text2.setFontSize(textSize);
-		text3 = new Text("H", piece3.getX()+pieceTextWidthOffset, piece3.getY()+pieceTextHeightOffset, canvas);
+		text3 = new Text("K", piece3.getX()+pieceTextWidthOffset, piece3.getY()+pieceTextHeightOffset, canvas);
 		text3.setFontSize(textSize);
-		text4 = new Text("H", piece4.getX()+pieceTextWidthOffset, piece4.getY()+pieceTextHeightOffset, canvas);
+		text4 = new Text("I", piece4.getX()+pieceTextWidthOffset, piece4.getY()+pieceTextHeightOffset, canvas);
 		text4.setFontSize(textSize);
-		text5 = new Text("H", piece5.getX()+pieceTextWidthOffset, piece5.getY()+pieceTextHeightOffset, canvas);
+		text5 = new Text("T", piece5.getX()+pieceTextWidthOffset, piece5.getY()+pieceTextHeightOffset, canvas);
 		text5.setFontSize(textSize);
-		text6 = new Text("H", piece6.getX()+pieceTextWidthOffset, piece6.getY()+pieceTextHeightOffset, canvas);
+		text6 = new Text("O", piece6.getX()+pieceTextWidthOffset, piece6.getY()+pieceTextHeightOffset, canvas);
 		text6.setFontSize(textSize);
-		text7 = new Text("H", piece7.getX()+pieceTextWidthOffset, piece7.getY()+pieceTextHeightOffset, canvas);
+		text7 = new Text("E", piece7.getX()+pieceTextWidthOffset, piece7.getY()+pieceTextHeightOffset, canvas);
 		text7.setFontSize(textSize);
-		text8 = new Text("H", piece8.getX()+pieceTextWidthOffset, piece8.getY()+pieceTextHeightOffset, canvas);
+		text8 = new Text("Z", piece8.getX()+pieceTextWidthOffset, piece8.getY()+pieceTextHeightOffset, canvas);
 		text8.setFontSize(textSize);
-		text9 = new Text("H", piece9.getX()+pieceTextWidthOffset, piece9.getY()+pieceTextHeightOffset, canvas);
+		text9 = new Text("™", piece9.getX()+pieceTextWidthOffset, piece9.getY()+pieceTextHeightOffset, canvas);
 		text9.setFontSize(textSize);
 		new Line(xCol0, yCol0, xCol0, yCol3, canvas).setColor(boardColor);
 		new Line(xCol1, yCol0, xCol1, yCol3, canvas).setColor(boardColor);
@@ -169,15 +171,26 @@ public class Tacky2 extends WindowController {
 		playAgainImage.move(playAgainImage.getWidth()/-2, 0);
 	}
 	public void makeTitle() {
-		titleText = new Text("TackiToes ᵖᵃᵗᵉᶰᵗ ᵖᵉᶰᵈᶦᶰᵍ™©®", 0, 0, canvas);
+		titleText = new Text("TakiToez ᵖᵃᵗᵉᶰᵗ ᵖᵉᶰᵈᶦᶰᵍ™©®", 0, 0, canvas);
 		titleText.setFontSize(canvas.getHeight()/25);
 		titleText.moveTo(canvas.getWidth()/2, canvas.getHeight()-titleText.getHeight()-10);
 		titleText.move(titleText.getWidth()/-2, 0);
+		titleText.setFont("Comic Sans MS");
+	}
+	FilledRect boxClicked(Location p) {
+		if (piece1.contains(p)) {
+			return piece1;
+		} else {
+			return null;
+		}
 	}
 	public void begin() {
 		makeBoard();
 		makePlayAgainButton();
 		makeScoreBoxes();
 		makeTitle();
+	}
+	public void onMouseClick(Location p) {
+		boxClicked(p);
 	}
 }
