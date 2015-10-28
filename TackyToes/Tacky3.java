@@ -179,55 +179,55 @@ public class Tacky3 extends WindowController {
 	}
 	FilledRect boxClicked(Location p) {
 		if (piece1.contains(p)) {
-			if (clickedPieces.contains(piece1) != true) {
+			if (piece1.getColor() == startColor) {
 				return piece1;
 			} else {
 				return null;
 			}
 		} else if (piece2.contains(p)) {
-			if (clickedPieces.contains(piece2) != true) {
+			if (piece2.getColor() == startColor) {
 				return piece2;
 			} else {
 				return null;
 			}
 		} else if (piece3.contains(p)) {
-			if (clickedPieces.contains(piece3) != true) {
+			if (piece3.getColor() == startColor) {
 				return piece3;
 			} else {
 				return null;
 			}
 		} else if (piece4.contains(p)) {
-			if (clickedPieces.contains(piece4) != true) {
+			if (piece4.getColor() == startColor) {
 				return piece4;
 			} else {
 				return null;
 			}
 		} else if (piece5.contains(p)) {
-			if (clickedPieces.contains(piece5) != true) {
+			if (piece5.getColor() == startColor) {
 				return piece5;
 			} else {
 				return null;
 			}
 		} else if (piece6.contains(p)) {
-			if (clickedPieces.contains(piece6) != true) {
+			if (piece6.getColor() == startColor) {
 				return piece6;
 			} else {
 				return null;
 			}
 		} else if (piece7.contains(p)) {
-			if (clickedPieces.contains(piece7) != true) {
+			if (piece7.getColor() == startColor) {
 				return piece7;
 			} else {
 				return null;
 			}
 		} else if (piece8.contains(p)) {
-			if (clickedPieces.contains(piece8) != true) {
+			if (piece8.getColor() == startColor) {
 				return piece8;
 			} else {
 				return null;
 			}
 		} else if (piece9.contains(p)) {
-			if (clickedPieces.contains(piece9) != true) {
+			if (piece9.getColor() == startColor) {
 				return piece9;
 			} else {
 				return null;
@@ -238,55 +238,55 @@ public class Tacky3 extends WindowController {
 	}
 	Text boxTextClicked(Location p) {
 		if (piece1.contains(p)) {
-			if (clickedPieces.contains(piece1) != true) {
+			if (piece1.getColor() == startColor) {
 				return text1;
 			} else {
 				return null;
 			}
 		} else if (piece2.contains(p)) {
-			if (clickedPieces.contains(piece2) != true) {
+			if (piece2.getColor() == startColor) {
 				return text2;
 			} else {
 				return null;
 			}
 		} else if (piece3.contains(p)) {
-			if (clickedPieces.contains(piece3) != true) {
+			if (piece3.getColor() == startColor) {
 				return text3;
 			} else {
 				return null;
 			}
 		} else if (piece4.contains(p)) {
-			if (clickedPieces.contains(piece4) != true) {
+			if (piece4.getColor() == startColor) {
 				return text4;
 			} else {
 				return null;
 			}
 		} else if (piece5.contains(p)) {
-			if (clickedPieces.contains(piece5) != true) {
+			if (piece5.getColor() == startColor) {
 				return text5;
 			} else {
 				return null;
 			}
 		} else if (piece6.contains(p)) {
-			if (clickedPieces.contains(piece6) != true) {
+			if (piece6.getColor() == startColor) {
 				return text6;
 			} else {
 				return null;
 			}
 		} else if (piece7.contains(p)) {
-			if (clickedPieces.contains(piece7) != true) {
+			if (piece7.getColor() == startColor) {
 				return text7;
 			} else {
 				return null;
 			}
 		} else if (piece8.contains(p)) {
-			if (clickedPieces.contains(piece8) != true) {
+			if (piece8.getColor() == startColor) {
 				return text8;
 			} else {
 				return null;
 			}
 		} else if (piece9.contains(p)) {
-			if (clickedPieces.contains(piece9) != true) {
+			if (piece9.getColor() == startColor) {
 				return text9;
 			} else {
 				return null;
@@ -305,19 +305,17 @@ public class Tacky3 extends WindowController {
 		System.out.println(boxClicked(p));
 		if (boxClicked(p) != null) {
 			if (totalLegalClicks%2 == 0) {
-				boxClicked(p).setColor(xColor);
 				boxTextClicked(p).setText("X");
+				boxClicked(p).setColor(xColor);
 				totalLegalClicks++;
 			} else {
-				boxClicked(p).setColor(oColor);
 				boxTextClicked(p).setText("O");
+				boxClicked(p).setColor(oColor);
 				totalLegalClicks++;
 			}
-			clickedPieces.add(boxClicked(p));
 		}
 		if (playAgainButton.contains(p)) {
 			totalLegalClicks = 0;
-			clickedPieces.clear();
 			canvas.clear();
 			makeBoard();
 			makePlayAgainButton();
