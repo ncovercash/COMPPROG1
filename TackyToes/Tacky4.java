@@ -4,9 +4,10 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 import javax.imageio.*;
-public class Tacky3 extends WindowController {
+public class Tacky4 extends WindowController {
 	Location startLoc;
-	ArrayList clickedPieces = new ArrayList();
+	boolean gameOver = false;
+	FilledRect[][]solutions = new FilledRect[8][3];
 	double xColPadding;
 	double yRowPadding;
 	double boardWidth;
@@ -35,6 +36,7 @@ public class Tacky3 extends WindowController {
 	Color xColor;
 	Color oColor;
 	Color startColor;
+	Color winColor;
 	FilledRect piece1;
 	FilledRect piece2;
 	FilledRect piece3;
@@ -62,7 +64,7 @@ public class Tacky3 extends WindowController {
 	Image img;
 	VisibleImage playAgainImage;
 	public static void main(String[] args) {
-		Tacky3 oc = new Tacky3();
+		Tacky4 oc = new Tacky4();
 		oc.startController(1000, 1000);
 	}
 	public void makeBoard() {
@@ -70,6 +72,7 @@ public class Tacky3 extends WindowController {
 		xColor = new Color(255, 0, 0);
 		oColor = new Color(0, 0, 255);
 		startColor = new Color(0, 255, 0);
+		winColor = new Color(255, 0, 255);
 		xColPadding = canvas.getWidth()/10;
 		yRowPadding = canvas.getHeight()/10;
 		Location startLoc = new Location(xColPadding, yRowPadding);
@@ -140,6 +143,30 @@ public class Tacky3 extends WindowController {
 		new Line(xCol0, yCol1, xCol3, yCol1, canvas).setColor(boardColor);
 		new Line(xCol0, yCol2, xCol3, yCol2, canvas).setColor(boardColor);
 		new Line(xCol0, yCol3, xCol3, yCol3, canvas).setColor(boardColor);
+        solutions[0][0] = piece1;
+        solutions[0][1] = piece2;
+        solutions[0][2] = piece3;
+        solutions[1][0] = piece4;
+        solutions[1][1] = piece5;
+        solutions[1][2] = piece6;
+        solutions[2][0] = piece7;
+        solutions[2][1] = piece8;
+        solutions[2][2] = piece9;
+        solutions[3][0] = piece1;
+        solutions[3][1] = piece4;
+        solutions[3][2] = piece7;
+        solutions[4][0] = piece2;
+        solutions[4][1] = piece5;
+        solutions[4][2] = piece8;
+        solutions[5][0] = piece3;
+        solutions[5][1] = piece6;
+        solutions[5][2] = piece9;
+        solutions[6][0] = piece1;
+        solutions[6][1] = piece5;
+        solutions[6][2] = piece9;
+        solutions[7][0] = piece3;
+        solutions[7][1] = piece5;
+        solutions[7][2] = piece7;
 	}
 	public void makeScoreBoxes() {
 		xScoreButton = new FramedRect(0, 0, canvas.getWidth()/5, canvas.getHeight()/20, canvas);
@@ -148,11 +175,11 @@ public class Tacky3 extends WindowController {
 		oScoreButton = new FramedRect(0, 0, canvas.getWidth()/5, canvas.getHeight()/20, canvas);
 		oScoreButton.moveTo((canvas.getWidth()/10)+(((canvas.getWidth()*0.4)/3)*5), 0);
 		oScoreButton.move(oScoreButton.getWidth()/-2, 0);
-		xScoreText = new Text("X Score: 0", 0, 0, canvas);
+		xScoreText = new Text("X Score: "+xScore, 0, 0, canvas);
 		xScoreText.setFontSize(canvas.getHeight()/25);
 		xScoreText.moveTo((canvas.getWidth()/10)+((canvas.getWidth()*0.4)/3), 0);
 		xScoreText.move(xScoreText.getWidth()/-2, 0);
-		oScoreText = new Text("O Score: 0", 0, 0, canvas);
+		oScoreText = new Text("O Score: "+oScore, 0, 0, canvas);
 		oScoreText.setFontSize(canvas.getHeight()/25);
 		oScoreText.moveTo((canvas.getWidth()/10)+(((canvas.getWidth()*0.4)/3)*5), 0);
 		oScoreText.move(oScoreButton.getWidth()/-2, 0);
@@ -177,57 +204,64 @@ public class Tacky3 extends WindowController {
 		titleText.move(titleText.getWidth()/-2, 0);
 		titleText.setFont("Comic Sans MS");
 	}
+	boolean checkValidMove(FilledRect piece) {
+		if (piece.getColor() == startColor) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	FilledRect boxClicked(Location p) {
 		if (piece1.contains(p)) {
-			if (piece1.getColor() == startColor) {
+			if (checkValidMove(piece1)) {
 				return piece1;
 			} else {
 				return null;
 			}
 		} else if (piece2.contains(p)) {
-			if (piece2.getColor() == startColor) {
+			if (checkValidMove(piece2)) {
 				return piece2;
 			} else {
 				return null;
 			}
 		} else if (piece3.contains(p)) {
-			if (piece3.getColor() == startColor) {
+			if (checkValidMove(piece3)) {
 				return piece3;
 			} else {
 				return null;
 			}
 		} else if (piece4.contains(p)) {
-			if (piece4.getColor() == startColor) {
+			if (checkValidMove(piece4)) {
 				return piece4;
 			} else {
 				return null;
 			}
 		} else if (piece5.contains(p)) {
-			if (piece5.getColor() == startColor) {
+			if (checkValidMove(piece5)) {
 				return piece5;
 			} else {
 				return null;
 			}
 		} else if (piece6.contains(p)) {
-			if (piece6.getColor() == startColor) {
+			if (checkValidMove(piece6)) {
 				return piece6;
 			} else {
 				return null;
 			}
 		} else if (piece7.contains(p)) {
-			if (piece7.getColor() == startColor) {
+			if (checkValidMove(piece7)) {
 				return piece7;
 			} else {
 				return null;
 			}
 		} else if (piece8.contains(p)) {
-			if (piece8.getColor() == startColor) {
+			if (checkValidMove(piece8)) {
 				return piece8;
 			} else {
 				return null;
 			}
 		} else if (piece9.contains(p)) {
-			if (piece9.getColor() == startColor) {
+			if (checkValidMove(piece9)) {
 				return piece9;
 			} else {
 				return null;
@@ -238,55 +272,55 @@ public class Tacky3 extends WindowController {
 	}
 	Text boxTextClicked(Location p) {
 		if (piece1.contains(p)) {
-			if (piece1.getColor() == startColor) {
+			if (checkValidMove(piece1)) {
 				return text1;
 			} else {
 				return null;
 			}
 		} else if (piece2.contains(p)) {
-			if (piece2.getColor() == startColor) {
+			if (checkValidMove(piece2)) {
 				return text2;
 			} else {
 				return null;
 			}
 		} else if (piece3.contains(p)) {
-			if (piece3.getColor() == startColor) {
+			if (checkValidMove(piece3)) {
 				return text3;
 			} else {
 				return null;
 			}
 		} else if (piece4.contains(p)) {
-			if (piece4.getColor() == startColor) {
+			if (checkValidMove(piece4)) {
 				return text4;
 			} else {
 				return null;
 			}
 		} else if (piece5.contains(p)) {
-			if (piece5.getColor() == startColor) {
+			if (checkValidMove(piece5)) {
 				return text5;
 			} else {
 				return null;
 			}
 		} else if (piece6.contains(p)) {
-			if (piece6.getColor() == startColor) {
+			if (checkValidMove(piece6)) {
 				return text6;
 			} else {
 				return null;
 			}
 		} else if (piece7.contains(p)) {
-			if (piece7.getColor() == startColor) {
+			if (checkValidMove(piece7)) {
 				return text7;
 			} else {
 				return null;
 			}
 		} else if (piece8.contains(p)) {
-			if (piece8.getColor() == startColor) {
+			if (checkValidMove(piece8)) {
 				return text8;
 			} else {
 				return null;
 			}
 		} else if (piece9.contains(p)) {
-			if (piece9.getColor() == startColor) {
+			if (checkValidMove(piece9)) {
 				return text9;
 			} else {
 				return null;
@@ -301,17 +335,54 @@ public class Tacky3 extends WindowController {
 		makeScoreBoxes();
 		makeTitle();
 	}
+	public void setScore(FilledRect rect) {
+		System.out.println(rect.getColor());
+		System.out.println(xColor);
+		if (rect.getColor() == xColor) {
+			System.out.println("a");
+			xScore++;
+			xScoreText.setText("X Score: "+xScore);
+		} else {
+			oScore++;
+			oScoreText.setText("O Score: "+oScore);
+		}
+	}
+	public void checkForWinner() {
+        for(int i=0; i<solutions.length; i++){
+        	if (solutions[i][0].getColor().equals(solutions[i][1].getColor()) &&solutions[i][1].getColor().equals(solutions[i][2].getColor()) &&solutions[i][0].getColor() != startColor) {
+        		System.out.println("YOU DONE WON!");
+        		gameOver = true;
+        		setScore(solutions[i][0]);
+        		setWinningColor(solutions[i]);
+        	}
+        }
+	}
+	public void setWinningColor(FilledRect[] rects) {
+		rects[0].setColor(winColor);
+		rects[1].setColor(winColor);
+		rects[2].setColor(winColor);
+	}
 	public void onMouseClick(Location p) {
-		System.out.println(boxClicked(p));
-		if (boxClicked(p) != null) {
-			if (totalLegalClicks%2 == 0) {
-				boxTextClicked(p).setText("X");
-				boxClicked(p).setColor(xColor);
-				totalLegalClicks++;
-			} else {
-				boxTextClicked(p).setText("O");
-				boxClicked(p).setColor(oColor);
-				totalLegalClicks++;
+		if (gameOver == false) {
+			if (boxClicked(p) != null) {
+				if (totalLegalClicks%2 == 0) {
+					boxTextClicked(p).setText("X");
+					boxClicked(p).setColor(xColor);
+					totalLegalClicks++;
+				} else {
+					boxTextClicked(p).setText("O");
+					boxClicked(p).setColor(oColor);
+					totalLegalClicks++;
+				}
+			}
+			if (totalLegalClicks >= 5 && totalLegalClicks < 9) {
+				checkForWinner();
+			}
+			if (totalLegalClicks == 9) {
+				checkForWinner();
+				if (gameOver == false) {
+					gameOver = true;
+				}
 			}
 		}
 		if (playAgainButton.contains(p)) {
@@ -321,6 +392,7 @@ public class Tacky3 extends WindowController {
 			makePlayAgainButton();
 			makeScoreBoxes();
 			makeTitle();
+			gameOver = false;
 		}
 	}
 }
