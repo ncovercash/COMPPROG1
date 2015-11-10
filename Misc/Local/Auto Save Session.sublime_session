@@ -1,0 +1,1045 @@
+{
+	"folder_history":
+	[
+		"/Users/3aovercashn/Desktop",
+		"/Users/3aovercashn/Documents/COMPPROG1",
+		"/Users/3aovercashn/tmocentric",
+		"/Users/3aovercashn/Downloads/LinesAndShapes",
+		"/Volumes/UNTITLED/hi"
+	],
+	"last_version": 3083,
+	"last_window_id": 16,
+	"log_indexing": false,
+	"settings":
+	{
+		"new_window_height": 1010.0,
+		"new_window_settings":
+		{
+			"auto_complete":
+			{
+				"selected_items":
+				[
+					[
+						"eq",
+						"equation"
+					],
+					[
+						"count",
+						"countTextNumMExit"
+					],
+					[
+						"ce",
+						"centerOfCanvas"
+					],
+					[
+						"frame",
+						"boxFrame"
+					],
+					[
+						"colo",
+						"colorT"
+					],
+					[
+						"Lo",
+						"LoLRiCkROllnevErgonnaGIVEUup"
+					]
+				]
+			},
+			"build_system_choices":
+			[
+			],
+			"build_varint": "",
+			"command_palette":
+			{
+				"height": 87.0,
+				"last_filter": "install",
+				"selected_items":
+				[
+					[
+						"install",
+						"Package Control: Install Package"
+					],
+					[
+						"packa",
+						"Package Control: Install Package"
+					],
+					[
+						"git",
+						"Package Control: Install Package"
+					]
+				],
+				"width": 449.0
+			},
+			"console":
+			{
+				"height": 114.0,
+				"history":
+				[
+					"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+				]
+			},
+			"distraction_free":
+			{
+				"menu_visible": true,
+				"show_minimap": false,
+				"show_open_files": false,
+				"show_tabs": false,
+				"side_bar_visible": false,
+				"status_bar_visible": false
+			},
+			"file_history":
+			[
+				"/Users/3aovercashn/Downloads/LinesAndShapes/A3_015_ButtonCount_Overcash.java",
+				"/Users/3aovercashn/Google Drive/1516_3A_COPR1_Overcash_Noah_TurnIn/A3_014_Factors_Overcash.java",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/terminal.glue",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/A3_006_LinesAndShapes_Overcash.java",
+				"/Users/3aovercashn/Google Drive/1516_3A_COPR1_Overcash_Noah_TurnIn/A3_013_ICanCountALot_Overcash.java",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/A3_011_CrossBox_Overcash.java",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/x1.txt",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/y1.txt",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/x2.txt",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/A3_010_RandomBox_Overcash.java",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/package.bluej",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/A3_007_RisingSunPlus_Overcash.java",
+				"/Users/3aovercashn/Google Drive/1516_COPR1/LinesAndShapes/A3_006_LinesAndShapes_Overcash.java",
+				"/Users/3aovercashn/Desktop/whatsThis/A5_005_WhatsThis_Overcash.java",
+				"/Users/3aovercashn/Desktop/whatsThis/A3_004_InsideOut_Overcash.java",
+				"/Users/3aovercashn/Desktop/pls.jar/A3_003_Ex153_OVERCASH.java",
+				"/Users/3aovercashn/Desktop/insideOut/A3_004_InsideOut_Overcash.java",
+				"/Users/3aovercashn/Desktop/touchyWindowPlus 2.jar/package.bluej",
+				"/Users/3aovercashn/Desktop/touchyWindowPlus.jar/A3_002_TOUCHYWINDOWPLUS_OVERCASH_SANDERS.java",
+				"/Users/3aovercashn/Desktop/touchyWindow.jar/A3_001_TOUCHYWINDOW_OVERCASH.java"
+			],
+			"find":
+			{
+				"height": 22.0
+			},
+			"find_in_files":
+			{
+				"height": 0.0,
+				"where_history":
+				[
+				]
+			},
+			"find_state":
+			{
+				"case_sensitive": false,
+				"find_history":
+				[
+					", xOffset, yOffset",
+					"(buttonX",
+					"et, canvas",
+					"oc.",
+					"\n\n",
+					"	",
+					"		",
+					" oc",
+					"oc",
+					"A3_014_Factors_Overcash",
+					"canvas",
+					"A3_013_ICanCountALot_Overcash",
+					"}",
+					"oc.",
+					"oc.yTranslateVal - 5",
+					": \" + num",
+					": \" + numMClick",
+					".setFontSize(oc.yTranslateVal - 5);",
+					".setFontSize((oc.yTranslateVal - 5));",
+					"Math.floor(",
+					", nLine, canvas",
+					"A3_012_DrawGrid_Overcash",
+					"int",
+					"Text",
+					"t num;",
+					"Text num; ",
+					"-10",
+					"canvas.getHeight()/2",
+					"canvas.getWidth()/16",
+					"centerOfCanvas.getX()/2",
+					"canvas.getWidth()/16",
+					"canvas.getHeight()/2",
+					"centerOfCanvas.getX()/2",
+					"canvas.getWidth()/2",
+					"canvas.getWidth()",
+					"canvas.getWidth()/2, canvas.getHeight()/2",
+					"canvas.getHeight(), canvas.getWidth()",
+					";",
+					"Colaaaaaaaaaaaaaaaaaaaaa",
+					" ",
+					", ",
+					"71",
+					", ",
+					"... ",
+					">>> ",
+					"A3_007_RisingSunPlus_Overcash",
+					"FilledOval ",
+					"FilledOval",
+					"Cloud1",
+					"{    }",
+					"\n        if (showingName == 1) {\n            canvas.clear();\n            showingName=0;\n        }\n",
+					"180",
+					"3_001",
+					"A3_001_TOUCHYWINDOW_OVERCASH"
+				],
+				"highlight": true,
+				"in_selection": false,
+				"preserve_case": false,
+				"regex": false,
+				"replace_history":
+				[
+				],
+				"reverse": false,
+				"show_context": true,
+				"use_buffer2": true,
+				"whole_word": false,
+				"wrap": true
+			},
+			"incremental_find":
+			{
+				"height": 21.0
+			},
+			"input":
+			{
+				"height": 29.0
+			},
+			"menu_visible": true,
+			"output.find_results":
+			{
+				"height": 0.0
+			},
+			"output.unsaved_changes":
+			{
+				"height": 100.0
+			},
+			"pinned_build_system": "",
+			"replace":
+			{
+				"height": 40.0
+			},
+			"save_all_on_build": true,
+			"select_file":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_project":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_symbol":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"show_minimap": true,
+			"show_open_files": false,
+			"show_tabs": true,
+			"side_bar_visible": true,
+			"side_bar_width": 150.0,
+			"status_bar_visible": true,
+			"template_settings":
+			{
+			}
+		},
+		"new_window_width": 1490.0
+	},
+	"windows":
+	[
+		{
+			"auto_complete":
+			{
+				"selected_items":
+				[
+					[
+						"Dr",
+						"DrawingCanvas"
+					],
+					[
+						"gi",
+						"giftRibbonColor"
+					],
+					[
+						"play",
+						"playGame"
+					],
+					[
+						"xSc",
+						"xScoreText"
+					],
+					[
+						"chec",
+						"checkForWinner"
+					],
+					[
+						"sta",
+						"startColor"
+					],
+					[
+						"peice",
+						"piece2"
+					],
+					[
+						"pe",
+						"piece2"
+					],
+					[
+						"get",
+						"getWidth"
+					],
+					[
+						"piece",
+						"pieceHeight"
+					],
+					[
+						"ptho",
+						"pieceTextHeightOffset"
+					],
+					[
+						"pieceW",
+						"pieceWidthOffset"
+					],
+					[
+						"peic",
+						"pieceWidthOffset"
+					],
+					[
+						"pieceHe",
+						"pieceHeightOffset"
+					],
+					[
+						"pie",
+						"pieceWidth"
+					],
+					[
+						"boa",
+						"boardColor"
+					],
+					[
+						"xC",
+						"xColor"
+					],
+					[
+						"board",
+						"boardColor"
+					],
+					[
+						"xCo",
+						"xColPadding"
+					],
+					[
+						"boar",
+						"boardWidth"
+					],
+					[
+						"eq",
+						"equation"
+					],
+					[
+						"count",
+						"countTextNumMExit"
+					],
+					[
+						"ce",
+						"centerOfCanvas"
+					],
+					[
+						"frame",
+						"boxFrame"
+					],
+					[
+						"colo",
+						"colorT"
+					],
+					[
+						"Lo",
+						"LoLRiCkROllnevErgonnaGIVEUup"
+					]
+				]
+			},
+			"buffers":
+			[
+				{
+					"file": "/Users/3aovercashn/Documents/COMPPROG1/Holiday/Driver.java",
+					"settings":
+					{
+						"buffer_size": 553,
+						"line_ending": "Unix"
+					}
+				},
+				{
+					"file": "/Users/3aovercashn/Documents/COMPPROG1/Holiday/Gift.java",
+					"settings":
+					{
+						"buffer_size": 2866,
+						"line_ending": "Unix"
+					}
+				},
+				{
+					"contents": "{\n	//these scopes are highlighted by colorcoder, feel free to ADD new to the list\n	\"scopes\": [\"colorize\",\n	           \"entity\",\n	           \"support.function\",\n	           \"meta.function-call\",\n 	           \"storage.type.java\",\n	           \"variable\"],\n	//disable when using plug-ins which swap or modify the schemes themselves\n	\"auto_apply_on_scheme_change\": true,\n	\"lightness\":0.5,\n	\"saturation\":0.5,\n	//this is the threshold of file size where colorcoder will turn itself off\n	\"max_size\": 100000,\n	//default highlighting engine makes undo work letter-by-letter, set this to false to have\n	//word-by-word undo, but slower highlighting\n	\"use_fast_highlighting_but_undo_typing_letterwise\": true\n}\n",
+					"file": "/Users/3aovercashn/Library/Application Support/Sublime Text 3/Packages/Colorcoder/colorcoder.sublime-settings",
+					"file_size": 696,
+					"file_write_time": 130916535820000000,
+					"settings":
+					{
+						"buffer_size": 697,
+						"line_ending": "Unix"
+					}
+				}
+			],
+			"build_system": "",
+			"build_system_choices":
+			[
+			],
+			"build_varint": "",
+			"command_palette":
+			{
+				"height": 307.0,
+				"last_filter": "scop",
+				"selected_items":
+				[
+					[
+						"scop",
+						"Scope Hunter: Toggle Instant Scoper"
+					],
+					[
+						"scope",
+						"Scope Hunter: Toggle Instant Scoper"
+					],
+					[
+						"pcip",
+						"Package Control: Install Package"
+					],
+					[
+						"pcl",
+						"Package Control: List Packages"
+					],
+					[
+						"packa",
+						"Package Control: Install Package"
+					],
+					[
+						"instal",
+						"Package Control: Install Package"
+					],
+					[
+						"install",
+						"Package Control: Install Package"
+					],
+					[
+						"git comm",
+						"Git: Commit"
+					],
+					[
+						"git add",
+						"Git: Add Current File"
+					],
+					[
+						"git push",
+						"Git: Push"
+					],
+					[
+						"git",
+						"Package Control: Install Package"
+					]
+				],
+				"width": 521.0
+			},
+			"console":
+			{
+				"height": 114.0,
+				"history":
+				[
+					"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+				]
+			},
+			"distraction_free":
+			{
+				"menu_visible": true,
+				"show_minimap": false,
+				"show_open_files": false,
+				"show_tabs": false,
+				"side_bar_visible": false,
+				"status_bar_visible": false
+			},
+			"expanded_folders":
+			[
+				"/Users/3aovercashn/Documents/COMPPROG1"
+			],
+			"file_history":
+			[
+				"/Users/3aovercashn/Library/Application Support/Sublime Text 3/Packages/User/colorcoder.sublime-settings",
+				"/Users/3aovercashn/Library/Application Support/Sublime Text 3/Packages/Colorcoder/colorcoder.sublime-settings",
+				"/Users/3aovercashn/Documents/COMPPROG1/TackyToes/Tacky5.java",
+				"/Users/3aovercashn/Documents/COMPPROG1/TackyToes/Tacky3.java",
+				"/Users/3aovercashn/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+				"/Users/3aovercashn/Documents/COMPPROG1/TackyToes/Tacky1.java",
+				"/Users/3aovercashn/Documents/COMPPROG1/TackyToes/TackyBoard.java",
+				"/Users/3aovercashn/Desktop/a.t",
+				"/Users/3aovercashn/Documents/COMPPROG1/Ch04/A3_016_ThreeButtonRoll_Overcash.java",
+				"/Users/3aovercashn/Documents/COMPPROG1/A3_001_TouchyWindow_Overcash.java",
+				"/Users/3aovercashn/Documents/COMPPROG1/A3_015_ButtonCount_Overcash.java",
+				"/Users/3aovercashn/Documents/COMPPROG1/A3_003_Ex153_Overcash.java",
+				"/Users/3aovercashn/Documents/COMPPROG1/A3_002_TouchyWindowPlus_Overcash_Sanders.java",
+				"/Users/3aovercashn/Documents/COMPPROG1/A3_005_WhatsThis_Overcash.java",
+				"/Users/3aovercashn/Google Drive/1516_3A_COPR1_Overcash_Noah_TurnIn/A3_014_Factors_Overcash.java",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/terminal.glue",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/A3_006_LinesAndShapes_Overcash.java",
+				"/Users/3aovercashn/Google Drive/1516_3A_COPR1_Overcash_Noah_TurnIn/A3_013_ICanCountALot_Overcash.java",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/A3_011_CrossBox_Overcash.java",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/x1.txt",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/y1.txt",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/x2.txt",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/A3_010_RandomBox_Overcash.java",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/package.bluej",
+				"/Users/3aovercashn/Downloads/LinesAndShapes/A3_007_RisingSunPlus_Overcash.java",
+				"/Users/3aovercashn/Google Drive/1516_COPR1/LinesAndShapes/A3_006_LinesAndShapes_Overcash.java",
+				"/Users/3aovercashn/Desktop/whatsThis/A5_005_WhatsThis_Overcash.java",
+				"/Users/3aovercashn/Desktop/whatsThis/A3_004_InsideOut_Overcash.java",
+				"/Users/3aovercashn/Desktop/pls.jar/A3_003_Ex153_OVERCASH.java",
+				"/Users/3aovercashn/Desktop/insideOut/A3_004_InsideOut_Overcash.java",
+				"/Users/3aovercashn/Desktop/touchyWindowPlus 2.jar/package.bluej",
+				"/Users/3aovercashn/Desktop/touchyWindowPlus.jar/A3_002_TOUCHYWINDOWPLUS_OVERCASH_SANDERS.java",
+				"/Users/3aovercashn/Desktop/touchyWindow.jar/A3_001_TOUCHYWINDOW_OVERCASH.java"
+			],
+			"find":
+			{
+				"height": 35.0
+			},
+			"find_in_files":
+			{
+				"height": 0.0,
+				"where_history":
+				[
+				]
+			},
+			"find_state":
+			{
+				"case_sensitive": false,
+				"find_history":
+				[
+					"void",
+					"drawGift",
+					"int",
+					"Tacky5",
+					"isCatGame",
+					"  ",
+					"   ",
+					"    ",
+					"     ",
+					".setColor(new Color(255, 255, 255));",
+					"Tacky4",
+					"gameOver",
+					" solutions",
+					"	",
+					"... ",
+					"test",
+					"[",
+					"clickedPieces",
+					"piece..getColor()",
+					"Tacky3",
+					"clickedPieces.contains(piece",
+					"clickedPieces",
+					"ieceWidth, pieceHeight, canvas);",
+					"Tacky2",
+					"eightOffset, canvas)",
+					"Text text",
+					"java.io.IOException",
+					"    ",
+					"hColor",
+					"println",
+					"Tacky1",
+					".getY(), canvas);",
+					"ceWidth, pieceHeight, canvas);",
+					"pieceWidth, pieceHeight, canvas);",
+					" = new FilledRect",
+					"FilledOval",
+					"null",
+					"yCol3",
+					"int ",
+					"int",
+					"int ",
+					"int",
+					"TackyBoard",
+					"Line",
+					"boardColHeight",
+					"A3_016_ThreeButtonRoll_Overcash",
+					"=",
+					"int",
+					"pineapple",
+					"A3_015_ButtonCount_Overcash",
+					"pineapple.yOffset, pineapple.xOffse",
+					" // size of box as well",
+					"pineapple.xOffset, pineapple.yOffset",
+					"A3_003_EX153_OVERCASH",
+					"A3_001_TOUCHYWINDOW_OVERCASH",
+					"A3_002_TOUCHYWINDOWPLUS_OVERCASH_SANDERS",
+					", xOffset, yOffset",
+					"(buttonX",
+					"et, canvas",
+					"oc.",
+					"\n\n",
+					"	",
+					"		",
+					" oc",
+					"oc",
+					"A3_014_Factors_Overcash",
+					"canvas",
+					"A3_013_ICanCountALot_Overcash",
+					"}",
+					"oc.",
+					"oc.yTranslateVal - 5",
+					": \" + num",
+					": \" + numMClick",
+					".setFontSize(oc.yTranslateVal - 5);",
+					".setFontSize((oc.yTranslateVal - 5));",
+					"Math.floor(",
+					", nLine, canvas",
+					"A3_012_DrawGrid_Overcash",
+					"int",
+					"Text",
+					"t num;",
+					"Text num; ",
+					"-10",
+					"canvas.getHeight()/2",
+					"canvas.getWidth()/16",
+					"centerOfCanvas.getX()/2",
+					"canvas.getWidth()/16",
+					"canvas.getHeight()/2",
+					"centerOfCanvas.getX()/2",
+					"canvas.getWidth()/2",
+					"canvas.getWidth()",
+					"canvas.getWidth()/2, canvas.getHeight()/2",
+					"canvas.getHeight(), canvas.getWidth()",
+					";",
+					"Colaaaaaaaaaaaaaaaaaaaaa",
+					" ",
+					", ",
+					"71",
+					", ",
+					"... ",
+					">>> ",
+					"A3_007_RisingSunPlus_Overcash",
+					"FilledOval ",
+					"FilledOval",
+					"Cloud1",
+					"{    }",
+					"\n        if (showingName == 1) {\n            canvas.clear();\n            showingName=0;\n        }\n",
+					"180",
+					"3_001",
+					"A3_001_TOUCHYWINDOW_OVERCASH"
+				],
+				"highlight": true,
+				"in_selection": false,
+				"preserve_case": false,
+				"regex": true,
+				"replace_history":
+				[
+				],
+				"reverse": false,
+				"show_context": true,
+				"use_buffer2": true,
+				"whole_word": false,
+				"wrap": true
+			},
+			"folders":
+			[
+				{
+					"path": "/Users/3aovercashn/Documents/COMPPROG1"
+				}
+			],
+			"groups":
+			[
+				{
+					"selected": 2,
+					"sheets":
+					[
+						{
+							"buffer": 0,
+							"file": "/Users/3aovercashn/Documents/COMPPROG1/Holiday/Driver.java",
+							"semi_transient": false,
+							"settings":
+							{
+								"buffer_size": 553,
+								"regions":
+								{
+								},
+								"selection":
+								[
+									[
+										534,
+										534
+									]
+								],
+								"settings":
+								{
+									"BracketHighlighterBusy": false,
+									"bh_regions":
+									[
+										"bh_curly",
+										"bh_curly_center",
+										"bh_curly_open",
+										"bh_curly_close",
+										"bh_curly_content",
+										"bh_regex",
+										"bh_regex_center",
+										"bh_regex_open",
+										"bh_regex_close",
+										"bh_regex_content",
+										"bh_square",
+										"bh_square_center",
+										"bh_square_open",
+										"bh_square_close",
+										"bh_square_content",
+										"bh_single_quote",
+										"bh_single_quote_center",
+										"bh_single_quote_open",
+										"bh_single_quote_close",
+										"bh_single_quote_content",
+										"bh_angle",
+										"bh_angle_center",
+										"bh_angle_open",
+										"bh_angle_close",
+										"bh_angle_content",
+										"bh_unmatched",
+										"bh_unmatched_center",
+										"bh_unmatched_open",
+										"bh_unmatched_close",
+										"bh_unmatched_content",
+										"bh_double_quote",
+										"bh_double_quote_center",
+										"bh_double_quote_open",
+										"bh_double_quote_close",
+										"bh_double_quote_content",
+										"bh_default",
+										"bh_default_center",
+										"bh_default_open",
+										"bh_default_close",
+										"bh_default_content",
+										"bh_c_define",
+										"bh_c_define_center",
+										"bh_c_define_open",
+										"bh_c_define_close",
+										"bh_c_define_content",
+										"bh_round",
+										"bh_round_center",
+										"bh_round_open",
+										"bh_round_close",
+										"bh_round_content",
+										"bh_tag",
+										"bh_tag_center",
+										"bh_tag_open",
+										"bh_tag_close",
+										"bh_tag_content"
+									],
+									"colorcode": true,
+									"forcecolorcode": false,
+									"syntax": "Packages/Java/Java.tmLanguage"
+								},
+								"translation.x": 0.0,
+								"translation.y": 0.0,
+								"zoom_level": 1.0
+							},
+							"stack_index": 2,
+							"type": "text"
+						},
+						{
+							"buffer": 1,
+							"file": "/Users/3aovercashn/Documents/COMPPROG1/Holiday/Gift.java",
+							"semi_transient": false,
+							"settings":
+							{
+								"buffer_size": 2866,
+								"regions":
+								{
+								},
+								"selection":
+								[
+									[
+										510,
+										510
+									]
+								],
+								"settings":
+								{
+									"BracketHighlighterBusy": false,
+									"bh_regions":
+									[
+										"bh_curly",
+										"bh_curly_center",
+										"bh_curly_open",
+										"bh_curly_close",
+										"bh_curly_content",
+										"bh_regex",
+										"bh_regex_center",
+										"bh_regex_open",
+										"bh_regex_close",
+										"bh_regex_content",
+										"bh_square",
+										"bh_square_center",
+										"bh_square_open",
+										"bh_square_close",
+										"bh_square_content",
+										"bh_single_quote",
+										"bh_single_quote_center",
+										"bh_single_quote_open",
+										"bh_single_quote_close",
+										"bh_single_quote_content",
+										"bh_angle",
+										"bh_angle_center",
+										"bh_angle_open",
+										"bh_angle_close",
+										"bh_angle_content",
+										"bh_unmatched",
+										"bh_unmatched_center",
+										"bh_unmatched_open",
+										"bh_unmatched_close",
+										"bh_unmatched_content",
+										"bh_double_quote",
+										"bh_double_quote_center",
+										"bh_double_quote_open",
+										"bh_double_quote_close",
+										"bh_double_quote_content",
+										"bh_default",
+										"bh_default_center",
+										"bh_default_open",
+										"bh_default_close",
+										"bh_default_content",
+										"bh_c_define",
+										"bh_c_define_center",
+										"bh_c_define_open",
+										"bh_c_define_close",
+										"bh_c_define_content",
+										"bh_round",
+										"bh_round_center",
+										"bh_round_open",
+										"bh_round_close",
+										"bh_round_content",
+										"bh_tag",
+										"bh_tag_center",
+										"bh_tag_open",
+										"bh_tag_close",
+										"bh_tag_content"
+									],
+									"colorcode": true,
+									"forcecolorcode": false,
+									"syntax": "Packages/Java/Java.tmLanguage",
+									"translate_tabs_to_spaces": false
+								},
+								"translation.x": 0.0,
+								"translation.y": 0.0,
+								"zoom_level": 1.0
+							},
+							"stack_index": 1,
+							"type": "text"
+						},
+						{
+							"buffer": 2,
+							"file": "/Users/3aovercashn/Library/Application Support/Sublime Text 3/Packages/Colorcoder/colorcoder.sublime-settings",
+							"semi_transient": false,
+							"settings":
+							{
+								"buffer_size": 697,
+								"regions":
+								{
+								},
+								"selection":
+								[
+									[
+										195,
+										195
+									]
+								],
+								"settings":
+								{
+									"BracketHighlighterBusy": false,
+									"bh_regions":
+									[
+										"bh_curly",
+										"bh_curly_center",
+										"bh_curly_open",
+										"bh_curly_close",
+										"bh_curly_content",
+										"bh_regex",
+										"bh_regex_center",
+										"bh_regex_open",
+										"bh_regex_close",
+										"bh_regex_content",
+										"bh_square",
+										"bh_square_center",
+										"bh_square_open",
+										"bh_square_close",
+										"bh_square_content",
+										"bh_single_quote",
+										"bh_single_quote_center",
+										"bh_single_quote_open",
+										"bh_single_quote_close",
+										"bh_single_quote_content",
+										"bh_angle",
+										"bh_angle_center",
+										"bh_angle_open",
+										"bh_angle_close",
+										"bh_angle_content",
+										"bh_unmatched",
+										"bh_unmatched_center",
+										"bh_unmatched_open",
+										"bh_unmatched_close",
+										"bh_unmatched_content",
+										"bh_double_quote",
+										"bh_double_quote_center",
+										"bh_double_quote_open",
+										"bh_double_quote_close",
+										"bh_double_quote_content",
+										"bh_default",
+										"bh_default_center",
+										"bh_default_open",
+										"bh_default_close",
+										"bh_default_content",
+										"bh_c_define",
+										"bh_c_define_center",
+										"bh_c_define_open",
+										"bh_c_define_close",
+										"bh_c_define_content",
+										"bh_round",
+										"bh_round_center",
+										"bh_round_open",
+										"bh_round_close",
+										"bh_round_content",
+										"bh_tag",
+										"bh_tag_center",
+										"bh_tag_open",
+										"bh_tag_close",
+										"bh_tag_content"
+									],
+									"colorcode": true,
+									"syntax": "Packages/JavaScript/JSON.tmLanguage",
+									"translate_tabs_to_spaces": false
+								},
+								"translation.x": 0.0,
+								"translation.y": 0.0,
+								"zoom_level": 1.0
+							},
+							"stack_index": 0,
+							"type": "text"
+						}
+					]
+				}
+			],
+			"incremental_find":
+			{
+				"height": 21.0
+			},
+			"input":
+			{
+				"height": 29.0
+			},
+			"layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					]
+				],
+				"cols":
+				[
+					0.0,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					1.0
+				]
+			},
+			"menu_visible": true,
+			"output.find_results":
+			{
+				"height": 0.0
+			},
+			"output.git":
+			{
+				"height": 88.0
+			},
+			"output.scope_viewer":
+			{
+				"height": 88.0
+			},
+			"output.unsaved_changes":
+			{
+				"height": 100.0
+			},
+			"pinned_build_system": "",
+			"position": "0 10 67 1295 980 0 0 1920 1057 ",
+			"project": "",
+			"replace":
+			{
+				"height": 40.0
+			},
+			"save_all_on_build": true,
+			"select_file":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_project":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_symbol":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"selected_group": 0,
+			"settings":
+			{
+			},
+			"show_minimap": true,
+			"show_open_files": false,
+			"show_tabs": true,
+			"side_bar_visible": true,
+			"side_bar_width": 150.0,
+			"status_bar_visible": true,
+			"template_settings":
+			{
+			},
+			"window_id": 16,
+			"workspace_name": ""
+		}
+	],
+	"workspaces":
+	{
+		"recent_workspaces":
+		[
+		]
+	}
+}
