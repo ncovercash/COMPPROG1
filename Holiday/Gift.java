@@ -40,14 +40,14 @@ public class Gift {
 		ribbon3 = new FilledOval(base.getX()+base.getWidth()/2-base.getWidth()/6, base.getY()+base.getHeight()/2-base.getHeight()/6, base.getWidth()/3, base.getHeight()/3, canvas);
 		ribbon3.setColor(giftRibbonColor);
 	}
-	public void move(int x, int y) {
+	public void move(double x, double y) {
 		base.move(x, y);
 		inside.move(x, y);
 		ribbon1.move(x, y);
 		ribbon2.move(x, y);
 		ribbon3.move(x, y);
 	}
-	public void moveTo(int x, int y) {
-		move(x-base.getX(), y-base.getY());
+	public void moveTo(double x, double y) {
+		move( x-base.getX(), y-base.getY());
 	}
 }
