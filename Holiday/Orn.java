@@ -39,4 +39,7 @@ public class Orn {
 	public void moveTo(double x, double y) {
 		move(x-main.getX(), y-main.getY());
 	}
+	public void setColor(Color c) {
+		main.setColor(c);
+	}
 }

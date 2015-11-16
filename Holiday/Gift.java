@@ -50,4 +50,7 @@ public class Gift {
 	public void moveTo(double x, double y) {
 		move( x-base.getX(), y-base.getY());
 	}
+	public void setColor(Color c) {
+		inside.setColor(c);
+	}
 }
