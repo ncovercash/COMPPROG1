@@ -53,4 +53,16 @@ public class Gift {
 	public void setColor(Color c) {
 		inside.setColor(c);
 	}
+	double getX() {
+		return base.getX();
+	}
+	double getY() {
+		return base.getY();
+	}
+	double getWidth() {
+		return base.getWidth();
+	}
+	double getHeight() {
+		return base.getHeight();
+	}
 }
