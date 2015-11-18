@@ -4,7 +4,7 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 import javax.imageio.*;
-public class A3_018_ActiveOrnament_Overcash extends ActiveObject {
+public class ActiveOrn extends ActiveObject {
 	FilledOval main;
 	FilledOval inner1;
 	FilledOval inner2;
@@ -14,11 +14,11 @@ public class A3_018_ActiveOrnament_Overcash extends ActiveObject {
 	int runTimes = 100;
 	int counter = 0;
 	Orn orn;
-	public A3_018_ActiveOrnament_Overcash(double x, double y, double w, double h, Color c1, Color c2, Color c3, DrawingCanvas c) {
+	public ActiveOrn(double x, double y, double w, double h, Color c1, Color c2, Color c3, DrawingCanvas c) {
 		orn = new Orn(x, y, w, h, c1, c2, c3, c);
 		start();
 	}
-	public A3_018_ActiveOrnament_Overcash(Location xy, double w, double h, Color c1, Color c2, Color c3, DrawingCanvas c) {
+	public ActiveOrn(Location xy, double w, double h, Color c1, Color c2, Color c3, DrawingCanvas c) {
 		orn = new Orn(xy, w, h, c1, c2, c3, c);
 		start();
 	}
