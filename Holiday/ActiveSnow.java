@@ -7,52 +7,59 @@ import javax.imageio.*;
 public class ActiveSnow extends ActiveObject {
 	DrawingCanvas canvas;
 	int pauseTime = 5;
-	int runTimes = 5000;
+	int runTimes = 50000;
 	int counter = 0;
-	Snow activeFlake;
+	Snow[] activeFlakes;
 	int amy;
+	int qtyy;
+	Color[] SnowColors = {new Color(0xeeeeee), new Color(0x999999), new Color(0xcccccc), new Color(0x888888), new Color(0x777777), new Color(0x666666), new Color(0x555555), new Color(0x444444), new Color(0x333333), new Color(0x111111), new Color(0x222222), new Color(0xffffff)};
 	RandomIntGenerator amxG = new RandomIntGenerator(-3, 3);
 	RandomIntGenerator amyG = new RandomIntGenerator(1, 3);
 	RandomIntGenerator whgen = new RandomIntGenerator(1, 3);
-	public ActiveSnow(double x, double y, Color c1, DrawingCanvas c) {
+	public ActiveSnow(int qty, DrawingCanvas c) {
+		activeFlakes = new Snow[qty];
+		pauseTime = new RandomIntGenerator(10, 60).nextValue();
 		canvas = c;
-		activeFlake = new Snow(x, y, whgen.nextValue(), whgen.nextValue(), c1, canvas);
-		amy = amyG.nextValue();
+		qtyy=qty;
+		int i = 0;
+		while (i < qty) {
+			System.out.println(i);
+			activeFlakes[i] = new Snow(new RandomIntGenerator(0, canvas.getWidth()).nextValue(), new RandomIntGenerator(-100, canvas.getHeight()).nextValue(), whgen.nextValue(), whgen.nextValue(), SnowColors[new RandomIntGenerator(0, 11).nextValue()], canvas);
+			i++;
+		}
 		start();
 	}
-	public ActiveSnow(Location xy, Color c1, DrawingCanvas c) {
-		canvas = c;
-		activeFlake = new Snow(xy, whgen.nextValue(), whgen.nextValue(), c1, canvas);
-		amy = amyG.nextValue();
-		start();
+	public void move(int i, double x, double y) {
+		activeFlakes[i].move(x, y);
 	}
-	public void move(double x, double y) {
-		activeFlake.move(x, y);
+	public void moveTo(int i, double x, double y) {
+		move(i, x-activeFlakes[i].getX(), y-activeFlakes[i].getY());
 	}
-	public void moveTo(double x, double y) {
-		move(x-activeFlake.getX(), y-activeFlake.getY());
+	public void setColor(int i, Color c) {
+		activeFlakes[i].setColor(c);
 	}
-	public void setColor(Color c) {
-		activeFlake.setColor(c);
+	double getX(int i) {
+		return activeFlakes[i].getX();
 	}
-	double getX() {
-		return activeFlake.getX();
+	double getY(int i) {
+		return activeFlakes[i].getY();
 	}
-	double getY() {
-		return activeFlake.getY();
+	double getWidth(int i) {
+		return activeFlakes[i].getWidth();
 	}
-	double getWidth() {
-		return activeFlake.getWidth();
-	}
-	double getHeight() {
-		return activeFlake.getHeight();
+	double getHeight(int i) {
+		return activeFlakes[i].getHeight();
 	}
 	public void run() {
 		while (counter < runTimes) {
-			if (activeFlake.getY()+activeFlake.getHeight() == canvas.getHeight()) {
-				activeFlake.moveTo(activeFlake.getX(), -100);
+			int i = 0;
+			while (i < qtyy) {
+				if (activeFlakes[i].getY()+activeFlakes[i].getHeight() == canvas.getHeight()) {
+					activeFlakes[i].moveTo(activeFlakes[i].getX(), -100);
+				}
+				move(i, amxG.nextValue(), amyG.nextValue());
+				i++;
 			}
-			move(amxG.nextValue(), amy);
 			counter++;
 			pause(pauseTime);
 		}
