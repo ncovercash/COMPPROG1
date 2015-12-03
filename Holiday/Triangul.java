@@ -10,9 +10,9 @@ public class Triangul {
 		v1 = new Location(x+w/2, y);
 		v2 = new Location(x, y+h);
 		v3 = new Location(x+w, y+h);
-		new Line(v1, v2, cnvs).setColor(c);
-		new Line(v3, v2, cnvs).setColor(c);
-		new Line(v1, v3, cnvs).setColor(c);
+		// new Line(v1, v2, cnvs).setColor(c);
+		// new Line(v3, v2, cnvs).setColor(c);
+		// new Line(v1, v3, cnvs).setColor(c);
 		Location vtmp = new Location(v2);
 		vtmp.translate(f, 0);
 		while (vtmp.getX() < v3.getX()) {
