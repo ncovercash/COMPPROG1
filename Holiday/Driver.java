@@ -19,6 +19,6 @@ public class Driver extends WindowController {
 		// o = new ActiveOrn(200, 200, 200, 200, SnowColors[new RandomIntGenerator(0, 11).nextValue()], new Color(0x00ff00), new Color(0x0000ff), new RandomIntGenerator(10, 60).nextValue(), canvas);
 	}
 	public void onMouseMove(Location p) {
-		new Triangul(p.getX(), p.getY(), 100, 100, 5, new Color(0xff00ff), canvas);
+		new Treé(p.getX(), p.getY(), 100, 100, 5, new Color(0xff00ff), canvas);
 	}
 }
