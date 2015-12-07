@@ -20,4 +20,13 @@ public class Triangul {
 			vtmp.translate(f, 0);
 		}
 	}
+	public Location getLeft$() {
+		return v2;
+	}
+	public Location getTop$() {
+		return v1;
+	}
+	public Location getRight$() {
+		return v3;
+	}
 }
