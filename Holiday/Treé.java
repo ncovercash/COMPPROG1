@@ -8,8 +8,8 @@ public class Treé {
 	Location tmp;
 	double bh, bw;
 	Triangul tri1, tri2, tri3, tri4;
+	FilledRect stump;
 	public Treé(double x, double y, double w, double h, Color[] cs, DrawingCanvas c) {
-		// new FramedRect(x, y, w, h, c).setColor(cs[new RandomIntGenerator(0, cs.length-1).nextValue()]);
 		bw = w/5;
 		bh = h/8;
 		new Triangul(x, y, bw*5, bh*8, 17, cs[new RandomIntGenerator(0, cs.length-1).nextValue()], c);
@@ -25,6 +25,10 @@ public class Treé {
 		DrawOrnament(tri3.getLeft$().getX(), tri3.getLeft$().getY(), 20, 20, new Color(0xff0000), new Color(0x00ff00), new Color(0x0000ff), c);
 		DrawOrnament(tri4.getRight$().getX(), tri4.getRight$().getY(), 20, 20, new Color(0xff0000), new Color(0x00ff00), new Color(0x0000ff), c);
 		DrawOrnament(tri4.getLeft$().getX(), tri4.getLeft$().getY(), 20, 20, new Color(0xff0000), new Color(0x00ff00), new Color(0x0000ff), c);
+		stump = new FilledRect(x+bw+bw, y+h-bh, bw, 2*bh, c);
+		stump.sendToBack();
+		stump.setColor(new Color(0x8B4513));
+		new Filled Arc(0, 0, 100, 100, 30, 30, c);
 	}
 	public void DrawOrnament(double x, double y, double w, double h, Color c1, Color c2, Color c3, DrawingCanvas c) {
 		new ActiveOrn(x-w/2, y-h/2, w, h, c1, c2, c3, c);
