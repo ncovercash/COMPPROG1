@@ -28,7 +28,9 @@ public class Treé {
 		stump = new FilledRect(x+bw+bw, y+h-bh, bw, 2*bh, c);
 		stump.sendToBack();
 		stump.setColor(new Color(0x8B4513));
-		new Filled Arc(0, 0, 100, 100, 30, 30, c);
+		new FilledArc(0, -50, 100, 100, 252, 36, c);
+		new FilledArc(-50, -15, 100, 100, 324, 36, c);
+		new FilledArc(-30, 40, 100, 100, 396, 36, c);
 	}
 	public void DrawOrnament(double x, double y, double w, double h, Color c1, Color c2, Color c3, DrawingCanvas c) {
 		new ActiveOrn(x-w/2, y-h/2, w, h, c1, c2, c3, c);
