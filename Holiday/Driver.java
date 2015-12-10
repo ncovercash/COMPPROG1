@@ -11,7 +11,8 @@ public class Driver extends WindowController {
 	int t = 0;
 	public static void main(String[] args) {
 		Driver oc = new Driver();
-		oc.startController((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(), (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()-25);
+		//oc.startController((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(), (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()-25);
+		oc.startController(1300, 700);
 	}
 
 	public void begin() {
