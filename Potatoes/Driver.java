@@ -1,3 +1,5 @@
+package Potatoes;
+
 import objectdraw.*;
 import java.awt.*;
 import java.util.*;
