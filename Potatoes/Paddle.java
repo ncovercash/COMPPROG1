@@ -1,4 +1,4 @@
-package Potatoes;
+ 
 
 import objectdraw.*;
 import java.awt.*;
@@ -16,21 +16,24 @@ public class Paddle {
 		this(0, c.getHeight()-(c.getHeight()/25), c.getWidth()/10, c.getHeight()/20, new Color(209, 167, 117), c);
 	};
 	public void moveTo(double dx, double dy) {
-		donald.moveTo(dx,dy);
+		this.donald.moveTo(dx,dy);
 	};
 	public void move(double dx, double dy) {
-		donald.move(dx,dy);
+		this.donald.move(dx,dy);
 	};
 	public double getX() {
-		return donald.getX();
+		return this.donald.getX();
 	};
 	public double getY() {
-		return donald.getY();
+		return this.donald.getY();
 	};
 	public double getWidth() {
-		return donald.getWidth();
+		return this.donald.getWidth();
 	};
 	public double getHeight() {
-		return donald.getHeight();
+		return this.donald.getHeight();
+	};
+	public FilledRect getBaseObj() {
+		return this.donald;
 	};
 };
