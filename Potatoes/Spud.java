@@ -22,12 +22,12 @@ public class Spud extends ActiveObject {
 			meme = new VisibleImage(ImageIO.read(new File("potato.png")), x, y, w, h, c);
 		} catch (IOException e) {
 			System.out.println(e);
-		};
+		}
 		start();
-	};
+	}
 	public Spud(ScoreBox s, Paddle p, DrawingCanvas c) {
 		this(s, new RandomIntGenerator(0, c.getWidth()-c.getWidth()/50).nextValue(), 0, c.getWidth()/50, c.getWidth()/50, p, new RandomIntGenerator(-3,3).nextValue(), new RandomIntGenerator(5, 15).nextValue(), c);
-	};
+	}
 	public void run() {
 		while (meme.getY() < this.c.getHeight()) {
 			if (meme.getX() <= 0 || meme.getX() + meme.getWidth() >= c.getWidth()) {
@@ -42,10 +42,10 @@ public class Spud extends ActiveObject {
 			meme.move(dx, dy);
 			pause(50);
 			// System.out.println(meme);
-		};
+		}
 		// System.out.println(meme);
 		meme.removeFromCanvas();
 		meme = null;
 		s.addScore(-1);
-	};
+	}
 }
