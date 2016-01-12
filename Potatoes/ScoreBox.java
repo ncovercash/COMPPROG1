@@ -10,20 +10,22 @@ public class ScoreBox {
 	FilledRect no;
 	Text steve;
 	int score;
-	public ScoreBox(double x, double y, double w, double h, Color c1, DrawingCanvas c) {
+	String text;
+	public ScoreBox(double x, double y, double w, double h, Color c1, String a, DrawingCanvas c) {
+		text = a;
 		no = new FilledRect(x, y, w, h, c);
 		no.setColor(c1);
-		steve = new Text("Score: "+score, x+w/5, y+h/10, c);
+		steve = new Text(a+score, x+w/5, y+h/10, c);
 		steve.setFontSize((int)h/3*2);
 	}
-	public ScoreBox(DrawingCanvas c) { // will generate correct sizes etc
-		this(c.getWidth()-c.getWidth()/5, 0, c.getWidth()/5, c.getHeight()/20, new Color(209, 167, 117), c);
+	public ScoreBox(DrawingCanvas c, int xPos, Color c1, String a) { // will generate correct sizes etc
+		this(c.getWidth()-c.getWidth()/5, (xPos)*(c.getHeight()/20), c.getWidth()/5, c.getHeight()/20, c1, a, c);
 	}
 	public int getScore() {
 	    return score;
 	}
 	public void updateScore() {
-	    steve.setText("Score: "+score);
+	    steve.setText(text+score);
 	}
 	public void setScore(int s) {
 	    score = s;

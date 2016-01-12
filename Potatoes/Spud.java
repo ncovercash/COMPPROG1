@@ -12,6 +12,7 @@ public class Spud extends ActiveObject {
 	int dx, dy;
 	Paddle p;
 	ScoreBox s;
+	static int coünt;
 	public Spud(ScoreBox s, double x, double y, double w, double h, Paddle p, int dx, int dy, DrawingCanvas c) {
 		this.c = c;
 		this.s = s;
@@ -20,13 +21,14 @@ public class Spud extends ActiveObject {
 		this.p = p;
 		try {
 			meme = new VisibleImage(ImageIO.read(new File("potato.png")), x, y, w, h, c);
+			coünt++;
 		} catch (IOException e) {
 			System.out.println(e);
 		}
 		start();
 	}
 	public Spud(ScoreBox s, Paddle p, DrawingCanvas c) {
-		this(s, new RandomIntGenerator(0, c.getWidth()-c.getWidth()/50).nextValue(), 0, c.getWidth()/50, c.getWidth()/50, p, new RandomIntGenerator(-3,3).nextValue(), new RandomIntGenerator(5, 15).nextValue(), c);
+		this(s, new RandomIntGenerator(0, c.getWidth()-c.getWidth()/50).nextValue(), 0, c.getWidth()/50, c.getWidth()/50, p, new RandomIntGenerator(-c.getHeight()/60, c.getHeight()/60).nextValue(), new RandomIntGenerator(c.getHeight()/90, c.getHeight()/60).nextValue(), c);
 	}
 	public void run() {
 		while (meme.getY() < this.c.getHeight()) {
@@ -37,15 +39,16 @@ public class Spud extends ActiveObject {
 				dy = -dy;
 			}
 			if (meme.overlaps(this.p.getBaseObj())) {
-				s.addScore(1);
+				s.addScore(coünt);
 			}
 			meme.move(dx, dy);
-			pause(50);
+			pause(20);
 			// System.out.println(meme);
 		}
 		// System.out.println(meme);
 		meme.removeFromCanvas();
 		meme = null;
 		s.addScore(-1);
+		coünt--;
 	}
 }
