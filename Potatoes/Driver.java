@@ -23,7 +23,24 @@ public class Driver extends WindowController {
 	}
 	public void onMouseClick(Location p) {
 		if (SpudsLeftThisRound != 0) {
-			new Spud(scoar, trump, canvas);
+			switch (new RandomIntGenerator(1,10).nextValue()) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+				case 6:
+					new Spud(scoar, trump, "potatoBlue.png", 1, canvas);
+					break;
+				case 7:
+				case 8:
+				case 9:
+					new Spud(scoar, trump, "potatoGreen.png", 2, canvas);
+					break;
+				case 10:
+					new Spud(scoar, trump, "potatoRed.png", 3, canvas);
+					break;
+			}
 			SpudsLeftThisRound++;
 		}
 		if (resat.testClick(p)) {
