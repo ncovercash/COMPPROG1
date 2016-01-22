@@ -1,0 +1,46 @@
+Project documentation
+<---- javadoc command: ---->
+/Applications/BlueJ/BlueJ.app/Contents/Frameworks/jdk.framework/Versions/A/Contents/Home/bin/javadoc
+-sourcepath
+/Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld
+-source
+1.8
+-classpath
+/Applications/BlueJ/BlueJ.app/Contents/Resources/Java/bluejcore.jar:/Applications/BlueJ/BlueJ.app/Contents/Resources/Java/junit-4.8.2.jar:/Applications/BlueJ/objectdraw.jar:/Applications/BlueJ/BlueJ.app/Contents/Resources/Java/userlib/pi4j-core.jar:/Applications/BlueJ/BlueJ.app/Contents/Resources/Java/userlib/pi4j-device.jar:/Applications/BlueJ/BlueJ.app/Contents/Resources/Java/userlib/pi4j-gpio-extension.jar:/Applications/BlueJ/BlueJ.app/Contents/Resources/Java/userlib/pi4j-service.jar:/Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld
+-d
+/Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld/doc
+-encoding
+UTF-8
+-charset
+UTF-8
+-docletpath
+/Applications/BlueJ/BlueJ.app/Contents/Resources/Java/bjdoclet.jar
+-doclet
+bluej.doclet.doclets.formats.html.HtmlDoclet
+-doctitle
+PotatoesWorld
+-windowtitle
+PotatoesWorld
+-author
+-version
+-nodeprecated
+-package
+-link
+http://download.oracle.com/javase/8/docs/api/
+/Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld/ScoreBox.java
+/Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld/Paddle.java
+/Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld/ResetButton.java
+/Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld/Driver.java
+/Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld/Spud.java
+/Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld/World.java
+<---- end of javadoc command ---->
+Loading source file /Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld/ScoreBox.java...
+Loading source file /Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld/Paddle.java...
+Loading source file /Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld/ResetButton.java...
+Loading source file /Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld/Driver.java...
+Loading source file /Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld/Spud.java...
+Loading source file /Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld/World.java...
+/Users/3aovercashn/Documents/COMPPROG1/PotatoesWorld/World.java:15: error: ';' expected
+		this.c = c
+		          ^
+1 error
