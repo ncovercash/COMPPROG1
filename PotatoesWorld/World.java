@@ -70,7 +70,7 @@ public class World extends ActiveObject {
 						spudatoes[i].reverseY();
 					}
 					if (spudatoes[i].getY() > c.getHeight()) {
-						spudatoes[i].restInPepperoni(i);
+						spudatoes[i].killPotato(i);
 					}
 				}
 			}

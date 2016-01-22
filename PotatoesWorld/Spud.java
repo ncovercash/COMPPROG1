@@ -49,11 +49,7 @@ public class Spud extends ActiveObject {
 				meme.move(dx, dy);
 			}
 			pause(15);
-			// System.out.println(meme);
 		}
-		// System.out.println(meme);
-		meme.removeFromCanvas();
-		meme = null;
 		coünt--;
 	}
 	public void move() {
@@ -71,7 +67,7 @@ public class Spud extends ActiveObject {
 	public boolean getMovability() {
 		return moveability;
 	}
-	public void restInPepperoni(int i) {
+	public void killPotato(int i) {
 		moveToDeath(i);
 		alive = false;
 		disallowMovability();
