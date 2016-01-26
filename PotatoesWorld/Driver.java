@@ -10,7 +10,8 @@ public class Driver extends WindowController {
 	World world;
 	public static void main(String[] args) {
 		Driver oc = new Driver();
-		oc.startController((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(), (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()-25); // Fullscreen dat
+		//oc.startController((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(), (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()-25); // Fullscreen dat		
+		oc.startController(700,700); // Fullscreen dat
 	}
 	public void begin() {
 		world = new World(canvas);
