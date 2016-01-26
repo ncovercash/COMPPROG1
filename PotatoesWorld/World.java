@@ -29,6 +29,8 @@ public class World extends ActiveObject {
 		scor = new ScoreBox(c, 0, new Color(0xff00ff), "Score: ");
 		reeeeeeset = new ResetButton(c);
 		start();
+		new Legend(0, c.getHeight()/35, c.getHeight()/60, new String[] {"a", "b", "c", "d", "b", "c", "d", "b", "c", "d"}, " = ", ",", "horiziontal", c);
+		new Legend(500, c.getHeight()/30, c.getHeight()/60, new String[] {"a", "b", "c", "d", "b", "c", "d", "b", "c", "d"}, " = ", ",", "vertical", c);
 	}
 	public void onMouseClick(Location p) {
 		if (reeeeeeset.testClick(p)) {
