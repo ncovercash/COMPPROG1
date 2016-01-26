@@ -72,8 +72,6 @@ public class Spud extends ActiveObject {
 		alive = false;
 		disallowMovability();
 		moveToDeath(i);
-		System.out.println(getX());
-		System.out.println(getY());
 	}
 	public void revive() {
 		alive = true;
@@ -114,17 +112,16 @@ public class Spud extends ActiveObject {
 	public void moveToDeath(int i) {
 		meme.moveTo(c.getWidth()-(meme.getWidth()*1.5), c.getHeight()/13+(i*meme.getHeight()));
 	}
-	public String getScoreToAdd() {
-		if (pimg == "potatoRed.png") {
-			return "double";
-		} else {
-			return ""+(int)m;
-		}
+	public int getScoreToAdd() {
+		return (int)m;
 	}
 	public Location getLocation() {
 		return meme.getLocation();
 	}
 	public VisibleImage getObj() {
 		return meme;
+	}
+	public void getOut() {
+		meme.removeFromCanvas();
 	}
 }

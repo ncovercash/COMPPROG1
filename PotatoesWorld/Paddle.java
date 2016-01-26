@@ -8,12 +8,14 @@ import java.io.*;
 import javax.imageio.*;
 public class Paddle {
 	FilledRect pladal;
-	public Paddle(double x, double y, double w, double h, Color c1, DrawingCanvas c) {
+	int mult;
+	public Paddle(double x, double y, double w, double h, Color c1, int posFromBottom, DrawingCanvas c) {
 		pladal = new FilledRect(x, y, w, h, c);
 		pladal.setColor(c1);
+		this.mult = posFromBottom+1;
 	}
-	public Paddle(DrawingCanvas c) { // will generate correct sizes etc
-		this(0, c.getHeight()-(c.getHeight()/25), c.getWidth()/10, c.getHeight()/20, new Color(209, 167, 117), c);
+	public Paddle(DrawingCanvas c, int posFromBottom, int numOfPaddles) { // will generate correct sizes etc
+		this(0, (c.getHeight()-(c.getHeight()/25))-(posFromBottom*(c.getHeight()/numOfPaddles)), c.getWidth()/10, c.getHeight()/20, new Color(209, 167, 117), posFromBottom, c);
 	}
 	public void moveTo(double dx, double dy) {
 		this.pladal.moveTo(dx,pladal.getY());
@@ -35,5 +37,11 @@ public class Paddle {
 	}
 	public FilledRect getBaseObj() {
 		return this.pladal;
+	}
+	public int getMult() {
+		return this.mult;
+	}
+	public void getMult(int m) {
+		mult = m;
 	}
 }
