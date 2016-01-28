@@ -29,16 +29,13 @@ public class World extends ActiveObject {
 		scor = new ScoreBox(c, 0, new Color(0xff00ff), "Score: ");
 		reeeeeeset = new ResetButton(c);
 		start();
-		new Legend(0, c.getHeight()/35, c.getHeight()/60, new String[] {"a", "b", "c", "d", "b", "c", "d", "b", "c", "d"}, " = ", ",", "horiziontal", c);
-		new Legend(500, c.getHeight()/30, c.getHeight()/60, new String[] {"a", "b", "c", "d", "b", "c", "d", "b", "c", "d"}, " = ", ",", "vertical", c);
+		new Legend(10, 10+c.getHeight()/30, 20, new String[] {"red", "2x", "blue", "2", "green", "3"}, " = ", ",", "vertical", c);
 	}
 	public void onMouseClick(Location p) {
 		if (reeeeeeset.testClick(p)) {
 			scor.setScore(0);
-			int i = 0;
-			while (i < spudatoes.length) {
+			for (int i = 0; i < spudatoes.length; i++) {
 				spudatoes[i].getOut();
-				i++;
 			}
 			spudatoes = new Spud[] {
 				makeSpud(0),
@@ -63,8 +60,7 @@ public class World extends ActiveObject {
 	}
 	public void run() {
 		while (!gameOver) {
-			int i = 0;
-			while (i < spudatoes.length) {
+			for (int i = 0; i < spudatoes.length; i++) {
 				if (!spudatoes[i].isDead()) {
 					if (lowerPadleet.getBaseObj().overlaps(spudatoes[i].getObj())) {
 						scor.addScore((spudatoes[i].getScoreToAdd())*lowerPadleet.getMult());
@@ -83,7 +79,6 @@ public class World extends ActiveObject {
 						spudatoes[i].killPotato(i);
 					}
 				}
-				i++;
 			}
 			pause(1);
 		}
