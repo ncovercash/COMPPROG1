@@ -15,7 +15,7 @@ public class Paddle {
 		this.mult = posFromBottom+1;
 	}
 	public Paddle(DrawingCanvas c, int posFromBottom, int numOfPaddles) { // will generate correct sizes etc
-		this(0, (c.getHeight()-(c.getHeight()/25))-(posFromBottom*(c.getHeight()/numOfPaddles)), c.getWidth()/10, c.getHeight()/20, new Color(209, 167, 117), posFromBottom, c);
+		this(0, (c.getHeight()-(c.getHeight()/25))-(posFromBottom*(c.getHeight()/numOfPaddles)), c.getWidth()/10, c.getHeight()/20, new Color(120,169,179), posFromBottom, c);
 	}
 	public void moveTo(double dx, double dy) {
 		this.pladal.moveTo(dx,pladal.getY());
