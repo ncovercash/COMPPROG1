@@ -99,13 +99,13 @@ public class World extends ActiveObject {
 			case 4:
 			case 5:
 			case 6:
-				return new Spud("potatoBlue.png", 2, c, pos);
+				return new Spud("img/blue/base.png", 2, c, pos);
 			case 7:
 			case 8:
 			case 9:
-				return new Spud("potatoGreen.png", 3, c, pos);
+				return new Spud("img/green/potatoGreen.png", 3, c, pos);
 			case 10:
-				return new Spud("potatoRed.png", -1, c, pos);
+				return new Spud("img/red/potatoRed.png", -1, c, pos);
 			default: return new Spud("", 1, c, -1);
 		}
 	}

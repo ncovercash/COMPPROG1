@@ -31,7 +31,7 @@ public class Spud extends ActiveObject {
 		} else {
 			this.pimg = "";
 			try {
-				meme = new VisibleImage(ImageIO.read(new File("potatoFallback.png")), x, y, w, h, c);
+				meme = new VisibleImage(ImageIO.read(new File("img/potatoFallback.png")), x, y, w, h, c);
 				coünt++;
 			} catch (IOException e) {
 				System.out.println(e);

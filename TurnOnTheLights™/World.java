@@ -12,7 +12,7 @@ public class World extends ActiveObject {
 	boolean gameOver = false;
 	Paddle pladdle;
 	int[][] levels = {{3,3},{1,5},{2,3},{2,5}};
-	Spud potatosForLevel[][];
+	Spud potatoesForLevel[][], firedSpud;
 	int level = 0;
 	ResetButton reeeeeeset;
 	public World(DrawingCanvas c) {
@@ -22,16 +22,46 @@ public class World extends ActiveObject {
 		reeeeeeset = new ResetButton(c);
 		pladdle = new Paddle(c, 0, 1);
 		drawLevel(level);
+		firedSpud = new Spud(0, c.getHeight(), c.getWidth()/25, c.getWidth()/25, 0, -8, "img/moon/0/0.png", 1, c);
 		start();
 	}
 	public void reset() {
-		//
+		level = 0;
+		clearLevel();
+		scor.setScore(0);
+		levelB.setScore(0);
+		gameOver = true;
+		pause(2);
+		gameOver = false;
+		drawLevel(level);
+		start();
 	}
 	public void onMouseClick(Location p) {
 		if (reeeeeeset.testClick(p)) {
 			reset();
 		} else {
+			fire();
 		}
+	}
+	public void fire() {
+		firedSpud.moveTo(pladdle.getX()+(pladdle.getWidth()/2)-(c.getWidth()/50), c.getHeight()-(pladdle.getHeight()/2)-(c.getWidth()/25));
+		firedSpud.setMove(0, -8);
+		firedSpud.allowMovability();
+	}
+	public void nextLevel() {
+		if (level+1 < levels.length) {
+			clearLevel();
+			level++;
+			System.out.println(level);
+			drawLevel(level);
+		} else {
+			clearLevel();
+			gameOver = true;
+			youWin();
+		}
+	}
+	public void youWin() {
+		System.out.println("YOU WIN");
 	}
 	public void onMouseMove(Location p) {
 		if (p.getX() <= c.getWidth()-pladdle.getWidth()) {
@@ -44,6 +74,7 @@ public class World extends ActiveObject {
 		double xGap;
 		double yGap;
 		double pWidth;
+		levelB.setScore(lvl+1);
 		// lets do the math
 		pWidth = c.getHeight()/6;
 		xGap = pWidth/3;
@@ -52,17 +83,23 @@ public class World extends ActiveObject {
 		topX /= 2;
 		topY = c.getHeight()-((levels[lvl][0])*pWidth)-(((levels[lvl][0])-1)*yGap);
 		topY /= 2;
-		potatosForLevel = new Spud[levels[lvl][0]][levels[lvl][1]];
-		for (int i=0;i < potatosForLevel.length; i++) {
-			for (int ii=0;ii < potatosForLevel[i].length; ii++) {
-				if (ii >= 1) {
-					potatosForLevel[i][ii] = makeGameSpud(topX+((ii)*pWidth)+((ii-1)*xGap), topY+((i)*pWidth)+((i-1)*yGap), pWidth);
+		potatoesForLevel = new Spud[levels[lvl][0]][levels[lvl][1]];
+		for (int i=0;i < potatoesForLevel.length; i++) {
+			for (int ii=0;ii < potatoesForLevel[i].length; ii++) {
+				if (ii >= 0) {
+					potatoesForLevel[i][ii] = makeGameSpud(topX+((ii)*pWidth)+((ii-1)*xGap), topY+((i)*pWidth)+((i-1)*yGap), pWidth);
 				} else {
-					potatosForLevel[i][ii] = makeGameSpud(topX+((ii)*pWidth), topY+((i)*pWidth), pWidth);
+					potatoesForLevel[i][ii] = makeGameSpud(topX+((ii)*pWidth), topY+((i)*pWidth), pWidth);
 				}
 			}
 		}
-		potatosForLevel[0][0] = makeGameSpud(topX, topY, pWidth);
+	}
+	public void clearLevel() {
+		for (int i=0;i < potatoesForLevel.length; i++) {
+			for (int ii=0;ii < potatoesForLevel[i].length; ii++) {
+				potatoesForLevel[i][ii].killGamePotato();
+			}
+		}
 	}
 	public void run() {
 		while (!gameOver) {

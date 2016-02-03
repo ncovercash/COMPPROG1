@@ -31,7 +31,7 @@ public class Spud extends ActiveObject {
 		} else {
 			this.pimg = "";
 			try {
-				meme = new VisibleImage(ImageIO.read(new File("potatoFallback.png")), x, y, w, h, c);
+				meme = new VisibleImage(ImageIO.read(new File("img/potatoFallback.png")), x, y, w, h, c);
 				coünt++;
 			} catch (IOException e) {
 				System.out.println(e);
@@ -55,6 +55,9 @@ public class Spud extends ActiveObject {
 	public void move() {
 		meme.move(dx, dy);
 	}
+	public void moveTo(double dx, double dy) {
+		meme.moveTo(dx, dy);
+	}
 	public void toggleMovability() {
 		moveability = !moveability;
 	}
@@ -67,11 +70,14 @@ public class Spud extends ActiveObject {
 	public boolean getMovability() {
 		return moveability;
 	}
-	public void killPotato(int i) {
-		moveToDeath(i);
-		alive = false;
+	public void killGamePotato() {
+		alive=false;
 		disallowMovability();
-		moveToDeath(i);
+		try {
+			meme.removeFromCanvas();
+		} catch (IllegalStateException e) {
+			//
+		}
 	}
 	public void revive() {
 		alive = true;
@@ -123,5 +129,9 @@ public class Spud extends ActiveObject {
 	}
 	public void getOut() {
 		meme.removeFromCanvas();
+	}
+	public void setMove(double dx, double dy) {
+		this.dx = dx;
+		this.dy = dy;
 	}
 }
