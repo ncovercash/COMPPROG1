@@ -14,6 +14,8 @@ public class World extends ActiveObject {
 	int[][] levels = {{1,3},{1,5},{2,3},{2,5}};
 	Spud potatoesForLevel[][], firedSpud;
 	int level = 0;
+	double pFLdx = 1;
+	double fsw;
 	ResetButton reeeeeeset;
 	public World(DrawingCanvas c) {
 		this.c = c;
@@ -22,16 +24,16 @@ public class World extends ActiveObject {
 		reeeeeeset = new ResetButton(c);
 		pladdle = new Paddle(c, 0, 1);
 		drawLevel(level);
-		firedSpud = new Spud(0, c.getHeight(), c.getWidth()/25, c.getWidth()/25, 0, -8, "img/moon/0/0.png", 1, c);
+		firedSpud = new Spud(0, c.getHeight(), c.getWidth()/61.904761905, c.getWidth()/61.904761905*6.2698412698, 0, -15, "img/rocket.png", 1, c);
 		start();
 	}
 	public void reset() {
-		level = 0;
-		clearLevel();
+		level = -1;
+		nextLevel();
+		// clearLevel();
 		scor.setScore(0);
-		levelB.setScore(1);
-		// currentGameOver = false;
-		drawLevel(level);
+		currentGameOver = false;
+		// drawLevel(level);
 	}
 	public void onMouseClick(Location p) {
 		if (reeeeeeset.testClick(p)) {
@@ -44,14 +46,18 @@ public class World extends ActiveObject {
 	}
 	public void fire() {
 		firedSpud.moveTo(pladdle.getX()+(pladdle.getWidth()/2)-(c.getWidth()/50), c.getHeight()-(pladdle.getHeight())-(c.getWidth()/25)-2); // 2 is for spacing
-		firedSpud.setMove(0, -8);
+		firedSpud.setMove(0, -15);
 		firedSpud.allowMovability();
+	}
+	public void uDone() {
+		currentGameOver = true;
 	}
 	public void nextLevel() {
 		if (level+1 < levels.length) {
 			clearLevel();
 			level++;
 			drawLevel(level);
+			levelB.setScore(level+1);
 		} else {
 			clearLevel();
 			gameOver = true;
@@ -77,6 +83,7 @@ public class World extends ActiveObject {
 		pWidth = c.getHeight()/6;
 		xGap = pWidth/3;
 		yGap = pWidth/2.5;
+		this.fsw = xGap - xGap/4;
 		topX = c.getWidth()-((levels[lvl][1])*pWidth)-(((levels[lvl][1])-1)*xGap);
 		topX /= 2;
 		topY = c.getHeight()-((levels[lvl][0])*pWidth)-(((levels[lvl][0])-1)*yGap);
@@ -102,12 +109,20 @@ public class World extends ActiveObject {
 	public void run() {
 		while (!gameOver) {
 			if (!currentGameOver) {
-				if (pladdle.getBaseObj().overlaps(firedSpud.getObj())) {
-					if (firedSpud.getXChange() == 0) {
-						firedSpud.newXChange();
-					}
-					firedSpud.reverseY();
+				double pFLdy = 0;
+				if (potatoesForLevel[0][0].getX() <= 0 || potatoesForLevel[0][potatoesForLevel[0].length-1].getX()+potatoesForLevel[0][potatoesForLevel[0].length-1].getWidth() >= c.getWidth()) {
+					pFLdx = -pFLdx;
+					pFLdy = fsw/3;
 				}
+				if (potatoesForLevel[potatoesForLevel.length-1][0].getY()+potatoesForLevel[potatoesForLevel.length-1][0].getHeight() > c.getHeight()) {
+					uDone();
+				}
+				// if (pladdle.getBaseObj().overlaps(firedSpud.getObj())) {
+				// 	if (firedSpud.getXChange() == 0) {
+				// 		firedSpud.newXChange();
+				// 	}
+				// 	firedSpud.reverseY();
+				// }
 				if (firedSpud.getX() <= 0 || firedSpud.getX() + firedSpud.getWidth() >= c.getWidth()) {
 					firedSpud.reverseX();
 				}
@@ -126,16 +141,8 @@ public class World extends ActiveObject {
 				for (int i=0;i < potatoesForLevel.length; i++) {
 				    needed += potatoesForLevel[i].length;
 					for (int ii=0;ii < potatoesForLevel[i].length; ii++) {
-						if (
-						firedSpud
-						.getObj()
-						.overlaps(
-						potatoesForLevel
-						[i]
-						[ii]
-						.getObj()
-						)
-						) {
+						potatoesForLevel[i][ii].move(pFLdx, pFLdy);
+						if (firedSpud.getObj().overlaps(potatoesForLevel[i][ii].getObj())) {
 							firedSpud
 							.disallowMovability();
 							firedSpud.moveToDeath();
@@ -158,18 +165,11 @@ public class World extends ActiveObject {
 									break;
 								case 5:
 									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
-									// currentGameOver = true;
+									uDone();
 									break;
 							}
 						}
-						if (
-						potatoesForLevel
-						[i]
-						[ii]
-						.getHits()
-						==
-						4
-						) {
+						if (potatoesForLevel[i][ii].getHits()==4) {
 							done++;
 						}
 					}

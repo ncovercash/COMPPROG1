@@ -160,4 +160,7 @@ public class Spud extends ActiveObject {
 	public void hit() {
 		hits++;
 	}
+	public void move(double dx, double dy) {
+		meme.move(dx, dy);
+	}
 }

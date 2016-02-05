@@ -7,15 +7,19 @@ import java.lang.*;
 import java.io.*;
 import javax.imageio.*;
 public class Paddle {
-	FilledRect pladal;
+	VisibleImage pladal;
 	int mult;
-	public Paddle(double x, double y, double w, double h, Color c1, int posFromBottom, DrawingCanvas c) {
-		pladal = new FilledRect(x, y, w, h, c);
-		pladal.setColor(c1);
+	public Paddle(double x, double y, double w, double h, String img, int posFromBottom, DrawingCanvas c) {
+		try {
+			pladal = new VisibleImage(ImageIO.read(new File(img)), x, y, w, h, c);
+		} catch (IOException e) {
+			System.out.println(e);
+			System.exit(1);
+		}
 		this.mult = posFromBottom+1;
 	}
 	public Paddle(DrawingCanvas c, int posFromBottom, int numOfPaddles) { // will generate correct sizes etc
-		this(0, (c.getHeight()-(c.getHeight()/25))-(posFromBottom*(c.getHeight()/numOfPaddles)), c.getWidth()/10, c.getHeight()/20, new Color(120,169,179), posFromBottom, c);
+		this(0, c.getHeight()-(c.getWidth()/25*3.1474358974), c.getWidth()/25, c.getWidth()/25*3.1474358974, "img/paddle.png", posFromBottom, c);
 	}
 	public void moveTo(double dx, double dy) {
 		this.pladal.moveTo(dx,pladal.getY());
@@ -35,7 +39,7 @@ public class Paddle {
 	public double getHeight() {
 		return this.pladal.getHeight();
 	}
-	public FilledRect getBaseObj() {
+	public VisibleImage getBaseObj() {
 		return this.pladal;
 	}
 	public int getMult() {
