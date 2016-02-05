@@ -9,9 +9,9 @@ import javax.imageio.*;
 public class World extends ActiveObject {
 	ScoreBox scor, levelB;
 	DrawingCanvas c;
-	boolean gameOver = false;
+	boolean gameOver = false, currentGameOver = false;
 	Paddle pladdle;
-	int[][] levels = {{3,3},{1,5},{2,3},{2,5}};
+	int[][] levels = {{1,3},{1,5},{2,3},{2,5}};
 	Spud potatoesForLevel[][], firedSpud;
 	int level = 0;
 	ResetButton reeeeeeset;
@@ -29,22 +29,21 @@ public class World extends ActiveObject {
 		level = 0;
 		clearLevel();
 		scor.setScore(0);
-		levelB.setScore(0);
-		gameOver = true;
-		pause(2);
-		gameOver = false;
+		levelB.setScore(1);
+		// currentGameOver = false;
 		drawLevel(level);
-		start();
 	}
 	public void onMouseClick(Location p) {
 		if (reeeeeeset.testClick(p)) {
 			reset();
 		} else {
-			fire();
+			if (!currentGameOver) {
+				fire();
+			}
 		}
 	}
 	public void fire() {
-		firedSpud.moveTo(pladdle.getX()+(pladdle.getWidth()/2)-(c.getWidth()/50), c.getHeight()-(pladdle.getHeight()/2)-(c.getWidth()/25));
+		firedSpud.moveTo(pladdle.getX()+(pladdle.getWidth()/2)-(c.getWidth()/50), c.getHeight()-(pladdle.getHeight())-(c.getWidth()/25)-2); // 2 is for spacing
 		firedSpud.setMove(0, -8);
 		firedSpud.allowMovability();
 	}
@@ -52,7 +51,6 @@ public class World extends ActiveObject {
 		if (level+1 < levels.length) {
 			clearLevel();
 			level++;
-			System.out.println(level);
 			drawLevel(level);
 		} else {
 			clearLevel();
@@ -103,7 +101,83 @@ public class World extends ActiveObject {
 	}
 	public void run() {
 		while (!gameOver) {
-			//insert stuff here
+			if (!currentGameOver) {
+				if (pladdle.getBaseObj().overlaps(firedSpud.getObj())) {
+					if (firedSpud.getXChange() == 0) {
+						firedSpud.newXChange();
+					}
+					firedSpud.reverseY();
+				}
+				if (firedSpud.getX() <= 0 || firedSpud.getX() + firedSpud.getWidth() >= c.getWidth()) {
+					firedSpud.reverseX();
+				}
+				if (firedSpud.getY() < 0) {
+					firedSpud.reverseY();
+					if (firedSpud.getXChange() == 0) {
+						firedSpud.newXChange();
+					}
+				}
+				if (firedSpud.getY() > c.getHeight()) {
+					firedSpud.disallowMovability();
+					firedSpud.moveToDeath();
+				}
+				int done=0;
+				int needed=0;
+				for (int i=0;i < potatoesForLevel.length; i++) {
+				    needed += potatoesForLevel[i].length;
+					for (int ii=0;ii < potatoesForLevel[i].length; ii++) {
+						if (
+						firedSpud
+						.getObj()
+						.overlaps(
+						potatoesForLevel
+						[i]
+						[ii]
+						.getObj()
+						)
+						) {
+							firedSpud
+							.disallowMovability();
+							firedSpud.moveToDeath();
+							potatoesForLevel[i][ii].hit();
+							switch (potatoesForLevel[i][ii].getHits()) {
+								case 0:
+									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+									break;
+								case 1:
+									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+									break;
+								case 2:
+									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+									break;
+								case 3:
+									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+									break;
+								case 4:
+									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+									break;
+								case 5:
+									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+									// currentGameOver = true;
+									break;
+							}
+						}
+						if (
+						potatoesForLevel
+						[i]
+						[ii]
+						.getHits()
+						==
+						4
+						) {
+							done++;
+						}
+					}
+				}
+				if (done == needed) {
+					nextLevel();
+				}
+			}
 			pause(1);
 		}
 	}

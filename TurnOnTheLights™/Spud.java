@@ -14,6 +14,7 @@ public class Spud extends ActiveObject {
 	String pimg;
 	static int coünt;
 	boolean alive=true, moveability=false;
+	int hits = 0;
 	public Spud(double x, double y, double w, double h, int dx, int dy, String pimg, double mult, DrawingCanvas c) {
 		this.c = c;
 		this.dx = dx;
@@ -83,6 +84,16 @@ public class Spud extends ActiveObject {
 		alive = true;
 		start();
 	}
+	public void setImg(String pimg) {
+		this.pimg = pimg;
+		System.out.println(pimg);
+		try {
+			meme.setImage(ImageIO.read(new File(pimg)));
+		} catch (IOException e) {
+			System.out.println(e);
+			System.exit(1);
+		}
+	}
 	public boolean isDead() {
 		return !alive;
 	}
@@ -106,6 +117,9 @@ public class Spud extends ActiveObject {
 	public double getX() {
 		return meme.getX();
 	}
+	public double getXChange() {
+		return dx;
+	}
 	public double getY() {
 		return meme.getY();
 	}
@@ -115,8 +129,11 @@ public class Spud extends ActiveObject {
 	public double getHeight() {
 		return meme.getHeight();
 	}
-	public void moveToDeath(int i) {
-		meme.moveTo(c.getWidth()-(meme.getWidth()*1.5), c.getHeight()/13+(i*meme.getHeight()));
+	public void moveToDeath() {
+		meme.moveTo(0, c.getHeight());
+		dx = 0;
+		dy = 0;
+		meme.moveTo(0, c.getHeight());
 	}
 	public int getScoreToAdd() {
 		return (int)m;
@@ -131,7 +148,16 @@ public class Spud extends ActiveObject {
 		meme.removeFromCanvas();
 	}
 	public void setMove(double dx, double dy) {
-		this.dx = dx;
-		this.dy = dy;
+		this.dx = (int)dx;
+		this.dy = (int)dy;
+	}
+	public void newXChange() {
+		dx = new RandomIntGenerator(-5, 5).nextValue();
+	}
+	public int getHits() {
+		return hits;
+	}
+	public void hit() {
+		hits++;
 	}
 }
