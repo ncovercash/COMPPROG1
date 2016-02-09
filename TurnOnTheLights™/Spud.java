@@ -86,7 +86,6 @@ public class Spud extends ActiveObject {
 	}
 	public void setImg(String pimg) {
 		this.pimg = pimg;
-		System.out.println(pimg);
 		try {
 			meme.setImage(ImageIO.read(new File(pimg)));
 		} catch (IOException e) {

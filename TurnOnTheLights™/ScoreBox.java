@@ -35,4 +35,8 @@ public class ScoreBox {
 	    score += s;
 	    updateScore();
 	}
+	public void front() {
+		no.sendToFront();
+		steve.sendToFront();
+	}
 }

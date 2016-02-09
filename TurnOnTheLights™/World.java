@@ -7,14 +7,16 @@ import java.lang.*;
 import java.io.*;
 import javax.imageio.*;
 public class World extends ActiveObject {
+	VisibleImage endi;
 	ScoreBox scor, levelB;
 	DrawingCanvas c;
 	boolean gameOver = false, currentGameOver = false;
 	Paddle pladdle;
-	int[][] levels = {{1,3},{1,5},{2,3},{2,5}};
+	int[][] levels = {{1,1},{1,3},{1,5},{2,1},{2,2},{3,1},{3,2}};
 	Spud potatoesForLevel[][], firedSpud;
 	int level = 0;
 	double pFLdx = 1;
+	boolean moveX=true;
 	double fsw;
 	ResetButton reeeeeeset;
 	public World(DrawingCanvas c) {
@@ -33,6 +35,7 @@ public class World extends ActiveObject {
 		// clearLevel();
 		scor.setScore(0);
 		currentGameOver = false;
+		endi.hide();
 		// drawLevel(level);
 	}
 	public void onMouseClick(Location p) {
@@ -45,12 +48,21 @@ public class World extends ActiveObject {
 		}
 	}
 	public void fire() {
-		firedSpud.moveTo(pladdle.getX()+(pladdle.getWidth()/2)-(c.getWidth()/50), c.getHeight()-(pladdle.getHeight())-(c.getWidth()/25)-2); // 2 is for spacing
+		firedSpud.moveTo(pladdle.getX()-firedSpud.getWidth()/2, c.getHeight()-firedSpud.getHeight()); // 2 is for spacing
 		firedSpud.setMove(0, -15);
+		firedSpud.setImg("img/rocket.png");
 		firedSpud.allowMovability();
 	}
 	public void uDone() {
 		currentGameOver = true;
+		try {
+			endi = new VisibleImage(ImageIO.read(new File("img/memeEnd.jpg")), 0, 0, c.getWidth(), c.getHeight(), c);
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+		scor.front();
+		levelB.front();
+		reeeeeeset.front();
 	}
 	public void nextLevel() {
 		if (level+1 < levels.length) {
@@ -70,6 +82,10 @@ public class World extends ActiveObject {
 	public void onMouseMove(Location p) {
 		if (p.getX() <= c.getWidth()-pladdle.getWidth()) {
 			pladdle.moveTo(p.getX(), 0);
+			if (!firedSpud.canMove()) {
+				firedSpud.moveTo(pladdle.getX()-firedSpud.getWidth()/2, c.getHeight()-firedSpud.getHeight());
+				firedSpud.setImg("img/rocket.png");
+			}
 		}
 	}
 	public void drawLevel(int lvl) {
@@ -86,13 +102,14 @@ public class World extends ActiveObject {
 		this.fsw = xGap - xGap/4;
 		topX = c.getWidth()-((levels[lvl][1])*pWidth)-(((levels[lvl][1])-1)*xGap);
 		topX /= 2;
-		topY = c.getHeight()-((levels[lvl][0])*pWidth)-(((levels[lvl][0])-1)*yGap);
-		topY /= 2;
+		// topY = c.getHeight()-((levels[lvl][0])*pWidth)-(((levels[lvl][0])-1)*yGap);
+		// topY /= 2;
+		topY = 0;
 		potatoesForLevel = new Spud[levels[lvl][0]][levels[lvl][1]];
 		for (int i=0;i < potatoesForLevel.length; i++) {
 			for (int ii=0;ii < potatoesForLevel[i].length; ii++) {
 				if (ii >= 0) {
-					potatoesForLevel[i][ii] = makeGameSpud(topX+((ii)*pWidth)+((ii-1)*xGap), topY+((i)*pWidth)+((i-1)*yGap), pWidth);
+					potatoesForLevel[i][ii] = makeGameSpud(topX+((ii)*pWidth)+((ii-1)*xGap), topY+((i)*pWidth), pWidth);
 				} else {
 					potatoesForLevel[i][ii] = makeGameSpud(topX+((ii)*pWidth), topY+((i)*pWidth), pWidth);
 				}
@@ -109,10 +126,11 @@ public class World extends ActiveObject {
 	public void run() {
 		while (!gameOver) {
 			if (!currentGameOver) {
+				moveX = !moveX;
 				double pFLdy = 0;
 				if (potatoesForLevel[0][0].getX() <= 0 || potatoesForLevel[0][potatoesForLevel[0].length-1].getX()+potatoesForLevel[0][potatoesForLevel[0].length-1].getWidth() >= c.getWidth()) {
 					pFLdx = -pFLdx;
-					pFLdy = fsw/3;
+					pFLdy = fsw/4;
 				}
 				if (potatoesForLevel[potatoesForLevel.length-1][0].getY()+potatoesForLevel[potatoesForLevel.length-1][0].getHeight() > c.getHeight()) {
 					uDone();
@@ -131,22 +149,30 @@ public class World extends ActiveObject {
 					if (firedSpud.getXChange() == 0) {
 						firedSpud.newXChange();
 					}
+					firedSpud.setImg("img/rocket2.png");
 				}
 				if (firedSpud.getY() > c.getHeight()) {
 					firedSpud.disallowMovability();
-					firedSpud.moveToDeath();
+					firedSpud.moveTo(pladdle.getX()-firedSpud.getWidth()/2, c.getHeight()-firedSpud.getHeight());
+					firedSpud.setImg("img/rocket.png");
 				}
 				int done=0;
 				int needed=0;
 				for (int i=0;i < potatoesForLevel.length; i++) {
 				    needed += potatoesForLevel[i].length;
 					for (int ii=0;ii < potatoesForLevel[i].length; ii++) {
-						potatoesForLevel[i][ii].move(pFLdx, pFLdy);
+						if (moveX) {
+							potatoesForLevel[i][ii].move(pFLdx, pFLdy);
+						}
+						if (pFLdy != 0) {
+							potatoesForLevel[i][ii].move(2*pFLdx, 3);
+						}
 						if (firedSpud.getObj().overlaps(potatoesForLevel[i][ii].getObj())) {
-							firedSpud
-							.disallowMovability();
-							firedSpud.moveToDeath();
+							firedSpud.disallowMovability();
+							firedSpud.moveTo(pladdle.getX()-firedSpud.getWidth()/2, c.getHeight()-firedSpud.getHeight());
+							firedSpud.setImg("img/rocket.png");
 							potatoesForLevel[i][ii].hit();
+							scor.addScore(level+1);
 							switch (potatoesForLevel[i][ii].getHits()) {
 								case 0:
 									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");

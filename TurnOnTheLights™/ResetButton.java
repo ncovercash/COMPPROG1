@@ -26,4 +26,8 @@ public class ResetButton {
 			return false;
 		}
 	}
+	public void front() {
+		bg.sendToFront();
+		txt.sendToFront();
+	}
 }
