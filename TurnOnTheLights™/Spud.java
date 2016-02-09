@@ -10,7 +10,7 @@ public class Spud extends ActiveObject {
 	VisibleImage meme;
 	DrawingCanvas c;
 	int dx, dy;
-	double m;
+	double m, ox, oy, ow, oh;
 	String pimg;
 	static int coünt;
 	boolean alive=true, moveability=false;
@@ -20,6 +20,10 @@ public class Spud extends ActiveObject {
 		this.dx = dx;
 		this.dy = dy;
 		this.m = mult;
+		ox = x;
+		oy = y;
+		ow = w;
+		oh = h;
 		if (pimg != null && !pimg.isEmpty()) {
 			this.pimg = pimg;
 			try {
@@ -161,5 +165,12 @@ public class Spud extends ActiveObject {
 	}
 	public void move(double dx, double dy) {
 		meme.move(dx, dy);
+	}
+	public void shrink(double p) {
+		double oow = getWidth();
+		double ooh = getHeight();
+		meme.setWidth(ow*(1-(p/100)));
+		meme.setHeight(oh*(1-(p/100)));
+		meme.move((oow-getWidth())/2, (ooh-getHeight())/2);
 	}
 }

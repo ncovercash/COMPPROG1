@@ -26,7 +26,7 @@ public class World extends ActiveObject {
 		reeeeeeset = new ResetButton(c);
 		pladdle = new Paddle(c, 0, 1);
 		drawLevel(level);
-		firedSpud = new Spud(0, c.getHeight(), c.getWidth()/61.904761905, c.getWidth()/61.904761905*6.2698412698, 0, -15, "img/rocket.png", 1, c);
+		firedSpud = new Spud(0, c.getHeight(), c.getWidth()/61.904761905, c.getWidth()/61.904761905*6.2698412698, 0, -20, "img/rocket.png", 1, c);
 		start();
 	}
 	public void reset() {
@@ -35,8 +35,9 @@ public class World extends ActiveObject {
 		// clearLevel();
 		scor.setScore(0);
 		currentGameOver = false;
-		endi.hide();
-		// drawLevel(level);
+		//drawLevel(level);
+		//endi.hide();
+
 	}
 	public void onMouseClick(Location p) {
 		if (reeeeeeset.testClick(p)) {
@@ -49,7 +50,7 @@ public class World extends ActiveObject {
 	}
 	public void fire() {
 		firedSpud.moveTo(pladdle.getX()-firedSpud.getWidth()/2, c.getHeight()-firedSpud.getHeight()); // 2 is for spacing
-		firedSpud.setMove(0, -15);
+		firedSpud.setMove(0, -20);
 		firedSpud.setImg("img/rocket.png");
 		firedSpud.allowMovability();
 	}
@@ -179,18 +180,23 @@ public class World extends ActiveObject {
 									break;
 								case 1:
 									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+									potatoesForLevel[i][ii].shrink(10);
 									break;
 								case 2:
 									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+									potatoesForLevel[i][ii].shrink(20);
 									break;
 								case 3:
 									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+									potatoesForLevel[i][ii].shrink(30);
 									break;
 								case 4:
 									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+									potatoesForLevel[i][ii].shrink(40);
 									break;
 								case 5:
 									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+									potatoesForLevel[i][ii].shrink(50);
 									uDone();
 									break;
 							}
