@@ -10,7 +10,7 @@ public class World extends ActiveObject {
 	VisibleImage endi;
 	ScoreBox scor, levelB;
 	DrawingCanvas c;
-	boolean gameOver = false, currentGameOver = false;
+	boolean gameOver = false, currentGameOver = false, canTouchThis=true, endiSet=false;
 	Paddle pladdle;
 	int[][] levels = {{1,1},{1,3},{1,5},{2,1},{2,2},{3,1},{3,2}};
 	Spud potatoesForLevel[][], firedSpud;
@@ -30,14 +30,17 @@ public class World extends ActiveObject {
 		start();
 	}
 	public void reset() {
+		canTouchThis = false;
 		level = -1;
 		nextLevel();
 		// clearLevel();
 		scor.setScore(0);
 		currentGameOver = false;
 		//drawLevel(level);
-		//endi.hide();
-
+		if (endiSet) {
+			endi.hide();
+		}
+		canTouchThis = true;
 	}
 	public void onMouseClick(Location p) {
 		if (reeeeeeset.testClick(p)) {
@@ -58,6 +61,7 @@ public class World extends ActiveObject {
 		currentGameOver = true;
 		try {
 			endi = new VisibleImage(ImageIO.read(new File("img/memeEnd.jpg")), 0, 0, c.getWidth(), c.getHeight(), c);
+			endiSet = true;
 		} catch (IOException e) {
 			System.out.println(e);
 		}
@@ -129,12 +133,16 @@ public class World extends ActiveObject {
 			if (!currentGameOver) {
 				moveX = !moveX;
 				double pFLdy = 0;
-				if (potatoesForLevel[0][0].getX() <= 0 || potatoesForLevel[0][potatoesForLevel[0].length-1].getX()+potatoesForLevel[0][potatoesForLevel[0].length-1].getWidth() >= c.getWidth()) {
-					pFLdx = -pFLdx;
-					pFLdy = fsw/4;
+				if (canTouchThis) {
+					if (potatoesForLevel[0][0].getX() <= 0 || potatoesForLevel[0][potatoesForLevel[0].length-1].getX()+potatoesForLevel[0][potatoesForLevel[0].length-1].getWidth() >= c.getWidth()) {
+						pFLdx = -pFLdx;
+						pFLdy = fsw/4;
+					}
 				}
-				if (potatoesForLevel[potatoesForLevel.length-1][0].getY()+potatoesForLevel[potatoesForLevel.length-1][0].getHeight() > c.getHeight()) {
-					uDone();
+				if (canTouchThis) {
+					if (potatoesForLevel[potatoesForLevel.length-1][0].getY()+potatoesForLevel[potatoesForLevel.length-1][0].getHeight() > c.getHeight()) {
+						uDone();
+					}
 				}
 				// if (pladdle.getBaseObj().overlaps(firedSpud.getObj())) {
 				// 	if (firedSpud.getXChange() == 0) {
@@ -159,54 +167,58 @@ public class World extends ActiveObject {
 				}
 				int done=0;
 				int needed=0;
-				for (int i=0;i < potatoesForLevel.length; i++) {
-				    needed += potatoesForLevel[i].length;
-					for (int ii=0;ii < potatoesForLevel[i].length; ii++) {
-						if (moveX) {
-							potatoesForLevel[i][ii].move(pFLdx, pFLdy);
-						}
-						if (pFLdy != 0) {
-							potatoesForLevel[i][ii].move(2*pFLdx, 3);
-						}
-						if (firedSpud.getObj().overlaps(potatoesForLevel[i][ii].getObj())) {
-							firedSpud.disallowMovability();
-							firedSpud.moveTo(pladdle.getX()-firedSpud.getWidth()/2, c.getHeight()-firedSpud.getHeight());
-							firedSpud.setImg("img/rocket.png");
-							potatoesForLevel[i][ii].hit();
-							scor.addScore(level+1);
-							switch (potatoesForLevel[i][ii].getHits()) {
-								case 0:
-									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
-									break;
-								case 1:
-									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
-									potatoesForLevel[i][ii].shrink(10);
-									break;
-								case 2:
-									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
-									potatoesForLevel[i][ii].shrink(20);
-									break;
-								case 3:
-									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
-									potatoesForLevel[i][ii].shrink(30);
-									break;
-								case 4:
-									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
-									potatoesForLevel[i][ii].shrink(40);
-									break;
-								case 5:
-									potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
-									potatoesForLevel[i][ii].shrink(50);
-									uDone();
-									break;
+				if (canTouchThis) {
+					for (int i=0;i < potatoesForLevel.length; i++) {
+					    needed += potatoesForLevel[i].length;
+					    if (canTouchThis) {
+							for (int ii=0;ii < potatoesForLevel[i].length; ii++) {
+								if (moveX) {
+									potatoesForLevel[i][ii].move(pFLdx, pFLdy);
+								}
+								if (pFLdy != 0) {
+									potatoesForLevel[i][ii].move(2*pFLdx, 3);
+								}
+								if (firedSpud.getObj().overlaps(potatoesForLevel[i][ii].getObj())) {
+									firedSpud.disallowMovability();
+									firedSpud.moveTo(pladdle.getX()-firedSpud.getWidth()/2, c.getHeight()-firedSpud.getHeight());
+									firedSpud.setImg("img/rocket.png");
+									potatoesForLevel[i][ii].hit();
+									scor.addScore(level+1);
+									switch (potatoesForLevel[i][ii].getHits()) {
+										case 0:
+											potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+											break;
+										case 1:
+											potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+											potatoesForLevel[i][ii].shrink(10);
+											break;
+										case 2:
+											potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+											potatoesForLevel[i][ii].shrink(20);
+											break;
+										case 3:
+											potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+											potatoesForLevel[i][ii].shrink(30);
+											break;
+										case 4:
+											potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+											potatoesForLevel[i][ii].shrink(40);
+											break;
+										case 5:
+											potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
+											potatoesForLevel[i][ii].shrink(50);
+											uDone();
+											break;
+									}
+								}
+								if (potatoesForLevel[i][ii].getHits()==4) {
+									done++;
+								}
 							}
-						}
-						if (potatoesForLevel[i][ii].getHits()==4) {
-							done++;
 						}
 					}
 				}
-				if (done == needed) {
+				if (done == needed && canTouchThis) {
 					nextLevel();
 				}
 			}
