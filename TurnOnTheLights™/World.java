@@ -12,7 +12,7 @@ public class World extends ActiveObject {
 	DrawingCanvas c;
 	boolean gameOver = false, currentGameOver = false, canTouchThis=true, endiSet=false;
 	Paddle pladdle;
-	int[][] levels = {{1,1},{1,3},{1,5},{2,1},{2,2},{3,1},{3,2}};
+	int[][] levels = {{1,6},{1,3},{1,5},{2,1},{2,2},{3,1},{3,2}};
 	Spud potatoesForLevel[][], firedSpud;
 	int level = 0;
 	double pFLdx = 1;
@@ -65,8 +65,8 @@ public class World extends ActiveObject {
 		} catch (IOException e) {
 			System.out.println(e);
 		}
-		new Particles();
 		endi.sendToBack();
+		new Particles(killed.getX()+killed.getWidth()/2, killed.getY()+killed.getHeight()/2, 10, 0, 0, 32, 4, 25, 100, 100, new int[] {0}, new Color[] {new Color(0xff0000), new Color(0xff1221)}, c);
 		reeeeeeset.front();
 	}
 	public void nextLevel() {
@@ -141,15 +141,9 @@ public class World extends ActiveObject {
 				}
 				if (canTouchThis) {
 					if (potatoesForLevel[potatoesForLevel.length-1][0].getY()+potatoesForLevel[potatoesForLevel.length-1][0].getHeight() > c.getHeight()) {
-						uDone();
+						uDone(potatoesForLevel[potatoesForLevel.length-1][0]);
 					}
 				}
-				// if (pladdle.getBaseObj().overlaps(firedSpud.getObj())) {
-				// 	if (firedSpud.getXChange() == 0) {
-				// 		firedSpud.newXChange();
-				// 	}
-				// 	firedSpud.reverseY();
-				// }
 				if (firedSpud.getX() <= 0 || firedSpud.getX() + firedSpud.getWidth() >= c.getWidth()) {
 					firedSpud.reverseX();
 				}
