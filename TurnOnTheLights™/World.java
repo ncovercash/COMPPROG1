@@ -57,7 +57,7 @@ public class World extends ActiveObject {
 		firedSpud.setImg("img/rocket.png");
 		firedSpud.allowMovability();
 	}
-	public void uDone() {
+	public void uDone(Spud killed) {
 		currentGameOver = true;
 		try {
 			endi = new VisibleImage(ImageIO.read(new File("img/memeEnd.jpg")), 0, 0, c.getWidth(), c.getHeight(), c);
@@ -65,8 +65,8 @@ public class World extends ActiveObject {
 		} catch (IOException e) {
 			System.out.println(e);
 		}
-		scor.front();
-		levelB.front();
+		new Particles();
+		endi.sendToBack();
 		reeeeeeset.front();
 	}
 	public void nextLevel() {
@@ -207,7 +207,7 @@ public class World extends ActiveObject {
 										case 5:
 											potatoesForLevel[i][ii].setImg("img/moon/"+potatoesForLevel[i][ii].getHits()+"/0.png");
 											potatoesForLevel[i][ii].shrink(50);
-											uDone();
+											uDone(potatoesForLevel[i][ii]);
 											break;
 									}
 								}
