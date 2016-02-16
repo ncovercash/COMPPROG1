@@ -9,6 +9,7 @@ import javax.imageio.*;
 public class Particle extends ActiveObject {
 	FilledOval base;
 	DrawingCanvas c;
+	boolean canMove=true;
 	double life, counter=0, dx, dy;
 	public Particle(double x, double y, double wh, Color c1, double dx, double dy, int life, DrawingCanvas c) {
 		this.c = c;
@@ -21,10 +22,15 @@ public class Particle extends ActiveObject {
 	}
 	public void run() {
 		while (counter < life) {
-			base.move(dx, dy);
-			pause(15);
-			counter++;
+			if (canMove) {
+				base.move(dx, dy);
+				pause(15);
+				counter++;
+			}
 		}
 		base.removeFromCanvas();
+	}
+	public void setMove(boolean a) {
+		canMove = a;
 	}
 }

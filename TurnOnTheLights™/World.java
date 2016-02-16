@@ -66,7 +66,7 @@ public class World extends ActiveObject {
 			System.out.println(e);
 		}
 		endi.sendToBack();
-		new Particles(killed.getX()+killed.getWidth()/2, killed.getY()+killed.getHeight()/2, 10, 0, 0, 32, 4, 25, 100, 100, new int[] {0}, new Color[] {new Color(0xff0000), new Color(0xff1221)}, c);
+		new Particles(killed.getX()+killed.getWidth()/2, killed.getY()+killed.getHeight()/2, 10, 0, 0, 8, 2, 25, 500, 100, new int[] {0}, new Color[] {new Color(0xff0000), new Color(0xff1221)}, c);
 		reeeeeeset.front();
 	}
 	public void nextLevel() {
