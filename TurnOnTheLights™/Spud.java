@@ -63,6 +63,9 @@ public class Spud extends ActiveObject {
 	public void moveTo(double dx, double dy) {
 		meme.moveTo(dx, dy);
 	}
+	public void effectIsDone() {
+		ed = true;
+	}
 	public void toggleMovability() {
 		moveability = !moveability;
 	}

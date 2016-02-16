@@ -13,7 +13,7 @@ public class World extends ActiveObject {
 	boolean gameOver = false, currentGameOver = false, canTouchThis=true, endiSet=false;
 	Paddle pladdle;
 	// int[][] levels = {{1,1},{1,3},{1,5},{2,1},{2,2},{3,1},{3,2}};
-	int[][] levels = {{1,1}};
+	int[][] levels = {{1,1}, {1,3}};
 	Spud potatoesForLevel[][], firedSpud;
 	int level = 0;
 	double pFLdx = 1;
@@ -77,7 +77,7 @@ public class World extends ActiveObject {
 			drawLevel(level);
 			levelB.setScore(level+1);
 		} else {
-			gameOver = true;
+			currentGameOver = true;
 			youWin();
 		}
 	}
@@ -93,8 +93,12 @@ public class World extends ActiveObject {
 			int[] a = {new RandomIntGenerator(0, potatoesForLevel.length-1).nextValue(), new RandomIntGenerator(0, potatoesForLevel[0].length-1).nextValue()};
 			if (!potatoesForLevel[a[0]][a[1]].effectDone()) {
 				while (potatoesForLevel[a[0]][a[1]].getY()+potatoesForLevel[a[0]][a[1]].getHeight() <= c.getHeight()) {
-					potatoesForLevel[a[0]][a[1]].move(0, -2);
+					potatoesForLevel[a[0]][a[1]].move(0, 3);
+					pause(2);
 				}
+				potatoesForLevel[a[0]][a[1]].getOut();
+				new Particles(potatoesForLevel[a[0]][a[1]].getX()+potatoesForLevel[a[0]][a[1]].getWidth()/2-c.getHeight()/192, potatoesForLevel[a[0]][a[1]].getY()+potatoesForLevel[a[0]][a[1]].getHeight()/2-c.getHeight()/192, c.getHeight()/24, 0, 0, 18, 1, 200, 0, 0, new int[] {0}, new Color[] {new Color(0x4a984b), new Color(0x54a953), new Color(0x5ab75a), new Color(0x5fc05f), new Color(0x64cb64)}, c);
+				potatoesForLevel[a[0]][a[1]].effectIsDone();
 			} else {
 				i-=1;
 			}
