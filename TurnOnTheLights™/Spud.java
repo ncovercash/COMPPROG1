@@ -13,7 +13,7 @@ public class Spud extends ActiveObject {
 	double m, ox, oy, ow, oh;
 	String pimg;
 	static int coünt;
-	boolean alive=true, moveability=false;
+	boolean alive=true, moveability=false, ed=false;
 	int hits = 0;
 	public Spud(double x, double y, double w, double h, int dx, int dy, String pimg, double mult, DrawingCanvas c) {
 		this.c = c;
@@ -165,6 +165,9 @@ public class Spud extends ActiveObject {
 	}
 	public void move(double dx, double dy) {
 		meme.move(dx, dy);
+	}
+	public boolean effectDone() {
+		return ed;
 	}
 	public void shrink(double p) {
 		double oow = getWidth();

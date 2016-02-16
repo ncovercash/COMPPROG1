@@ -12,7 +12,8 @@ public class World extends ActiveObject {
 	DrawingCanvas c;
 	boolean gameOver = false, currentGameOver = false, canTouchThis=true, endiSet=false;
 	Paddle pladdle;
-	int[][] levels = {{1,6},{1,3},{1,5},{2,1},{2,2},{3,1},{3,2}};
+	// int[][] levels = {{1,1},{1,3},{1,5},{2,1},{2,2},{3,1},{3,2}};
+	int[][] levels = {{1,1}};
 	Spud potatoesForLevel[][], firedSpud;
 	int level = 0;
 	double pFLdx = 1;
@@ -66,7 +67,7 @@ public class World extends ActiveObject {
 			System.out.println(e);
 		}
 		endi.sendToBack();
-		new Particles(killed.getX()+killed.getWidth()/2, killed.getY()+killed.getHeight()/2, 10, 0, 0, 8, 2, 25, 500, 100, new int[] {0}, new Color[] {new Color(0xff0000), new Color(0xff1221)}, c);
+		new Particles(killed.getX()+killed.getWidth()/2, killed.getY()+killed.getHeight()/2, 10, 0, 0, 16, 1, 50, 500, 100, new int[] {0}, new Color[] {new Color(0xff0000), new Color(0xff1221)}, c);
 		reeeeeeset.front();
 	}
 	public void nextLevel() {
@@ -76,13 +77,28 @@ public class World extends ActiveObject {
 			drawLevel(level);
 			levelB.setScore(level+1);
 		} else {
-			clearLevel();
 			gameOver = true;
 			youWin();
 		}
 	}
 	public void youWin() {
-		System.out.println("YOU WIN");
+		System.out.println("YOU WIN!");
+		int total = 0;
+		for (int i=0;i<potatoesForLevel.length;i++) {
+			for (int ii=0;ii<potatoesForLevel[i].length;ii++) {
+				total++;
+			}
+		}
+		for (int i=0;i<total;i++) {
+			int[] a = {new RandomIntGenerator(0, potatoesForLevel.length-1).nextValue(), new RandomIntGenerator(0, potatoesForLevel[0].length-1).nextValue()};
+			if (!potatoesForLevel[a[0]][a[1]].effectDone()) {
+				while (potatoesForLevel[a[0]][a[1]].getY()+potatoesForLevel[a[0]][a[1]].getHeight() <= c.getHeight()) {
+					potatoesForLevel[a[0]][a[1]].move(0, -2);
+				}
+			} else {
+				i-=1;
+			}
+		}
 	}
 	public void onMouseMove(Location p) {
 		if (p.getX() <= c.getWidth()-pladdle.getWidth()) {
@@ -163,8 +179,8 @@ public class World extends ActiveObject {
 				int needed=0;
 				if (canTouchThis) {
 					for (int i=0;i < potatoesForLevel.length; i++) {
-					    needed += potatoesForLevel[i].length;
-					    if (canTouchThis) {
+						needed += potatoesForLevel[i].length;
+						if (canTouchThis) {
 							for (int ii=0;ii < potatoesForLevel[i].length; ii++) {
 								if (moveX) {
 									potatoesForLevel[i][ii].move(pFLdx, pFLdy);
