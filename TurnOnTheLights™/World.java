@@ -10,13 +10,16 @@ public class World extends ActiveObject {
 	VisibleImage endi;
 	ScoreBox scor, levelB;
 	DrawingCanvas c;
-	boolean gameOver = false, currentGameOver = false, canTouchThis=true, endiSet=false;
+	boolean gameOver = false, currentGameOver = false, canTouchThis=true, endiSet=false, pendingLevelAdvance=false;
 	Paddle pladdle;
 	// int[][] levels = {{1,1},{1,3},{1,5},{2,1},{2,2},{3,1},{3,2}};
 	int[][] levels = {{1,1}, {1,3}};
 	Spud potatoesForLevel[][], firedSpud;
-	int level = 0;
+	int level = -1;
 	double pFLdx = 1;
+	Text pendingLevelText1, pendingLevelText2;
+	FramedRect pendingLevelButton;
+	FilledRect pendingLevelButtonTest;
 	boolean moveX=true;
 	double fsw;
 	ResetButton reeeeeeset;
@@ -26,8 +29,8 @@ public class World extends ActiveObject {
 		levelB = new ScoreBox(c, 1, new Color(255,255,255), "Level: ");
 		reeeeeeset = new ResetButton(c);
 		pladdle = new Paddle(c, 0, 1);
-		drawLevel(level);
-		firedSpud = new Spud(0, c.getHeight(), c.getWidth()/61.904761905, c.getWidth()/61.904761905*6.2698412698, 0, -20, "img/rocket.png", 1, c);
+		firedSpud = new Spud(0, c.getHeight(), c.getWidth()/61.904761905, c.getWidth()  /61.904761905*6.2698412698, 0, -20, "img/rocket.png", 1, c);
+		nextLevel();
 		start();
 	}
 	public void reset() {
@@ -46,6 +49,10 @@ public class World extends ActiveObject {
 	public void onMouseClick(Location p) {
 		if (reeeeeeset.testClick(p)) {
 			reset();
+		} else if (pendingLevelAdvance) {
+			if (pendingLevelButtonTest.contains(p)) {
+				nextLevel();
+			}
 		} else {
 			if (!currentGameOver) {
 				fire();
@@ -71,11 +78,30 @@ public class World extends ActiveObject {
 		reeeeeeset.front();
 	}
 	public void nextLevel() {
-		if (level+1 < levels.length) {
+		if (level+1 < levels.length && !pendingLevelAdvance) {
+			pendingLevelAdvance=true;
 			clearLevel();
 			level++;
-			drawLevel(level);
 			levelB.setScore(level+1);
+			pendingLevelText1 = new Text("Level "+(level+1), 0, c.getHeight()/2.5-(c.getHeight()/12), c);
+			pendingLevelText1.setFontSize(c.getHeight()/12);
+			pendingLevelText1.move(c.getWidth()/2-pendingLevelText1.getWidth()/2, 0);
+			pendingLevelText2 = new Text("Go", 0, ((c.getHeight()/5)*3)-(c.getHeight()/12), c);
+			pendingLevelText2.setFontSize(c.getHeight()/12);
+			pendingLevelText2.move(c.getWidth()/2-pendingLevelText2.getWidth()/2, 0);
+			pendingLevelButton = new FramedRect(pendingLevelText2.getX()-10, pendingLevelText2.getY()-10, pendingLevelText2.getWidth()+20, pendingLevelText2.getHeight()+20, c);
+			pendingLevelButtonTest = new FilledRect(pendingLevelText2.getX()-10, pendingLevelText2.getY()-10, pendingLevelText2.getWidth()+20, pendingLevelText2.getHeight()+20, c);
+			pendingLevelButtonTest.setColor(new Color(0xffffff));
+			pendingLevelButtonTest.sendToBack();
+		} else if (pendingLevelAdvance) {
+			pendingLevelButton.removeFromCanvas();
+			pendingLevelText1.removeFromCanvas();
+			pendingLevelText2.removeFromCanvas();
+			pendingLevelButton = null;
+			pendingLevelText1 = null;
+			pendingLevelText2 = null;
+			drawLevel(level);
+			pendingLevelAdvance = false;
 		} else {
 			currentGameOver = true;
 			youWin();
@@ -142,18 +168,20 @@ public class World extends ActiveObject {
 		}
 	}
 	public void clearLevel() {
-		for (int i=0;i < potatoesForLevel.length; i++) {
-			for (int ii=0;ii < potatoesForLevel[i].length; ii++) {
-				potatoesForLevel[i][ii].killGamePotato();
+		if (level != -1) {
+			for (int i=0;i < potatoesForLevel.length; i++) {
+				for (int ii=0;ii < potatoesForLevel[i].length; ii++) {
+					potatoesForLevel[i][ii].killGamePotato();
+				}
 			}
 		}
 	}
 	public void run() {
 		while (!gameOver) {
-			if (!currentGameOver) {
+			if (!currentGameOver && !pendingLevelAdvance) {
 				moveX = !moveX;
 				double pFLdy = 0;
-				if (canTouchThis) {
+				if (canTouchThis && !pendingLevelAdvance) {
 					if (potatoesForLevel[0][0].getX() <= 0 || potatoesForLevel[0][potatoesForLevel[0].length-1].getX()+potatoesForLevel[0][potatoesForLevel[0].length-1].getWidth() >= c.getWidth()) {
 						pFLdx = -pFLdx;
 						pFLdy = fsw/4;
