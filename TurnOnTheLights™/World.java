@@ -29,7 +29,7 @@ public class World extends ActiveObject {
 		levelB = new ScoreBox(c, 1, new Color(255,255,255), "Level: ");
 		reeeeeeset = new ResetButton(c);
 		pladdle = new Paddle(c, 0, 1);
-		firedSpud = new Spud(0, c.getHeight(), c.getWidth()/61.904761905, c.getWidth()  /61.904761905*6.2698412698, 0, -20, "img/rocket.png", 1, c);
+		firedSpud = new Spud(0, c.getHeight(), c.getWidth()/61.904761905, c.getWidth()/61.904761905*6.2698412698, 0, -20, "img/rocket.png", 1, c);
 		nextLevel();
 		start();
 	}
