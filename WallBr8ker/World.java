@@ -63,10 +63,10 @@ public class World extends ActiveObject {
 	}
 	public void fire() {
 		Projectile t;
-		if (Math.random() < .25) {
-			t = new Projectile(base.getX(), base.getY(), 10, 10, 0, -10, "img/projectile.png", 1, c);
+		if (Math.random() < .9) {
+			t = new Projectile(base.getX()+(base.getWidth()/2)-5, base.getY(), 10, 10, 0, -10, "img/projectile.png", 1, c);
 		} else {
-			t = new Projectile(base.getX(), base.getY(), 25, 25, 0, -10, "img/projectile.png", 2, c);
+			t = new Projectile(base.getX()+(base.getWidth()/2)-12, base.getY(), 25, 25, 0, -10, "img/projectile.png", 2, c);
 		}
 		t.allowMovability();
 		firedBricks.add(t);
@@ -114,7 +114,7 @@ public class World extends ActiveObject {
 			pendingLevelAdvance = false;
 		} else {
 			currentGameOver = true;
-			youWin();
+			// youWin();
 		}
 	}
 	public void youWin() {
@@ -132,7 +132,7 @@ public class World extends ActiveObject {
 					levelBricks[a[0]][a[1]].move(0, 3);
 					pause(2);
 				}
-				levelBricks[a[0]][a[1]].getOut();
+				levelBricks[a[0]][a[1]].killTotally();
 				new Particles(levelBricks[a[0]][a[1]].getX()+levelBricks[a[0]][a[1]].getWidth()/2-c.getHeight()/192, levelBricks[a[0]][a[1]].getY()+levelBricks[a[0]][a[1]].getHeight()/2-c.getHeight()/192, c.getHeight()/24, 0, 0, 18, 1, 200, 0, 0, new int[] {0}, new Color[] {new Color(0x4a984b), new Color(0x54a953), new Color(0x5ab75a), new Color(0x5fc05f), new Color(0x64cb64)}, c);
 				levelBricks[a[0]][a[1]].effectIsDone();
 			} else {
@@ -155,7 +155,7 @@ public class World extends ActiveObject {
 		// lets do the math
 		pWidth = c.getHeight()/12;
 		xGap = pWidth/3;
-		yGap = pWidth/5;
+		yGap = pWidth/5+10;
 		this.fsw = xGap - xGap/4;
 		topX = c.getWidth()-((levels[lvl][1])*pWidth)-(((levels[lvl][1])-1)*xGap);
 		topX /= 2;
@@ -166,9 +166,9 @@ public class World extends ActiveObject {
 		for (int i=0;i < levels[lvl][0]; i++) {
 			for (int ii=0;ii < levels[lvl][1]; ii++) {
 				if (ii >= 0) {
-					levelBricks[i][ii] = makeGameBrick(topX+((ii)*pWidth)+((ii-1)*xGap), topY+((i)*pWidth), pWidth, pWidth/2.5);
+					levelBricks[i][ii] = makeGameBrick(topX+((ii)*pWidth)+((ii-1)*xGap), topY+((i)*pWidth), pWidth, pWidth);
 				} else {
-					levelBricks[i][ii] = makeGameBrick(topX+((ii)*pWidth), topY+((i)*pWidth), pWidth, pWidth/2.5);
+					levelBricks[i][ii] = makeGameBrick(topX+((ii)*pWidth), topY+((i)*pWidth), pWidth, pWidth);
 				}
 			}
 		}
@@ -224,13 +224,13 @@ public class World extends ActiveObject {
 											scor.addScore(level+1);
 											switch (levelBricks[i][ii].getHits()) {
 												case 0:
-													levelBricks[i][ii].setColor(new Color(0x00ff00));
+													levelBricks[i][ii].setImg("img/bricks/red/0.png");
 													break;
 												case 1:
-													levelBricks[i][ii].setColor(new Color(0x0000ff));
+													levelBricks[i][ii].setImg("img/bricks/blue/0.png");
 													break;
 												case 2:
-													levelBricks[i][ii].setColor(new Color(0xff0000));
+													levelBricks[i][ii].setImg("img/bricks/green/0.png");
 													break;
 												case 3:
 													levelBricks[i][ii].killTotally();
@@ -275,6 +275,6 @@ public class World extends ActiveObject {
 	}
 	public Block makeGameBrick(double x, double y, double w, double h) {
 		// return new Block(x, y, w, h, 2, 0, "img/bricks/0/0.png", 1, c);
-		return new Block(x, y, w, h, 2, 0, new Color(0x00ff00), 1, c);
+		return new Block(x, y, w, h, 2, 0, "img/bricks/red/0.png", 1, c);
 	}
 }

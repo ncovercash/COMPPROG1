@@ -7,13 +7,14 @@ import java.lang.*;
 import java.io.*;
 import javax.imageio.*;
 public class Block extends ActiveObject {
-	FilledRect meme;
+	VisibleImage meme;
 	DrawingCanvas c;
 	int dx, dy;
-	double m, ox, oy, ow, oh;
+	String imgBase;
+	double m, ox, oy, ow, oh, aa=0;
 	boolean alive=true, moveability=false, ed=false;
 	int hits = 0;
-	public Block(double x, double y, double w, double h, int dx, int dy, Color c1, double mult, DrawingCanvas c) {
+	public Block(double x, double y, double w, double h, int dx, int dy, String base, double mult, DrawingCanvas c) {
 		this.c = c;
 		this.dx = dx;
 		this.dy = dy;
@@ -22,12 +23,27 @@ public class Block extends ActiveObject {
 		oy = y;
 		ow = w;
 		oh = h;
-		meme = new FilledRect(x, y, w, h, c);
-		meme.setColor(c1);
+		if (base != null && !base.isEmpty()) {
+			this.base = base;
+			try {
+				meme = new VisibleImage(ImageIO.read(new File(pimg+"0.png")), x, y, w, h, c);
+			} catch (IOException e) {
+				System.out.println(e);
+				System.exit(1);
+			}
+		} else {
+			this.base = "";
+			try {
+				meme = new VisibleImage(ImageIO.read(new File("img/potatoFallback.png")), x, y, w, h, c);
+			} catch (IOException e) {
+				System.out.println(e);
+				System.exit(1);
+			}
+		}
 		start();
 	}
-	public Block(Color c1, double mult, DrawingCanvas c, int pos) {
-		this((c.getWidth()/2)-c.getWidth()/20+(pos*(c.getWidth()/50)), 0, c.getWidth()/50, c.getWidth()/50, new RandomIntGenerator(-c.getHeight()/60, c.getHeight()/60).nextValue(), new RandomIntGenerator(c.getHeight()/90, c.getHeight()/60).nextValue(), c1, mult, c);
+	public Block(String pimg, double mult, DrawingCanvas c, int pos) {
+		this((c.getWidth()/2)-c.getWidth()/20+(pos*(c.getWidth()/50)), 0, c.getWidth()/50, c.getWidth()/50, new RandomIntGenerator(-c.getHeight()/60, c.getHeight()/60).nextValue(), new RandomIntGenerator(c.getHeight()/90, c.getHeight()/60).nextValue(), pimg, mult, c);
 	}
 	public void run() {
 		while (alive) {
@@ -42,6 +58,18 @@ public class Block extends ActiveObject {
 				if (dyChanged) {
 					dy = 0;
 				}
+			}
+			switch (aa) {
+				case 0:
+				case 5:
+				case 11:
+				case 17:
+				case 23:
+				case 30:
+				case 35:
+				case 41:
+				default:
+					aa++;
 			}
 			pause(15);
 		}
@@ -80,8 +108,14 @@ public class Block extends ActiveObject {
 		alive = true;
 		start();
 	}
-	public void setColor(Color c) {
-		meme.setColor(c);
+	public void setImg(String pimg) {
+		this.pimg = pimg;
+		try {
+			meme.setImage(ImageIO.read(new File(pimg)));
+		} catch (IOException e) {
+			System.out.println(e);
+			System.exit(1);
+		}
 	}
 	public boolean isDead() {
 		return !alive;
@@ -98,6 +132,10 @@ public class Block extends ActiveObject {
 	public void reverseX() {
 		dx = -dx;
 		move();
+	}
+	public void setImageBase(String b) {
+		imgBase = b;
+		setImage(b+"0.png")
 	}
 	public void reverseY() {
 		dy = -dy;
@@ -130,7 +168,7 @@ public class Block extends ActiveObject {
 	public Location getLocation() {
 		return meme.getLocation();
 	}
-	public FilledRect getObj() {
+	public VisibleImage getObj() {
 		return meme;
 	}
 	public void getOut() {
