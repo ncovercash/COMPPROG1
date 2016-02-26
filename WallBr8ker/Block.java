@@ -6,16 +6,14 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 import javax.imageio.*;
-public class ObjectThingy extends ActiveObject {
-	VisibleImage meme;
+public class Block extends ActiveObject {
+	FilledRect meme;
 	DrawingCanvas c;
 	int dx, dy;
 	double m, ox, oy, ow, oh;
-	String pimg;
-	static int coünt;
 	boolean alive=true, moveability=false, ed=false;
 	int hits = 0;
-	public ObjectThingy(double x, double y, double w, double h, int dx, int dy, String pimg, double mult, DrawingCanvas c) {
+	public Block(double x, double y, double w, double h, int dx, int dy, Color c1, double mult, DrawingCanvas c) {
 		this.c = c;
 		this.dx = dx;
 		this.dy = dy;
@@ -24,38 +22,29 @@ public class ObjectThingy extends ActiveObject {
 		oy = y;
 		ow = w;
 		oh = h;
-		if (pimg != null && !pimg.isEmpty()) {
-			this.pimg = pimg;
-			try {
-				meme = new VisibleImage(ImageIO.read(new File(pimg)), x, y, w, h, c);
-				coünt++;
-			} catch (IOException e) {
-				System.out.println(e);
-				System.exit(1);
-			}
-		} else {
-			this.pimg = "";
-			try {
-				meme = new VisibleImage(ImageIO.read(new File("img/potatoFallback.png")), x, y, w, h, c);
-				coünt++;
-			} catch (IOException e) {
-				System.out.println(e);
-				System.exit(1);
-			}
-		}
+		meme = new FilledRect(x, y, w, h, c);
+		meme.setColor(c1);
 		start();
 	}
-	public ObjectThingy(String pimg, double mult, DrawingCanvas c, int pos) {
-		this((c.getWidth()/2)-c.getWidth()/20+(pos*(c.getWidth()/50)), 0, c.getWidth()/50, c.getWidth()/50, new RandomIntGenerator(-c.getHeight()/60, c.getHeight()/60).nextValue(), new RandomIntGenerator(c.getHeight()/90, c.getHeight()/60).nextValue(), pimg, mult, c);
+	public Block(Color c1, double mult, DrawingCanvas c, int pos) {
+		this((c.getWidth()/2)-c.getWidth()/20+(pos*(c.getWidth()/50)), 0, c.getWidth()/50, c.getWidth()/50, new RandomIntGenerator(-c.getHeight()/60, c.getHeight()/60).nextValue(), new RandomIntGenerator(c.getHeight()/90, c.getHeight()/60).nextValue(), c1, mult, c);
 	}
 	public void run() {
 		while (alive) {
 			if (moveability) {
+				boolean dyChanged=false;
+				if (meme.getX()+dx+meme.getWidth() >= c.getWidth() || meme.getX()+dx <= 0) {
+					dx = -dx;
+					dy = dy+2;
+					dyChanged = true;
+				}
 				meme.move(dx, dy);
+				if (dyChanged) {
+					dy = 0;
+				}
 			}
 			pause(15);
 		}
-		coünt--;
 	}
 	public void move() {
 		meme.move(dx, dy);
@@ -91,14 +80,8 @@ public class ObjectThingy extends ActiveObject {
 		alive = true;
 		start();
 	}
-	public void setImg(String pimg) {
-		this.pimg = pimg;
-		try {
-			meme.setImage(ImageIO.read(new File(pimg)));
-		} catch (IOException e) {
-			System.out.println(e);
-			System.exit(1);
-		}
+	public void setColor(Color c) {
+		meme.setColor(c);
 	}
 	public boolean isDead() {
 		return !alive;
@@ -147,7 +130,7 @@ public class ObjectThingy extends ActiveObject {
 	public Location getLocation() {
 		return meme.getLocation();
 	}
-	public VisibleImage getObj() {
+	public FilledRect getObj() {
 		return meme;
 	}
 	public void getOut() {
@@ -165,6 +148,9 @@ public class ObjectThingy extends ActiveObject {
 	}
 	public void hit() {
 		hits++;
+	}
+	public int getMult() {
+		return (int)m;
 	}
 	public void move(double dx, double dy) {
 		meme.move(dx, dy);

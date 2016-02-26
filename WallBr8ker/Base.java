@@ -1,4 +1,4 @@
- 
+
 
 import objectdraw.*;
 import java.awt.*;
@@ -6,20 +6,22 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 import javax.imageio.*;
-public class Paddle {
+public class Base extends ActiveObject {
 	VisibleImage pladal;
-	int mult;
-	public Paddle(double x, double y, double w, double h, String img, int posFromBottom, DrawingCanvas c) {
+	int mult, imgState=0;
+	boolean alive=true;
+	public Base(double x, double y, double w, double h, String img, int posFromBottom, DrawingCanvas c) {
 		try {
 			pladal = new VisibleImage(ImageIO.read(new File(img)), x, y, w, h, c);
 		} catch (IOException e) {
 			System.out.println(e);
-			System.exit(1);
+			System.out.println("a");
 		}
 		this.mult = posFromBottom+1;
+		start();
 	}
-	public Paddle(DrawingCanvas c, int posFromBottom, int numOfPaddles) { // will generate correct sizes etc
-		this(0, c.getHeight()-(c.getWidth()/25*3.1474358974), c.getWidth()/25, c.getWidth()/25*3.1474358974, "img/paddle.png", posFromBottom, c);
+	public Base(DrawingCanvas c, int posFromBottom, int numOfBases) { // will generate correct sizes etc
+		this(0, c.getHeight()-(c.getWidth()/25*3.1474358974), c.getWidth()/20, c.getWidth()/20, "img/paddle0.png", posFromBottom, c);
 	}
 	public void moveTo(double dx, double dy) {
 		this.pladal.moveTo(dx,pladal.getY());
@@ -47,5 +49,25 @@ public class Paddle {
 	}
 	public void getMult(int m) {
 		mult = m;
+	}
+	public void run() {
+		while (alive) {
+			try {
+				switch (imgState) {
+					case 0:
+						pladal.setImage(ImageIO.read(new File("img/paddle1.png")));
+						imgState=1;
+						break;
+					case 1:
+						pladal.setImage(ImageIO.read(new File("img/paddle0.png")));
+						imgState=0;
+						break;
+				}
+			} catch (IOException e) {
+				System.out.println(e);
+				System.out.println("b");
+			}
+			pause(200);
+		}
 	}
 }
