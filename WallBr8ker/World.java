@@ -10,10 +10,9 @@ public class World extends ActiveObject {
 	VisibleImage endi;
 	ScoreBox scor, levelB;
 	DrawingCanvas c;
-	boolean gameOver = false, currentGameOver = false, canTouchThis=true, endiSet=false, pendingLevelAdvance=false;
+	boolean gameOver = false, currentGameOver = false, canTouchThis=true, endiSet=false, pendingLevelAdvance=false, aset=false;
 	Base base;
-	// int[][] levels = {{1,1},{1,3},{1,5},{2,1},{2,2},{3,1},{3,2}};
-	int[][] levels = {{2,5}, {3,5}};
+	int[][] levels = {{2,5}, {3,5}, {4,6}};
 	Block[][] levelBricks;
 	ArrayList<Projectile> firedBricks;
 	int level = -1;
@@ -23,6 +22,7 @@ public class World extends ActiveObject {
 	FilledRect pendingLevelButtonTest;
 	boolean moveX=true;
 	double fsw;
+	Text a;
 	ResetButton reeeeeeset;
 	public World(DrawingCanvas c) {
 		this.c = c;
@@ -39,12 +39,13 @@ public class World extends ActiveObject {
 		clearLevel();
 		level = -1;
 		nextLevel();
-		// clearLevel();
 		scor.setScore(0);
 		currentGameOver = false;
-		//drawLevel(level);
 		if (endiSet) {
 			endi.hide();
+		}
+		if (aset) {
+			a.hide();
 		}
 		canTouchThis = true;
 	}
@@ -65,28 +66,13 @@ public class World extends ActiveObject {
 		Projectile t;
 		if (Math.random() < .9) {
 			t = new Projectile(base.getX()+(base.getWidth()/2)-5, base.getY(), 10, 10, 0, -10, "img/projectile.png", 1, c);
+			scor.addScore(-1);
 		} else {
-			t = new Projectile(base.getX()+(base.getWidth()/2)-12, base.getY(), 25, 25, 0, -10, "img/projectile.png", 2, c);
+			t = new Projectile(base.getX()+(base.getWidth()/2)-12, base.getY(), 25, 25, 0, -15, "img/projectile.png", 2, c);
 		}
 		t.allowMovability();
 		firedBricks.add(t);
-		// firedSpud.moveTo(base.getX()-firedSpud.getWidth()/2, c.getHeight()-firedSpud.getHeight()); // 2 is for spacing
-		// firedSpud.setMove(0, -20);
-		// firedSpud.setImg("img/fired.png");
-		// firedSpud.allowMovability();
 	}
-	// public void uDone(Block killed) {
-	// 	currentGameOver = true;
-	// 	try {
-	// 		endi = new VisibleImage(ImageIO.read(new File("img/memeEnd.jpg")), 0, 0, c.getWidth(), c.getHeight(), c);
-	// 		endiSet = true;
-	// 	} catch (IOException e) {
-	// 		System.out.println(e);
-	// 	}
-	// 	endi.sendToBack();
-	// 	new Particles(killed.getX()+killed.getWidth()/2, killed.getY()+killed.getHeight()/2, 10, 0, 0, 16, 1, 50, 500, 100, new int[] {0}, new Color[] {new Color(0xff0000), new Color(0xff1221)}, c);
-	// 	reeeeeeset.front();
-	// }
 	public void nextLevel() {
 		if (level+1 < levels.length && !pendingLevelAdvance) {
 			pendingLevelAdvance=true;
@@ -114,31 +100,15 @@ public class World extends ActiveObject {
 			pendingLevelAdvance = false;
 		} else {
 			currentGameOver = true;
-			// youWin();
+			youWin();
 		}
 	}
 	public void youWin() {
 		System.out.println("YOU WIN!");
-		int total = 0;
-		for (int i=0;i<levelBricks.length;i++) {
-			for (int ii=0;ii<levelBricks[i].length;ii++) {
-				total++;
-			}
-		}
-		for (int i=0;i<total;i++) {
-			int[] a = {new RandomIntGenerator(0, levelBricks.length-1).nextValue(), new RandomIntGenerator(0, levelBricks[0].length-1).nextValue()};
-			if (!levelBricks[a[0]][a[1]].effectDone()) {
-				while (levelBricks[a[0]][a[1]].getY()+levelBricks[a[0]][a[1]].getHeight() <= c.getHeight()) {
-					levelBricks[a[0]][a[1]].move(0, 3);
-					pause(2);
-				}
-				levelBricks[a[0]][a[1]].killTotally();
-				new Particles(levelBricks[a[0]][a[1]].getX()+levelBricks[a[0]][a[1]].getWidth()/2-c.getHeight()/192, levelBricks[a[0]][a[1]].getY()+levelBricks[a[0]][a[1]].getHeight()/2-c.getHeight()/192, c.getHeight()/24, 0, 0, 18, 1, 200, 0, 0, new int[] {0}, new Color[] {new Color(0x4a984b), new Color(0x54a953), new Color(0x5ab75a), new Color(0x5fc05f), new Color(0x64cb64)}, c);
-				levelBricks[a[0]][a[1]].effectIsDone();
-			} else {
-				i--;
-			}
-		}
+		aset=true;
+		a = new Text("You Win!", 0, 0, c);
+		a.setFontSize(50);
+		a.moveTo(c.getWidth()/2-a.getWidth()/2, c.getHeight()/2-a.getHeight()/2);
 	}
 	public void onMouseMove(Location p) {
 		if (p.getX() <= c.getWidth()-base.getWidth()) {
@@ -159,8 +129,6 @@ public class World extends ActiveObject {
 		this.fsw = xGap - xGap/4;
 		topX = c.getWidth()-((levels[lvl][1])*pWidth)-(((levels[lvl][1])-1)*xGap);
 		topX /= 2;
-		// topY = c.getHeight()-((levels[lvl][0])*pWidth)-(((levels[lvl][0])-1)*yGap);
-		// topY /= 2;
 		topY = 0;
 		levelBricks = new Block[levels[lvl][0]][levels[lvl][1]];
 		for (int i=0;i < levels[lvl][0]; i++) {
@@ -192,15 +160,6 @@ public class World extends ActiveObject {
 			if (!currentGameOver && !pendingLevelAdvance) {
 				moveX = !moveX;
 				double pFLdy = 0;
-				// if (firedSpud.getY() < 0) {
-				//  firedSpud.moveTo(-1000, -1000);
-				//  firedSpud.disallowMovability();
-				// }
-				// if (firedSpud.getY() > c.getHeight()) {
-				//  firedSpud.disallowMovability();
-				//  firedSpud.moveTo(base.getX()-firedSpud.getWidth()/2, c.getHeight()-firedSpud.getHeight());
-				//  firedSpud.setImg("img/fired.png");
-				// }
 				int done=0;
 				int needed=0;
 				if (canTouchThis) {
@@ -217,23 +176,21 @@ public class World extends ActiveObject {
 												firedBricks.remove(iii);
 												iii--;
 											}
-											// firedSpud.disallowMovability();
-											// firedSpud.moveTo(base.getX()-firedSpud.getWidth()/2, c.getHeight()-firedSpud.getHeight());
-											// firedSpud.setImg("img/fired.png");
 											levelBricks[i][ii].hit();
-											scor.addScore(level+1);
+											scor.addScore((level+1)*2);
 											switch (levelBricks[i][ii].getHits()) {
 												case 0:
-													levelBricks[i][ii].setImg("img/bricks/red/0.png");
+													levelBricks[i][ii].setImageBase("img/bricks/red/");
 													break;
 												case 1:
-													levelBricks[i][ii].setImg("img/bricks/blue/0.png");
+													levelBricks[i][ii].setImageBase("img/bricks/blue/");
 													break;
 												case 2:
-													levelBricks[i][ii].setImg("img/bricks/green/0.png");
+													levelBricks[i][ii].setImageBase("img/bricks/green/");
 													break;
 												case 3:
 													levelBricks[i][ii].killTotally();
+													scor.addScore(level+1);
 													// uDone(levelBricks[i][ii]);
 													break;
 											}
@@ -249,17 +206,19 @@ public class World extends ActiveObject {
 												System.out.println(e);
 											}
 										}
-										if (levelBricks[i][ii].getHits()==3) {
-											done++;
-										}
 									}
+								}
+								if (levelBricks[i][ii].getHits()==3) {
+									done++;
 								}
 							}
 						}
 					}
 				}
 				if (done == needed && canTouchThis) {
-					 nextLevel();
+					System.out.println("this called it"+done+" "+needed);
+					scor.addScore(10*(level+1));
+					nextLevel();
 				}
 			}
 			pause(1);
@@ -274,7 +233,6 @@ public class World extends ActiveObject {
 	public void onMouseDrag(Location p) {
 	}
 	public Block makeGameBrick(double x, double y, double w, double h) {
-		// return new Block(x, y, w, h, 2, 0, "img/bricks/0/0.png", 1, c);
-		return new Block(x, y, w, h, 2, 0, "img/bricks/red/0.png", 1, c);
+		return new Block(x, y, w, h, 1, 0, "img/bricks/red/", 1, c);
 	}
 }

@@ -24,19 +24,21 @@ public class Block extends ActiveObject {
 		ow = w;
 		oh = h;
 		if (base != null && !base.isEmpty()) {
-			this.base = base;
+			imgBase = base;
 			try {
-				meme = new VisibleImage(ImageIO.read(new File(pimg+"0.png")), x, y, w, h, c);
+				meme = new VisibleImage(ImageIO.read(new File(base+"0.png")), x, y, w, h, c);
 			} catch (IOException e) {
 				System.out.println(e);
+				System.out.println(base);
 				System.exit(1);
 			}
 		} else {
-			this.base = "";
+			this.imgBase = "";
 			try {
 				meme = new VisibleImage(ImageIO.read(new File("img/potatoFallback.png")), x, y, w, h, c);
 			} catch (IOException e) {
 				System.out.println(e);
+				System.out.println(e+"Aaaaaascr");
 				System.exit(1);
 			}
 		}
@@ -49,9 +51,9 @@ public class Block extends ActiveObject {
 		while (alive) {
 			if (moveability) {
 				boolean dyChanged=false;
-				if (meme.getX()+dx+meme.getWidth() >= c.getWidth() || meme.getX()+dx <= 0) {
+				if (meme.getX()+dx >= c.getWidth() || meme.getX()+dx+meme.getWidth() <= 0) {
 					dx = -dx;
-					dy = dy+2;
+					dy = dy+6;
 					dyChanged = true;
 				}
 				meme.move(dx, dy);
@@ -59,19 +61,38 @@ public class Block extends ActiveObject {
 					dy = 0;
 				}
 			}
-			switch (aa) {
+			switch ((int)aa) {
 				case 0:
-				case 5:
-				case 11:
-				case 17:
-				case 23:
-				case 30:
-				case 35:
-				case 41:
+					try {
+						if (dx <= 0) {
+							meme.setImage(ImageIO.read(new File(imgBase+"4.png")));
+						} else {
+							meme.setImage(ImageIO.read(new File(imgBase+"6.png")));
+						}
+					} catch (IOException e) {
+						System.out.println(e+"00case");
+					}
+					aa++;
+					break;
+				case 15:
+					try {
+						if (dx <= 0) {
+							meme.setImage(ImageIO.read(new File(imgBase+"5.png")));
+						} else {
+							meme.setImage(ImageIO.read(new File(imgBase+"7.png")));
+						}	
+					} catch (IOException e) {
+						System.out.println(e+"00case");
+					}
+					aa++;
+					break;
+				case 29:
+					aa=0;
+					break;
 				default:
 					aa++;
 			}
-			pause(15);
+			pause(5);
 		}
 	}
 	public void move() {
@@ -109,10 +130,10 @@ public class Block extends ActiveObject {
 		start();
 	}
 	public void setImg(String pimg) {
-		this.pimg = pimg;
 		try {
 			meme.setImage(ImageIO.read(new File(pimg)));
 		} catch (IOException e) {
+			System.out.println(e+"noooo");
 			System.out.println(e);
 			System.exit(1);
 		}
@@ -135,7 +156,15 @@ public class Block extends ActiveObject {
 	}
 	public void setImageBase(String b) {
 		imgBase = b;
-		setImage(b+"0.png")
+		try {
+			if (dx <= 0) {
+				meme.setImage(ImageIO.read(new File(imgBase+"4.png")));
+			} else {
+				meme.setImage(ImageIO.read(new File(imgBase+"6.png")));
+			}
+		} catch (IOException e) {
+			System.out.println(e+"Aaaaaa");
+		}
 	}
 	public void reverseY() {
 		dy = -dy;
