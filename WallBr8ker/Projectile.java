@@ -177,6 +177,12 @@ public class Projectile extends ActiveObject {
 	public boolean effectDone() {
 		return ed;
 	}
+	public void setWidth(double w) {
+		meme.setWidth(w);
+	}
+	public void setHeight(double h) {
+		meme.setHeight(h);
+	}
 	public void shrink(double p) {
 		double oow = getWidth();
 		double ooh = getHeight();
