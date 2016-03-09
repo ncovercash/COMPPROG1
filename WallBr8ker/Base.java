@@ -21,7 +21,7 @@ public class Base extends ActiveObject {
 		start();
 	}
 	public Base(DrawingCanvas c, int posFromBottom, int numOfBases) { // will generate correct sizes etc
-		this(0, c.getHeight()-(c.getWidth()/25*3.1474358974), c.getWidth()/20, c.getWidth()/20, "img/paddle0.png", posFromBottom, c);
+		this(0, c.getHeight()-(c.getWidth()/18), c.getWidth()/20, c.getWidth()/20, "img/paddle0.png", posFromBottom, c);
 	}
 	public void moveTo(double dx, double dy) {
 		this.pladal.moveTo(dx,pladal.getY());

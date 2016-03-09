@@ -12,10 +12,10 @@ public class World extends ActiveObject {
 	DrawingCanvas c;
 	boolean gameOver = false, currentGameOver = false, canTouchThis=true, endiSet=false, pendingLevelAdvance=false, aset=false;
 	Base base;
-	int[][] levels = {{5,5}, {3,5}, {4,6}};
+	int[] levels = {5,5};
 	Block[][] levelBricks;
 	ArrayList<Projectile> firedBricks;
-	int level = -1,syncCount=0,syncDelay=400;
+	int level = -1,syncCount=0,syncDelay=400,numLevels=2;
 	double pFLdx = 1, nextPRandom;
 	Text pendingLevelText1, pendingLevelText2;
 	FramedRect pendingLevelButton;
@@ -35,6 +35,7 @@ public class World extends ActiveObject {
 		deadProjectile = new Projectile(base.getX()+(base.getWidth()/2)-5, base.getY(), 10, 10, 0, 0, "img/projectile.png", 1, c);
 		nextPRandom=.1;
 		nextLevel();
+		new Slider(50, 50, 40, 100, new int[] {5,10}, 6, new boolean[] {true, true, true}, new Color(0xff0000), "label", c);
 		start();
 	}
 	public void reset() {
@@ -87,7 +88,7 @@ public class World extends ActiveObject {
 		}
 	}
 	public void nextLevel() {
-		if (level+1 < levels.length && !pendingLevelAdvance) {
+		if (level+1 < numLevels && !pendingLevelAdvance) {
 			pendingLevelAdvance=true;
 			clearLevel();
 			level++;
@@ -145,12 +146,12 @@ public class World extends ActiveObject {
 		xGap = pWidth/3;
 		yGap = pWidth/5+10;
 		this.fsw = xGap - xGap/4;
-		topX = c.getWidth()-((levels[lvl][1])*pWidth)-(((levels[lvl][1])-1)*xGap);
+		topX = c.getWidth()-((levels[1])*pWidth)-(((levels[1])-1)*xGap);
 		topX /= 2;
 		topY = 0;
-		levelBricks = new Block[levels[lvl][0]][levels[lvl][1]];
-		for (int i=0;i < levels[lvl][0]; i++) {
-			for (int ii=0;ii < levels[lvl][1]; ii++) {
+		levelBricks = new Block[levels[0]][levels[1]];
+		for (int i=0;i < levels[0]; i++) {
+			for (int ii=0;ii < levels[1]; ii++) {
 				if (ii >= 0) {
 					levelBricks[i][ii] = makeGameBrick(topX+((ii)*pWidth)+((ii-1)*xGap), topY+((i)*pWidth), pWidth, pWidth);
 				} else {
@@ -158,8 +159,8 @@ public class World extends ActiveObject {
 				}
 			}
 		}
-		for (int i=0;i < levels[lvl][0]; i++) {
-			for (int ii=0;ii < levels[lvl][1]; ii++) {
+		for (int i=0;i < levels[0]; i++) {
+			for (int ii=0;ii < levels[1]; ii++) {
 				levelBricks[i][ii].allowMovability();
 			}
 		}
