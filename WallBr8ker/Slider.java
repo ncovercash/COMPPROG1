@@ -9,7 +9,7 @@ import javax.imageio.*;
 public class Slider extends ActiveObject {
 	Line topL, spineL, bottomL;
 	Line[] ticks;
-	Text topT, bottomT, currentT;
+	Text topT, bottomT, currentT, label;
 	int ticksToMake;
 	double cVal, topx, topy, bottomx, bottomy;
 	boolean doneSearchingTicks=false;
@@ -25,6 +25,8 @@ public class Slider extends ActiveObject {
 		this.opts = opts;
 		this.range = range;
 		cVal=start;
+		label = new Text(name, x, y, c);
+		label.move(0,-label.getHeight());
 		if (opts[0]) {
 			if (opts[1]) {
 				topT = new Text(range[1], x+w, y, c);
@@ -76,8 +78,8 @@ public class Slider extends ActiveObject {
 	}
 
 	public void drag(Location p) {
-		slide.moveTo(slide.getX(), p.getY());
-		slideBorder.moveTo(slide.getX(), p.getY());
+		slide.moveTo(slide.getX(), p.getY()-(slide.getHeight()/2));
+		slideBorder.moveTo(slide.getX(), p.getY()-(slide.getHeight()/2));
 	}
 
 	public void debugLine(Exception a) {
@@ -88,6 +90,16 @@ public class Slider extends ActiveObject {
 	public String debugLineStr(Exception a) {
 		StackTraceElement exfl = a.getStackTrace()[0];
 		return exfl.getClassName()+"/"+exfl.getMethodName()+":"+exfl.getLineNumber();
+	}
+
+	public int val() {
+		double slidePos = (Math.abs(((slide.getY()+(slide.getHeight()/2)-spineL.getStart().getY())/(spineL.getEnd().getY()-spineL.getStart().getY()))-1)*(range[1]-range[0]))+range[0];
+		if ((int)slidePos > range[1]) {
+			slidePos = range[1];
+		} else if ((int)slidePos < range[0]) {
+			slidePos = range[0];
+		}
+		return (int)slidePos;
 	}
 
 	public boolean contains(Location p) {

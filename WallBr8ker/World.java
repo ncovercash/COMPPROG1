@@ -12,10 +12,10 @@ public class World extends ActiveObject {
 	DrawingCanvas c;
 	boolean gameOver = false, currentGameOver = false, canTouchThis=true, endiSet=false, pendingLevelAdvance=false, aset=false;
 	Base base;
-	int[] levels = {10,10};
+	int[] levels = {5,5};
 	Block[][] levelBricks;
 	ArrayList<Projectile> firedBricks;
-	int level = -1,syncCount=0,syncDelay=400,numLevels=2;
+	int level = -1,syncCount=0,syncDelay=400,numLevels=2, speed=1;
 	double pFLdx = 1, nextPRandom;
 	Text pendingLevelText1, pendingLevelText2;
 	FramedRect pendingLevelButton;
@@ -23,7 +23,7 @@ public class World extends ActiveObject {
 	boolean moveX=true;
 	double fsw;
 	Text a;
-	Slider levelSlide;
+	Slider levelSlide, numSlide;
 	ResetButton reeeeeeset;
 	Projectile deadProjectile;
 	public World(DrawingCanvas c) {
@@ -36,12 +36,17 @@ public class World extends ActiveObject {
 		deadProjectile = new Projectile(base.getX()+(base.getWidth()/2)-5, base.getY(), 10, 10, 0, 0, "img/projectile.png", 1, c);
 		nextPRandom=.1;
 		nextLevel();
-		levelSlide = new Slider(50, 50, 40, 100, new int[] {2,10}, 5, new boolean[] {true, true, true}, new Color(0xff0000), "label", c);
+		numSlide = new Slider(10, 100, 40, 100, new int[] {1,10}, 5, new boolean[] {true, true, true, true}, new Color(0xff0000), "Number of Levels", c);
+		levelSlide = new Slider(10, 250, 40, 100, new int[] {2,10}, 2, new boolean[] {true, true, true, true}, new Color(0x0000ff), "Grid Size", c);
 		start();
 	}
 	public void reset() {
 		canTouchThis = false;
-		clearLevel();
+		try {
+			clearLevel();
+		} catch(NullPointerException a) {
+			//
+		}
 		level = -1;
 		nextLevel();
 		scor.setScore(0);
@@ -291,8 +296,20 @@ public class World extends ActiveObject {
 	public void onMouseDrag(Location p) {
 		if (levelSlide.contains(p)) {
 			levelSlide.drag(p);
-		} else {
-			debugLine(new Exception());
+			if (levelSlide.val()!=levels[0]) {
+				levels = new int[] {levelSlide.val(), levelSlide.val()};
+				try {
+					clearLevel();
+				} catch (NullPointerException e) {
+					//
+				}
+				reset();
+			}
+		} else if (numSlide.contains(p)) {
+			numSlide.drag(p);
+			if (numSlide.val()!=numLevels) {
+				numLevels = numSlide.val();
+			}
 		}
 	}
 	public int minOfIntCollection(int[] input) {
@@ -314,7 +331,7 @@ public class World extends ActiveObject {
 		return max;
 	}
 	public Block makeGameBrick(double x, double y, double w, double h) {
-		return new Block(x, y, w, h, 1, 0, "img/bricks/red/", 1, c);
+		return new Block(x, y, w, h, speed, 0, "img/bricks/red/", 1, c);
 	}
 	public void debugLine(Exception a) {
 		StackTraceElement exfl = a.getStackTrace()[0];
