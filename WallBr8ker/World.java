@@ -44,6 +44,9 @@ public class World extends ActiveObject {
 		canTouchThis = false;
 		try {
 			clearLevel();
+			clearLevel();
+			clearLevel();
+			clearLevel();
 		} catch(NullPointerException a) {
 			//
 		}
@@ -202,7 +205,7 @@ public class World extends ActiveObject {
 												iii--;
 											}
 											levelBricks[i][ii].hit();
-											scor.addScore((level+1)*2);
+											scor.addScore(levelB.getScore()*2);
 											switch (levelBricks[i][ii].getHits()) {
 												case 0:
 													levelBricks[i][ii].setImageBase("img/bricks/red/");
