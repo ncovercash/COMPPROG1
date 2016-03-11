@@ -11,13 +11,17 @@ public class Slider extends ActiveObject {
 	Line[] ticks;
 	Text topT, bottomT, currentT;
 	int ticksToMake;
-	double cVal;
+	double cVal, topx, topy, bottomx, bottomy;
 	boolean doneSearchingTicks=false;
 	FramedRect slideBorder;
 	FilledRect slide;
 	int[] range;
 	boolean[] opts; // options: vertical, show top/bottom vals, tick marks
 	public Slider(double x, double y, double w, double h, int range[], double start, boolean[] opts, Color color, String name, DrawingCanvas c) {
+		topx=x;
+		topy=y;
+		bottomx=x+w;
+		bottomy=y+h;
 		this.opts = opts;
 		this.range = range;
 		cVal=start;
@@ -71,6 +75,11 @@ public class Slider extends ActiveObject {
 		}
 	}
 
+	public void drag(Location p) {
+		slide.moveTo(slide.getX(), p.getY());
+		slideBorder.moveTo(slide.getX(), p.getY());
+	}
+
 	public void debugLine(Exception a) {
 		StackTraceElement exfl = a.getStackTrace()[0];
 		System.out.println(exfl.getClassName()+"/"+exfl.getMethodName()+":"+exfl.getLineNumber());
@@ -79,5 +88,13 @@ public class Slider extends ActiveObject {
 	public String debugLineStr(Exception a) {
 		StackTraceElement exfl = a.getStackTrace()[0];
 		return exfl.getClassName()+"/"+exfl.getMethodName()+":"+exfl.getLineNumber();
+	}
+
+	public boolean contains(Location p) {
+		if (p.getX() < bottomx && p.getX() > topx && p.getY() < bottomy && p.getY() > topy) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

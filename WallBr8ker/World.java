@@ -12,7 +12,7 @@ public class World extends ActiveObject {
 	DrawingCanvas c;
 	boolean gameOver = false, currentGameOver = false, canTouchThis=true, endiSet=false, pendingLevelAdvance=false, aset=false;
 	Base base;
-	int[] levels = {5,5};
+	int[] levels = {10,10};
 	Block[][] levelBricks;
 	ArrayList<Projectile> firedBricks;
 	int level = -1,syncCount=0,syncDelay=400,numLevels=2;
@@ -23,6 +23,7 @@ public class World extends ActiveObject {
 	boolean moveX=true;
 	double fsw;
 	Text a;
+	Slider levelSlide;
 	ResetButton reeeeeeset;
 	Projectile deadProjectile;
 	public World(DrawingCanvas c) {
@@ -35,7 +36,7 @@ public class World extends ActiveObject {
 		deadProjectile = new Projectile(base.getX()+(base.getWidth()/2)-5, base.getY(), 10, 10, 0, 0, "img/projectile.png", 1, c);
 		nextPRandom=.1;
 		nextLevel();
-		new Slider(50, 50, 40, 100, new int[] {5,10}, 6, new boolean[] {true, true, true}, new Color(0xff0000), "label", c);
+		levelSlide = new Slider(50, 50, 40, 100, new int[] {2,10}, 5, new boolean[] {true, true, true}, new Color(0xff0000), "label", c);
 		start();
 	}
 	public void reset() {
@@ -288,6 +289,11 @@ public class World extends ActiveObject {
 	public void onMousePress(Location p) {
 	}
 	public void onMouseDrag(Location p) {
+		if (levelSlide.contains(p)) {
+			levelSlide.drag(p);
+		} else {
+			debugLine(new Exception());
+		}
 	}
 	public int minOfIntCollection(int[] input) {
 		int min=2147483647;
