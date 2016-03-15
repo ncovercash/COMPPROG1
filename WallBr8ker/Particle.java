@@ -32,8 +32,20 @@ public class Particle extends ActiveObject {
 				pause(15);
 				counter++;
 			}
+			if (base.getX()<0||base.getX()>c.getWidth()||base.getY()<0||base.getY()>c.getHeight()) {
+				try {
+					base.removeFromCanvas(); 
+				} catch (IllegalStateException e) {
+					//
+				}
+				interrupt();
+			}
 		}
-		base.removeFromCanvas();
+		try {
+		base.removeFromCanvas(); 
+		} catch (IllegalStateException e) {
+			//
+		}
 	}
 	public void setMove(boolean a) {
 		canMove = a;

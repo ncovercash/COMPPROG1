@@ -31,7 +31,6 @@ public class Particles extends ActiveObject {
 		int ii = 0;
 		for (int a=0;a < pOutSets;a++) {
 			for (int i=0;i < pOut/pOutSets;i++) {
-				System.out.println(0+((360/(pOut/pOutSets))*(i%(pOut/pOutSets)))); // angle
 				double angle = (0+((360/(pOut/pOutSets))*(i%(pOut/pOutSets))));
 				pOuts[ii] = new Particle(centerX-pWidth/2, centerY-pWidth/2, pWidth, colors[new RandomIntGenerator(0, colors.length-1).nextValue()], dxdyFromAngle(angle)[0]/1.5, dxdyFromAngle(angle)[1]/1.5, pOutLife, c);
 				ii++;
@@ -41,9 +40,11 @@ public class Particles extends ActiveObject {
 	}
 	public void run() {
 		int ii = 0;
-		for (int a=0;a < pInDirection/direction.length;a++) {
-			for (int b=0;b < direction.length;b++) {
-				pIDs[ii] = new Particle(centerX-pWidth/2, centerY-pWidth/2, pWidth, colors[new RandomIntGenerator(0, colors.length-1).nextValue()], dxdyFromAngle(new RandomIntGenerator(direction[b]-8, direction[b]+8).nextValue())[0], dxdyFromAngle(new RandomIntGenerator(direction[b]-2, direction[b]+2).nextValue())[1], pDirectionLife, c);
+		if (direction.length != 0) {
+			for (int a=0;a < pInDirection/direction.length;a++) {
+				for (int b=0;b < direction.length;b++) {
+					pIDs[ii] = new Particle(centerX-pWidth/2, centerY-pWidth/2, pWidth, colors[new RandomIntGenerator(0, colors.length-1).nextValue()], dxdyFromAngle(new RandomIntGenerator(direction[b]-8, direction[b]+8).nextValue())[0], dxdyFromAngle(new RandomIntGenerator(direction[b]-2, direction[b]+2).nextValue())[1], pDirectionLife, c);
+				}
 			}
 		}
 	}

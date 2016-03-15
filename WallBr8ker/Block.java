@@ -75,7 +75,7 @@ public class Block extends ActiveObject {
 							meme.setImage(ImageIO.read(new File(imgBase+"6.png")));
 						}
 					} catch (IOException e) {
-						System.out.println(e+"00case");
+						//
 					}
 					aa++;
 					break;
@@ -87,7 +87,7 @@ public class Block extends ActiveObject {
 							meme.setImage(ImageIO.read(new File(imgBase+"7.png")));
 						}	
 					} catch (IOException e) {
-						System.out.println(e+"00case");
+						//
 					}
 					aa++;
 					break;
@@ -100,7 +100,6 @@ public class Block extends ActiveObject {
 			try {
 				if (row == 0) {
 					if (((int)(memes[col][0].getX())) % ((int)(c.getWidth()/5)) == 0 && memes[col][0].getX() < c.getWidth()-10 && memes[col][0].getX() > 10) {
-						System.out.println("check col "+col+";x "+memes[col][0].getX());
 						double ay = memes[col][0].getY();
 						for (int i=0;i<memes[col].length;i++) {
 							memes[col][i].moveTo(((int)(memes[col][0].getX())),ay+((i*yDiff)));

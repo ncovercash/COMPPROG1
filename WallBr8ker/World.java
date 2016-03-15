@@ -12,15 +12,16 @@ public class World extends ActiveObject {
 	DrawingCanvas c;
 	boolean gameOver = false, currentGameOver = false, canTouchThis=true, endiSet=false, pendingLevelAdvance=false, aset=false;
 	Base base;
-	int[] levels = {5,5};
+	int[] levels = {1,1};
 	Block[][] levelBricks;
 	ArrayList<Projectile> firedBricks;
-	int level = -1,syncCount=0,syncDelay=400,numLevels=2, speed=1;
+	int level = -1,syncCount=0,syncDelay=400,numLevels=1, speed=1;
 	double pFLdx = 1, nextPRandom;
 	Text pendingLevelText1, pendingLevelText2;
 	FramedRect pendingLevelButton;
 	FilledRect pendingLevelButtonTest;
 	boolean moveX=true;
+	ParticlesBG aa;
 	double fsw;
 	Text a;
 	Slider levelSlide, numSlide;
@@ -43,10 +44,16 @@ public class World extends ActiveObject {
 	public void reset() {
 		canTouchThis = false;
 		try {
+			aa.stop();
+		} catch (NullPointerException e) {
+			//
+		}
+		try {
 			clearLevel();
 			clearLevel();
 			clearLevel();
 			clearLevel();
+			aa.stop();
 		} catch(NullPointerException a) {
 			//
 		}
@@ -127,11 +134,12 @@ public class World extends ActiveObject {
 		}
 	}
 	public void youWin() {
-		System.out.println("YOU WIN!");
 		aset=true;
 		a = new Text("You Win!", 0, 0, c);
 		a.setFontSize(50);
 		a.moveTo(c.getWidth()/2-a.getWidth()/2, c.getHeight()/2-a.getHeight()/2);
+		aa = new ParticlesBG(c.getWidth()/2, c.getHeight()/2, 8, 3, 3, 3932160, 32768, 1100, 0, 0, new int[] {}, new Color[] {new Color(0x0000ff), new Color(0x00ff00), new Color(0xff0000), new Color(0x00ffff), new Color(0xffff00), new Color(0xff00ff), new Color(0x000000)}, c);
+
 	}
 	public void onMouseMove(Location p) {
 		if (p.getX() <= c.getWidth()-base.getWidth()) {
@@ -176,6 +184,15 @@ public class World extends ActiveObject {
 			}
 		}
 	}
+	public void youLose() {
+		currentGameOver = true;
+		clearLevel();
+		aset=true;
+		a = new Text("You Lose! :(", 0, 0, c);
+		a.setFontSize(50);
+		a.moveTo(c.getWidth()/2-a.getWidth()/2, c.getHeight()/2-a.getHeight()/2);
+		aa = new ParticlesBG(c.getWidth()/2, c.getHeight()/2, 8, 3, 3, 3932160, 32768, 1100, 0, 0, new int[] {}, new Color[] {new Color(0x000000)}, c);
+	}
 	public void clearLevel() {
 		if (level != -1) {
 			for (int i=0;i < levelBricks.length; i++) {
@@ -191,7 +208,7 @@ public class World extends ActiveObject {
 				}
 			}
 		} catch (Exception e) {
-
+			//
 		}
 	}
 	public void run() {
@@ -201,6 +218,11 @@ public class World extends ActiveObject {
 				double pFLdy = 0;
 				int done=0;
 				int needed=0;
+				if (canTouchThis) {
+					if (levelBricks[levelBricks.length-1][levelBricks[levelBricks.length-1].length-1].getY()+Block.yDiff >= c.getHeight() || levelBricks[levelBricks.length-1][0].getY()+Block.yDiff >= c.getHeight()) {
+						youLose();
+					}
+				}
 				if (canTouchThis) {
 					for (int i=0;i < levelBricks.length; i++) {
 						needed += levelBricks[i].length;
@@ -293,7 +315,6 @@ public class World extends ActiveObject {
 					// }
 				}
 				if (done == needed && canTouchThis) {
-					System.out.println("this called it"+done+" "+needed);
 					scor.addScore(10*(level+1));
 					nextLevel();
 				}
@@ -352,7 +373,6 @@ public class World extends ActiveObject {
 		System.out.println(exfl.getClassName()+"/"+exfl.getMethodName()+":"+exfl.getLineNumber());
 	}
 	public int medianOfIntCollection(int[] numArray) {	
-		System.out.println(Arrays.toString(numArray));
 		Arrays.sort(numArray);
 		int median;
 		int middle = ((numArray.length) / 2);
@@ -363,7 +383,6 @@ public class World extends ActiveObject {
 		} else {
 			median = numArray[middle + 1];
 		}
-		System.out.println(median);
 		return median;
 	}
 }
