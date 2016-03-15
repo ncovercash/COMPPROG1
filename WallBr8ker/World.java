@@ -158,13 +158,15 @@ public class World extends ActiveObject {
 		topX = c.getWidth()-((levels[1])*pWidth)-(((levels[1])-1)*xGap);
 		topX /= 2;
 		topY = 0;
+		Block.yDiff = (int)pWidth;
 		levelBricks = new Block[levels[0]][levels[1]];
+		Block.memes = new VisibleImage[levels[0]][levels[1]];
 		for (int i=0;i < levels[0]; i++) {
 			for (int ii=0;ii < levels[1]; ii++) {
 				if (ii >= 0) {
-					levelBricks[i][ii] = makeGameBrick(topX+((ii)*pWidth)+((ii-1)*xGap), topY+((i)*pWidth), pWidth, pWidth);
+					levelBricks[i][ii] = makeGameBrick(topX+((ii)*pWidth)+((ii-1)*xGap), topY+((i)*pWidth), pWidth, pWidth, i, ii);
 				} else {
-					levelBricks[i][ii] = makeGameBrick(topX+((ii)*pWidth), topY+((i)*pWidth), pWidth, pWidth);
+					levelBricks[i][ii] = makeGameBrick(topX+((ii)*pWidth), topY+((i)*pWidth), pWidth, pWidth, i, ii);
 				}
 			}
 		}
@@ -181,6 +183,15 @@ public class World extends ActiveObject {
 					levelBricks[i][ii].killTotally();
 				}
 			}
+		}
+		try {
+			for (int i=0;i < Block.memes.length; i++) {
+				for (int ii=0;ii < Block.memes[i].length; ii++) {
+					Block.memes[i][ii].removeFromCanvas();
+				}
+			}
+		} catch (Exception e) {
+
 		}
 	}
 	public void run() {
@@ -333,8 +344,8 @@ public class World extends ActiveObject {
 		}
 		return max;
 	}
-	public Block makeGameBrick(double x, double y, double w, double h) {
-		return new Block(x, y, w, h, speed, 0, "img/bricks/red/", 1, c);
+	public Block makeGameBrick(double x, double y, double w, double h, int row, int col) {
+		return new Block(x, y, w, h, speed, 0, "img/bricks/red/", 1, row, col, c);
 	}
 	public void debugLine(Exception a) {
 		StackTraceElement exfl = a.getStackTrace()[0];

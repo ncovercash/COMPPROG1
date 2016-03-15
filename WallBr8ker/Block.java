@@ -12,13 +12,17 @@ public class Block extends ActiveObject {
 	int dx, dy;
 	String imgBase;
 	double m, ox, oy, ow, oh, aa=0;
+	public static VisibleImage memes[][]; //col,row
+	public static int yDiff;
 	boolean alive=true, moveability=false, ed=false;
-	int hits = 0;
-	public Block(double x, double y, double w, double h, int dx, int dy, String base, double mult, DrawingCanvas c) {
+	int hits = 0,row,col;
+	public Block(double x, double y, double w, double h, int dx, int dy, String base, double mult, int row, int col, DrawingCanvas c) {
 		this.c = c;
 		this.dx = dx;
 		this.dy = dy;
 		this.m = mult;
+		this.row = row;
+		this.col = col;
 		ox = x;
 		oy = y;
 		ow = w;
@@ -42,10 +46,11 @@ public class Block extends ActiveObject {
 				System.exit(1);
 			}
 		}
+		memes[col][row] = meme;
 		start();
 	}
 	public Block(String pimg, double mult, DrawingCanvas c, int pos) {
-		this((c.getWidth()/2)-c.getWidth()/20+(pos*(c.getWidth()/50)), 0, c.getWidth()/50, c.getWidth()/50, new RandomIntGenerator(-c.getHeight()/60, c.getHeight()/60).nextValue(), new RandomIntGenerator(c.getHeight()/90, c.getHeight()/60).nextValue(), pimg, mult, c);
+		this((c.getWidth()/2)-c.getWidth()/20+(pos*(c.getWidth()/50)), 0, c.getWidth()/50, c.getWidth()/50, new RandomIntGenerator(-c.getHeight()/60, c.getHeight()/60).nextValue(), new RandomIntGenerator(c.getHeight()/90, c.getHeight()/60).nextValue(), pimg, mult, 0, 0, c);
 	}
 	public void run() {
 		while (alive) {
@@ -92,6 +97,17 @@ public class Block extends ActiveObject {
 				default:
 					aa++;
 			}
+			try {
+				if (row == 0) {
+					if (((int)(memes[col][0].getX())) % ((int)(c.getWidth()/5)) == 0 && memes[col][0].getX() < c.getWidth()-10 && memes[col][0].getX() > 10) {
+						System.out.println("check col "+col+";x "+memes[col][0].getX());
+						double ay = memes[col][0].getY();
+						for (int i=0;i<memes[col].length;i++) {
+							memes[col][i].moveTo(((int)(memes[col][0].getX())),ay+((i*yDiff)));
+						}
+					}
+				}
+			} catch (Exception e) {}
 			pause(5);
 		}
 	}
