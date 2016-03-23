@@ -26,6 +26,7 @@ public class Driver extends WindowController {
 		scor = new ScoreBox(canvas, 0, new Color(250,193,102), "Score: ");
 		RESET = new ResetButton(canvas);
 		deadProjectile = new Projectile(base.getX()+(base.getWidth()/2)-5, base.getY(), 10, 10, 0, 0, "img/projectile/green.png", 1, canvas);
+		fired = new ArrayList<Projectile>();
 		nextPRandom=.5;
 	}
 	public void onMouseClick(Location p) {
@@ -40,13 +41,13 @@ public class Driver extends WindowController {
 		Projectile t;
 		if (nextPRandom < .2) {
 			deadProjectile.setImg("img/projectile/red.png");
-			t = new Projectile(base.getX()+(base.getWidth()/2)-5, base.getY(), 10, 10, 0, -10, "img/projectile/red.png", 1, canvas);
+			t = new Projectile(base.getX()+(base.getWidth()/2)-5, base.getY(), 10, 10, 0, -20, "img/projectile/red.png", 1, canvas);
 		} else if (nextPRandom <= .25) {
 			deadProjectile.setImg("img/projectile/yellow.png");
-			t = new Projectile(base.getX()+(base.getWidth()/2)-5, base.getY(), 10, 10, 0, -10, "img/projectile/yellow.png", 1, canvas);
+			t = new Projectile(base.getX()+(base.getWidth()/2)-5, base.getY(), 10, 10, 0, -20, "img/projectile/yellow.png", 1, canvas);
 		} else {
 			deadProjectile.setImg("img/projectile/green.png");
-			t = new Projectile(base.getX()+(base.getWidth()/2)-5, base.getY(), 10, 10, 0, -10, "img/projectile/green.png", 1, canvas);
+			t = new Projectile(base.getX()+(base.getWidth()/2)-5, base.getY(), 10, 10, 0, -20, "img/projectile/green.png", 1, canvas);
 		}
 		t.allowMovability();
 		fired.add(t);
