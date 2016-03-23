@@ -61,7 +61,7 @@ public class Pig extends ActiveObject {
 		eyePupil2.setColor(altC1);
 	}
 	public void run() {
-		while (!alive) {
+		while (alive) {
 			if (canMove) {
 				move(dx,dy);
 				if (head.getX()+head.getWidth() <= 0 || head.getX() >= c.getWidth()) {
@@ -73,83 +73,56 @@ public class Pig extends ActiveObject {
 		}
 	}
 	public void grow(double gF) {
-		double headChangeW = head.getWidth()*gF;
-		double headChangeH = head.getHeight()*gF;
-		double changeW = head.getWidth()*gF;
-		double changeH = head.getHeight()*gF;
+		head.move(-(head.getWidth()*(gF/2)), -(head.getHeight()*(gF/2)));
 		head.setWidth(head.getWidth()*(1+gF));
 		head.setHeight(head.getHeight()*(1+gF));
-		head.move(-(changeW/2), -(changeH/2));
-		changeW = ear1.getWidth()*gF;
-		changeH = ear1.getHeight()*gF;
+		ear1.move(-(ear1.getWidth()*(gF/2)), -(ear1.getHeight()*(gF/2)));
 		ear1.setWidth(ear1.getWidth()*(1+gF));
 		ear1.setHeight(ear1.getHeight()*(1+gF));
-		ear1.moveTo(head.getLocation());
-		changeW = ear2.getWidth()*gF;
-		changeH = ear2.getHeight()*gF;
+		ear2.move(-(ear2.getWidth()*(gF/2)), -(ear2.getHeight()*(gF/2)));
 		ear2.setWidth(ear2.getWidth()*(1+gF));
 		ear2.setHeight(ear2.getHeight()*(1+gF));
-		ear2.moveTo(head.getX()+head.getWidth()-ear2.getWidth(), head.getY());
-		changeW = noseWrapper.getWidth()*gF;
-		changeH = noseWrapper.getHeight()*gF;
-		noseWrapper.setWidth(noseWrapper.getWidth()*(1+gF));
-		noseWrapper.setHeight(noseWrapper.getHeight()*(1+gF));
-		noseWrapper.move(-changeW/2, -changeH/2);
-		changeW = noseInner1.getWidth()*gF;
-		changeH = noseInner1.getHeight()*gF;
-		noseInner1.setWidth(noseInner1.getWidth()*(1+gF));
-		noseInner1.setHeight(noseInner1.getHeight()*(1+gF));
-		noseInner1.move(-changeW/4, -changeH/2);
-		changeW = noseInner2.getWidth()*gF;
-		changeH = noseInner2.getHeight()*gF;
-		noseInner2.setWidth(noseInner2.getWidth()*(1+gF));
-		noseInner2.setHeight(noseInner2.getHeight()*(1+gF));
-		noseInner2.move(0, -changeH/2);
-		changeW = mouth.getWidth()*gF;
-		changeH = mouth.getHeight()*gF;
+		mouth.move(-(mouth.getWidth()*(gF/2)), -(mouth.getHeight()*(gF/2)));
 		mouth.setWidth(mouth.getWidth()*(1+gF));
 		mouth.setHeight(mouth.getHeight()*(1+gF));
-		mouth.move(-changeW/2, 0);
-		mouth.moveTo(mouth.getX(), head.getY()+head.getHeight()-(head.getHeight()/5)+(head.getHeight()/25));	}
-	public void shrink(double sF) {
-		double headChangeW = -head.getWidth()*sF;
-		double headChangeH = -head.getHeight()*sF;
-		double changeW = -head.getWidth()*sF;
-		double changeH = -head.getHeight()*sF;
-		head.setWidth(head.getWidth()*(1-sF));
-		head.setHeight(head.getHeight()*(1-sF));
-		head.move(-(changeW/2), -(changeH/2));
-		changeW = -ear2.getWidth()*sF;
-		changeH = -ear2.getHeight()*sF;
-		ear1.setWidth(ear1.getWidth()*(1-sF));
-		ear1.setHeight(ear1.getHeight()*(1-sF));
-		ear1.moveTo(head.getX(), head.getY());
-		changeW = -ear2.getWidth()*sF;
-		changeH = -ear2.getHeight()*sF;
-		ear2.setWidth(ear2.getWidth()*(1-sF));
-		ear2.setHeight(ear2.getHeight()*(1-sF));
+		noseWrapper.move(-(noseWrapper.getWidth()*(gF/2)), -(noseWrapper.getHeight()*(gF/2)));
+		noseWrapper.setWidth(noseWrapper.getWidth()*(1+gF));
+		noseWrapper.setHeight(noseWrapper.getHeight()*(1+gF));
+		noseInner1.move(-(noseInner1.getWidth()*(gF/2)), -(noseInner1.getHeight()*(gF/2)));
+		noseInner1.setWidth(noseInner1.getWidth()*(1+gF));
+		noseInner1.setHeight(noseInner1.getHeight()*(1+gF));
+		noseInner2.move(-(noseInner2.getWidth()*(gF/2)), -(noseInner2.getHeight()*(gF/2)));
+		noseInner2.setWidth(noseInner2.getWidth()*(1+gF));
+		noseInner2.setHeight(noseInner2.getHeight()*(1+gF));
+		eyeWrapper1.move(-(eyeWrapper1.getWidth()*(gF/2)), -(eyeWrapper1.getHeight()*(gF/2)));
+		eyeWrapper1.setWidth(eyeWrapper1.getWidth()*(1+gF));
+		eyeWrapper1.setHeight(eyeWrapper1.getHeight()*(1+gF));
+		eyePupil1.move(-(eyePupil1.getWidth()*(gF/2)), -(eyePupil1.getHeight()*(gF/2)));
+		eyePupil1.setWidth(eyePupil1.getWidth()*(1+gF));
+		eyePupil1.setHeight(eyePupil1.getHeight()*(1+gF));
+		eyeWrapper2.move(-(eyeWrapper2.getWidth()*(gF/2)), -(eyeWrapper2.getHeight()*(gF/2)));
+		eyeWrapper2.setWidth(eyeWrapper2.getWidth()*(1+gF));
+		eyeWrapper2.setHeight(eyeWrapper2.getHeight()*(1+gF));
+		eyePupil2.move(-(eyePupil2.getWidth()*(gF/2)), -(eyePupil2.getHeight()*(gF/2)));
+		eyePupil2.setWidth(eyePupil2.getWidth()*(1+gF));
+		eyePupil2.setHeight(eyePupil2.getHeight()*(1+gF));
+
+		ear1.moveTo(head.getLocation());
 		ear2.moveTo(head.getX()+head.getWidth()-ear2.getWidth(), head.getY());
-		changeW = -noseWrapper.getWidth()*sF;
-		changeH = -noseWrapper.getHeight()*sF;
-		noseWrapper.setWidth(noseWrapper.getWidth()*(1-sF));
-		noseWrapper.setHeight(noseWrapper.getHeight()*(1-sF));
-		noseWrapper.move(-changeW/2, -changeH/2);
-		changeW = -noseInner2.getWidth()*sF;
-		changeH = -noseInner2.getHeight()*sF;
-		noseInner2.setWidth(noseInner2.getWidth()*(1-sF));
-		noseInner2.setHeight(noseInner2.getHeight()*(1-sF));
-		noseInner2.move(0, -changeH/2);
-		changeW = -noseInner1.getWidth()*sF;
-		changeH = -noseInner1.getHeight()*sF;
-		noseInner1.setWidth(noseInner1.getWidth()*(1-sF));
-		noseInner1.setHeight(noseInner1.getHeight()*(1-sF));
-		noseInner1.move(-changeW/4, -changeH/2);
-		changeW = -mouth.getWidth()*sF;
-		changeH = -mouth.getHeight()*sF;
-		mouth.setWidth(mouth.getWidth()*(1-sF));
-		mouth.setHeight(mouth.getHeight()*(1-sF));
-		mouth.move(-changeW/2, 0);
-		mouth.moveTo(mouth.getX(), head.getY()+head.getHeight()-(head.getHeight()/5)+(head.getHeight()/25));
+		mouth.moveTo(head.getX()+(head.getWidth()/2)-(mouth.getWidth()/2),head.getY()+head.getHeight()-(head.getHeight()/5)+(head.getHeight()/25));
+		eyeWrapper1.moveTo(head.getX()+head.getWidth()/6, head.getY()+(head.getHeight()/8));
+		eyeWrapper2.moveTo(head.getX()+head.getWidth()-head.getWidth()/6-(head.getWidth()/4), head.getY()+(head.getHeight()/8));
+		eyePupil1.moveTo(head.getX()+head.getWidth()/6-(head.getWidth()/24)+(head.getWidth()/8), head.getY()+(head.getHeight()/8)+(head.getHeight()/20));
+		eyePupil2.moveTo(eyeWrapper2.getX()+(eyeWrapper2.getWidth()/2)-(eyePupil2.getWidth()/2), eyeWrapper2.getY()+(eyeWrapper2.getHeight()/2)-(eyePupil2.getHeight()/2));
+		noseInner1.moveTo(head.getX()+(head.getWidth()/2)-head.getWidth()/6+head.getWidth()/30, head.getY()+(head.getHeight()/2)-head.getHeight()/6+(((head.getHeight()/3)-(head.getHeight()/6))/2));
+		noseInner2.moveTo(head.getX()+(head.getWidth()/2)+head.getWidth()/6-head.getWidth()/30-(head.getWidth()/13), head.getY()+(head.getHeight()/2)-head.getHeight()/6+(((head.getHeight()/3)-(head.getHeight()/6))/2));
+	}
+	public void shrink(double sF) {
+		if (sF < 0) {
+			grow(sF);
+		} else if (sF > 0) {
+			grow(-sF);
+		}
 	}
 	public void move(double dx, double dy) {
 		head.move(dx,dy);
@@ -163,6 +136,19 @@ public class Pig extends ActiveObject {
 		noseWrapper.move(dx,dy);
 		noseInner1.move(dx,dy);
 		noseInner2.move(dx,dy);
+	}
+	public void removeFromCanvas() {
+		head.removeFromCanvas();
+		ear1.removeFromCanvas();
+		ear2.removeFromCanvas();
+		eyeWrapper1.removeFromCanvas();
+		eyePupil1.removeFromCanvas();
+		eyeWrapper2.removeFromCanvas();
+		eyePupil2.removeFromCanvas();
+		mouth.removeFromCanvas();
+		noseWrapper.removeFromCanvas();
+		noseInner1.removeFromCanvas();
+		noseInner2.removeFromCanvas();
 	}
 }
 

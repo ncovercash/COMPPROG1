@@ -190,7 +190,4 @@ public class Projectile extends ActiveObject {
 		meme.setHeight(oh*(1-(p/100)));
 		meme.move((oow-getWidth())/2, (ooh-getHeight())/2);
 	}
-	public String getImg() {
-		return meme.getImg();
-	}
 }
