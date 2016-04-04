@@ -11,6 +11,7 @@ public class Pig extends ActiveObject {
 	Color bgC, altC1, altC2;
 	boolean canMove=true, alive=true;
 	double dx, dy;
+	int changes=0;
 	FilledOval head, ear1, ear2, noseWrapper, noseInner1, noseInner2, mouth, eyeWrapper1, eyeWrapper2, eyePupil1, eyePupil2;
 	public Pig(double x, double y, double w, double h, double dx, double dy, Color col1, Color col2, Color col3, DrawingCanvas c) {
 		this.c = c;
@@ -25,6 +26,29 @@ public class Pig extends ActiveObject {
 		makeNose(x, y, w, h);
 		makeMouth(x, y, w, h);
 		start();
+	}
+	public boolean overlaps(Drawable2DInterface p) {
+		boolean outcome=false;
+		for (FilledOval c : new FilledOval[] {head, ear1, ear2, noseWrapper, noseInner1, noseInner2, mouth, eyeWrapper1, eyeWrapper2, eyePupil1, eyePupil2}) {
+			if (c.overlaps(p)) {
+				outcome=true;
+			}
+		}
+		return outcome;
+	}
+	public boolean mouthOverlaps(Drawable2DInterface o) {
+		return mouth.overlaps(o);
+	}
+	public void defaultSize() {
+		while (changes!=0) {
+			if (changes<0) {
+				shrink(.1);
+				changes++;
+			} else {
+				grow(.1);
+				changes--;
+			}
+		}
 	}
 	public void makeHead(double x, double y, double w, double h) {
 		head = new FilledOval(x,y,w,h,c);
@@ -43,6 +67,9 @@ public class Pig extends ActiveObject {
 		noseInner1.setColor(bgC);
 		noseInner2 = new FilledOval(x+(w/2)+w/6-w/30-(w/13), y+(h/2)-h/6+(((h/3)-(h/6))/2), w/13, h/6, c);
 		noseInner2.setColor(bgC);
+	}
+	public void stahp() {
+		canMove = false;
 	}
 	public void makeMouth(double x, double y, double w, double h) {
 		mouth = new FilledOval(x+(w/2)-(w/7), y+h-(h/5)+(h/25), w/3.5, h/5, c);
@@ -73,6 +100,7 @@ public class Pig extends ActiveObject {
 		}
 	}
 	public void grow(double gF) {
+		changes++;
 		head.move(-(head.getWidth()*(gF/2)), -(head.getHeight()*(gF/2)));
 		head.setWidth(head.getWidth()*(1+gF));
 		head.setHeight(head.getHeight()*(1+gF));
@@ -118,6 +146,7 @@ public class Pig extends ActiveObject {
 		noseInner2.moveTo(head.getX()+(head.getWidth()/2)+head.getWidth()/6-head.getWidth()/30-(head.getWidth()/13), head.getY()+(head.getHeight()/2)-head.getHeight()/6+(((head.getHeight()/3)-(head.getHeight()/6))/2));
 	}
 	public void shrink(double sF) {
+		changes--;
 		if (sF < 0) {
 			grow(sF);
 		} else if (sF > 0) {
@@ -136,6 +165,12 @@ public class Pig extends ActiveObject {
 		noseWrapper.move(dx,dy);
 		noseInner1.move(dx,dy);
 		noseInner2.move(dx,dy);
+	}
+	public double getBottomY() {
+		return mouth.getY()+mouth.getHeight();
+	}
+	public double getY() {
+		return ear1.getY();
 	}
 	public void removeFromCanvas() {
 		head.removeFromCanvas();
