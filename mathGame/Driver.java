@@ -1,3 +1,5 @@
+package mathGame;
+
 
 
 import objectdraw.*;
@@ -15,6 +17,7 @@ public class Driver extends WindowController {
 	String[] operandsText = new String[] {"+", "–", "✕", "÷", "%", "^"};
 	String problemOp;
 	int problemOpID;
+	double val1, val2, val3;
 	int[] nums;
 	public static void main(String[] args) {
 		Driver oc = new Driver();
@@ -45,7 +48,40 @@ public class Driver extends WindowController {
 		} else {
 			for (Button b : operands) {
 				if (b.testClick(p)) {
-					if (b.getBID() == problemOpID) {
+					boolean validOp=false;
+					switch(b.getBID()) {
+						case 0:
+							if (val3 == val1+val2) {
+								validOp=true;
+							}
+							break;
+						case 1:
+							if (val3 == val1-val2) {
+								validOp=true;
+							}
+							break;
+						case 2:
+							if (val3 == val1*val2) {
+								validOp=true;
+							}
+							break;
+						case 3:
+							if (val3 == val1/val2) {
+								validOp=true;
+							}
+							break;
+						case 4:
+							if (val3 == val1%val2) {
+								validOp=true;
+							}
+							break;
+						case 5:
+							if (val3 == Math.pow((int)val1, (int)val2)) {
+								validOp=true;
+							}
+							break;
+					}
+					if (validOp) {
 						sb.addScore(1);
 						newProblem();
 					} else {
@@ -84,11 +120,11 @@ public class Driver extends WindowController {
 			//
 		}
 		RandomIntGenerator numGen = new RandomIntGenerator(0, nums.length-1);
-		double val1 = nums[numGen.nextValue()];
+		val1 = nums[numGen.nextValue()];
 		problemOpID = operands[new RandomIntGenerator(0,operands.length-1).nextValue()].getBID();
 		problemOp = operands[problemOpID].getButtonText();
-		double val2 = nums[numGen.nextValue()];
-		double val3=0;
+		val2 = nums[numGen.nextValue()];
+		val3=0;
 		switch(problemOpID) {
 			case 0:
 				val3 = val1+val2;
@@ -122,9 +158,9 @@ public class Driver extends WindowController {
 				break;
 		}
 		if (val3 == (int)val3) {
-			problem = new Text((int)val1+" ? "+(int)val2+" = "+(int)val3, 100, 100, canvas);
+			problem = new Text((int)val1+" "+problemOp+" "+(int)val2+" = "+(int)val3, 100, 100, canvas);
 		} else {
-			problem = new Text((int)val1+" ? "+(int)val2+" = "+val3, 100, 100, canvas);
+			problem = new Text((int)val1+" "+problemOp+" "+(int)val2+" = "+val3, 100, 100, canvas);
 		}
 		problem.setFontSize((int)pb.getHeight());
 		int fs = (int)pb.getHeight();
