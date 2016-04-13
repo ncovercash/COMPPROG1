@@ -158,9 +158,9 @@ public class Driver extends WindowController {
 				break;
 		}
 		if (val3 == (int)val3) {
-			problem = new Text((int)val1+" "+problemOp+" "+(int)val2+" = "+(int)val3, 100, 100, canvas);
+			problem = new Text((int)val1+" ? "+(int)val2+" = "+(int)val3, 100, 100, canvas);
 		} else {
-			problem = new Text((int)val1+" "+problemOp+" "+(int)val2+" = "+val3, 100, 100, canvas);
+			problem = new Text((int)val1+" ? "+(int)val2+" = "+val3, 100, 100, canvas);
 		}
 		problem.setFontSize((int)pb.getHeight());
 		int fs = (int)pb.getHeight();
