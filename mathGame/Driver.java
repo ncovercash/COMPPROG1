@@ -1,4 +1,4 @@
- 
+
 
 
 
@@ -13,6 +13,7 @@ public class Driver extends WindowController {
 	ResetButton RESET;
 	Text problem;
 	FramedRect pb;
+	BG bg, pBG;
 	Button[] operands;
 	String[] operandsText = new String[] {"+", "–", "✕", "÷", "%", "^"};
 	String problemOp;
@@ -33,6 +34,8 @@ public class Driver extends WindowController {
 		for (int i=0; i<operandsText.length; i++) {
 			operands[i] = new Button(operandsText[i], ((canvas.getWidth()/(operandsText.length+1))*(i+1))-(canvas.getWidth()/20), (canvas.getHeight()/4)*3+canvas.getHeight()/30, canvas.getWidth()/15, canvas.getHeight()/15, new Color(0xffffff), new Color(0x000000), canvas, i);
 		}
+		pBG = new BG(pb.getX(), pb.getY(), pb.getWidth(), pb.getHeight(), canvas);
+		bg = new BG(canvas);
 		/*operands = new Button[] {
 			new Button("+", canvas.getWidth()/5-(canvas.getWidth()/20), (canvas.getHeight()/4)*3, canvas.getWidth()/10, canvas.getHeight()/10, new Color(0xffffff), new Color(0x000000), canvas)
 			new Button("–", ((canvas.getWidth()/5)*2)-(canvas.getWidth()/20), (canvas.getHeight()/4)*3, canvas.getWidth()/10, canvas.getHeight()/10, new Color(0xffffff), new Color(0x000000), canvas)
@@ -84,8 +87,10 @@ public class Driver extends WindowController {
 					if (validOp) {
 						sb.addScore(1);
 						newProblem();
+						pBG.fade(new Color(0x00ff00), new Color(0xffffff), 400);
 					} else {
 						sb.addScore(-1);
+						pBG.fade(new Color(0xff0000), new Color(0xffffff), 400);
 					}
 					break;
 				}
