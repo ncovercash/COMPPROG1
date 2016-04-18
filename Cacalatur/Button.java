@@ -8,6 +8,7 @@ import java.io.*;
 import javax.imageio.*;
 public class Button extends ActiveObject {
 	FilledRect bg;
+	FramedRect border;
 	int BID; // nonce var
 	Text button;
 	public Button(String text, double x, double y, double w, double h, Color bgC, Color tC, DrawingCanvas c, int BID) {
@@ -18,6 +19,9 @@ public class Button extends ActiveObject {
 		button.setColor(tC);
 		button.setFontSize((int)h-((int)h/10));
 		bg.setWidth(button.getWidth()*1.3);
+		border = new FramedRect(x, y, w, h, c);
+		border.setColor(tC);
+		button.moveTo(border.getX()+border.getWidth()/2-button.getWidth()/2, border.getY()+border.getHeight()/2-button.getHeight()/2);
 	}
 	public Button(String text, double x, double y, double w, double h, Color bgC, Color tC, DrawingCanvas c) {
 		bg = new FilledRect(x, y, w, h, c);
@@ -27,6 +31,9 @@ public class Button extends ActiveObject {
 		button.setColor(tC);
 		button.setFontSize((int)h-((int)h/10));
 		bg.setWidth(button.getWidth()*1.3);
+		border = new FramedRect(x, y, w, h, c);
+		border.setColor(tC);
+		button.moveTo(border.getX()+border.getWidth()/2-button.getWidth()/2, border.getY()+border.getHeight()/2-button.getHeight()/2);
 	}
 	public void moveTo(double dx, double dy) {
 		bg.moveTo(dx,dy);
