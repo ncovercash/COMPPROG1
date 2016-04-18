@@ -1,5 +1,0 @@
-[
-	{ 
-		"keys": ["ctrl+,"], "command": "compline" 
-	}
-]
