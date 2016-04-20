@@ -23,7 +23,7 @@ public class Particles extends ActiveObject {
 		this.pWidth = pWidth;
 		this.colors = colors;
 		this.pDirectionLife = pDirectionLife;
-		start(); 
+		start();
 		if (pOut % pOutSets != 0) {
 			System.out.println("invalid sets of outward burst particles");
 			System.exit(1);
